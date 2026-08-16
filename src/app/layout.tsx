@@ -19,6 +19,14 @@ export const metadata: Metadata = {
     "bibit pisang raja bulu",
     "turia farm",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   authors: [{ name: "Turia Farm Agronomy Team" }],
   creator: "Turia Farm",
   publisher: "Turia Farm Kediri",
