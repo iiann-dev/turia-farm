@@ -14,11 +14,11 @@ const translations: Record<Language, Record<string, string>> = {
   id: {
     // Navigation
     "nav.home": "Beranda",
-    "nav.seedlings": "Bibit Pisang & Sengon",
-    "nav.process": "Proses Kultur & Nursery",
+    "nav.seedlings": "Katalog Bibit",
+    "nav.process": "Proses Kultur",
     "nav.about": "Tentang Kami",
     "nav.journal": "Panduan Tani",
-    "nav.contact": "Kontak & Lokasi",
+    "nav.contact": "Kontak",
     "nav.cta": "Konsultasi Bibit",
     "nav.openHours": "Buka Senin - Sabtu 07:30 - 16:30 WIB",
 
@@ -98,11 +98,11 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.seedlings": "Banana & Sengon",
-    "nav.process": "Nursery Process",
+    "nav.seedlings": "Catalog",
+    "nav.process": "Process",
     "nav.about": "About Us",
     "nav.journal": "Agri Journal",
-    "nav.contact": "Contact & Location",
+    "nav.contact": "Contact",
     "nav.cta": "Consult Agronomist",
     "nav.openHours": "Open Mon - Sat 07:30 AM - 04:30 PM",
 

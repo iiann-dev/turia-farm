@@ -72,14 +72,14 @@ export const Navbar: React.FC = () => {
             <div className="font-serif text-lg sm:text-xl font-bold text-[#00251d] tracking-tight leading-none">
               Turia Farm
             </div>
-            <div className="text-[10px] sm:text-[11px] font-medium tracking-wider uppercase text-[#2d6953] mt-0.5">
+            <div className="text-[10px] sm:text-[10.5px] font-medium tracking-wider uppercase text-[#2d6953] mt-0.5 whitespace-nowrap">
               Bibit Pisang & Sengon Kediri
             </div>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+        <div className="hidden lg:flex items-center gap-1.5 xl:gap-2.5">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
