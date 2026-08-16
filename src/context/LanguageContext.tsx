@@ -59,7 +59,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.eyebrow": "Tentang Turia Farm",
     "about.title": "Dedikasi untuk Kesejahteraan Petani Pisang Indonesia",
     "about.p1":
-      "Turia Farm berawal dari kebun pembibitan keluarga di Malang yang prihatin atas maraknya wabah layu fusarium dan bibit cabutan yang tidak seragam di kalangan petani.",
+      "Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya wabah layu fusarium dan bibit cabutan yang tidak seragam di kalangan petani.",
     "about.p2":
       "Kini dengan fasilitas laboratorium kultur jaringan modern dan greenhouse aklimatisasi 2.8 hektar, kami mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
     "about.badge": "Garansi 100% Bebas Penyakit Bawaan",
@@ -143,7 +143,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.eyebrow": "About Turia Farm",
     "about.title": "Empowering Sustainable Banana Farming Across Indonesia",
     "about.p1":
-      "Turia Farm started as a local family nursery in Malang, addressing the widespread losses caused by fusarium wilt and weak uncertified suckers.",
+      "Turia Farm started as a local family nursery in Batuaji, Ringinrejo, Kediri, addressing the widespread losses caused by fusarium wilt and weak uncertified suckers.",
     "about.p2":
       "Today, with a modern in-vitro laboratory and 2.8 hectares of acclimatization greenhouses, we partner with hundreds of growers from initial planting to lucrative harvests.",
     "about.badge": "100% Certified Pathogen-Free",

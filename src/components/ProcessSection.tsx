@@ -109,8 +109,8 @@ export const ProcessSection: React.FC = () => {
             </h3>
             <p className="text-sm sm:text-base text-[#c1c8c4] leading-relaxed mb-8">
               {lang === "id"
-                ? "Pintu nursery Turia Farm di Kepanjen Malang selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin belajar dan cek mutu bibit sebelum transaksi."
-                : "Our greenhouse doors in Malang are always open for individual growers, cooperatives, and commercial investors wanting to verify seedling health on-site."}
+                ? "Pintu nursery Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin belajar dan cek mutu bibit sebelum transaksi."
+                : "Our nursery doors in Batuaji, Ringinrejo are always open for individual growers, cooperatives, and commercial investors wanting to verify seedling health on-site."}
             </p>
             <a
               href={SITE_CONFIG.whatsapp}

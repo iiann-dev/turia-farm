@@ -65,7 +65,7 @@ export const ContactAndLocation: React.FC = () => {
                     {t("contact.addressTitle")}
                   </div>
                   <div className="text-sm font-semibold text-[#00251d] leading-snug">
-                    Jl. Raya Kebun Bibit No. 88, Kepanjen, Kab. Malang, Jawa Timur 65163
+                    {SITE_CONFIG.address}
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
                     {SITE_CONFIG.nurseryArea}
