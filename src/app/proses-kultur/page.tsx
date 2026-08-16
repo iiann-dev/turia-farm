@@ -3,9 +3,9 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { ProcessSection } from "@/components/ProcessSection";
 
 export const metadata: Metadata = {
-  title: "Proses Kultur Jaringan & Aklimatisasi Bibit | Turia Farm",
+  title: "Proses Kultur Jaringan & Pembibitan | Turia Farm Kediri",
   description:
-    "Pelajari 4 tahap pemuliaan bibit pisang di laboratorium dan greenhouse Turia Farm Batuaji Kediri. 99.8% steril, akar aktif bergaransi hidup.",
+    "Pelajari 4 tahap pemuliaan bibit pisang dan perawatan bibit sengon di laboratorium dan greenhouse Turia Farm Batuaji Ringinrejo Kediri. 99.8% steril, akar aktif bergaransi hidup.",
   keywords: [
     "proses kultur jaringan pisang",
     "aklimatisasi bibit pisang kediri",

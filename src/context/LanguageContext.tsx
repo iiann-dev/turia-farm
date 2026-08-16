@@ -14,8 +14,8 @@ const translations: Record<Language, Record<string, string>> = {
   id: {
     // Navigation
     "nav.home": "Beranda",
-    "nav.seedlings": "Bibit Pisang",
-    "nav.process": "Proses Kultur",
+    "nav.seedlings": "Bibit Pisang & Sengon",
+    "nav.process": "Proses Kultur & Nursery",
     "nav.about": "Tentang Kami",
     "nav.journal": "Panduan Tani",
     "nav.contact": "Kontak & Lokasi",
@@ -23,11 +23,11 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.openHours": "Buka Senin - Sabtu 07:30 - 16:30 WIB",
 
     // Hero
-    "hero.eyebrow": "Pembibitan Pisang Unggul & Kultur Jaringan",
-    "hero.title1": "Bibit Pisang Sehat,",
+    "hero.eyebrow": "Pembibitan Pisang Unggul & Bibit Sengon",
+    "hero.title1": "Bibit Pisang & Sengon Sehat,",
     "hero.title2": "Panen Berlimpah.",
     "hero.desc":
-      "Pusat pembibitan pisang unggul berbasis bioteknologi kultur jaringan & anakan pilihan. Bebas virus, seragam, dan siap tanam untuk perkebunan mandiri maupun skala komersial.",
+      "Pusat pembibitan bibit pisang unggul berbasis kultur jaringan & bibit sengon pilihan. Bebas virus, seragam, dan siap tanam untuk perkebunan mandiri maupun skala komersial.",
     "hero.ctaPrimary": "Pesan Bibit Sekarang",
     "hero.ctaSecondary": "Lihat Varietas & Harga",
     "hero.stat1.val": "98.4%",
@@ -38,8 +38,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat3.label": "Petani & Kebun Mitra",
 
     // Seedlings Section
-    "seedlings.eyebrow": "Katalog Varietas",
-    "seedlings.title": "Bibit Pisang Pilihan Siap Tanam",
+    "seedlings.eyebrow": "Katalog Bibit",
+    "seedlings.title": "Bibit Pisang & Sengon Pilihan Siap Tanam",
     "seedlings.desc":
       "Semua bibit melalui proses aklimatisasi bertahap, berakar sehat aktif dengan media organik kaya trichoderma pelindung jamur.",
     "seedlings.filter.all": "Semua Varietas",
@@ -57,11 +57,11 @@ const translations: Record<Language, Record<string, string>> = {
 
     // About Section
     "about.eyebrow": "Tentang Turia Farm",
-    "about.title": "Dedikasi untuk Kesejahteraan Petani Pisang Indonesia",
+    "about.title": "Dedikasi untuk Kesejahteraan Petani Indonesia",
     "about.p1":
       "Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya wabah layu fusarium dan bibit cabutan yang tidak seragam di kalangan petani.",
     "about.p2":
-      "Kini dengan fasilitas laboratorium kultur jaringan modern dan greenhouse aklimatisasi 2.8 hektar, kami mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
+      "Kini dengan fasilitas laboratorium kultur jaringan modern dan greenhouse aklimatisasi 2.8 hektar, kami membudidayakan bibit pisang unggul dan bibit sengon, mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
     "about.badge": "Garansi 100% Bebas Penyakit Bawaan",
 
     // Journal Section
@@ -98,20 +98,20 @@ const translations: Record<Language, Record<string, string>> = {
   en: {
     // Navigation
     "nav.home": "Home",
-    "nav.seedlings": "Seedlings",
-    "nav.process": "Propagation",
+    "nav.seedlings": "Banana & Sengon",
+    "nav.process": "Nursery Process",
     "nav.about": "About Us",
     "nav.journal": "Agri Journal",
-    "nav.contact": "Contact & Nursery",
+    "nav.contact": "Contact & Location",
     "nav.cta": "Consult Agronomist",
     "nav.openHours": "Open Mon - Sat 07:30 AM - 04:30 PM",
 
     // Hero
-    "hero.eyebrow": "Certified Banana Seedlings & Tissue Culture",
+    "hero.eyebrow": "Premium Banana Seedlings & Sengon Saplings",
     "hero.title1": "Healthier Roots,",
     "hero.title2": "Abundant Harvest.",
     "hero.desc":
-      "Premier banana nursery combining sterile in-vitro tissue culture and selected field genetics. Pathogen-free, synchronized growth, ready for smallholders and commercial orchards.",
+      "Premier nursery combining sterile in-vitro tissue culture for bananas and vigorous sengon timber saplings. Pathogen-free, synchronized growth, ready for smallholders and commercial orchards.",
     "hero.ctaPrimary": "Order Seedlings",
     "hero.ctaSecondary": "Explore Varieties",
     "hero.stat1.val": "98.4%",
@@ -122,8 +122,8 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.stat3.label": "Partner Farmers & Orchards",
 
     // Seedlings Section
-    "seedlings.eyebrow": "Varieties Catalog",
-    "seedlings.title": "Field-Ready Selected Banana Varieties",
+    "seedlings.eyebrow": "Catalog",
+    "seedlings.title": "Field-Ready Banana & Sengon Seedlings",
     "seedlings.desc":
       "All seedlings undergo gradual shade hardening, featuring robust white root systems fortified with organic Trichoderma fungi.",
     "seedlings.filter.all": "All Varieties",
@@ -145,7 +145,7 @@ const translations: Record<Language, Record<string, string>> = {
     "about.p1":
       "Turia Farm started as a local family nursery in Batuaji, Ringinrejo, Kediri, addressing the widespread losses caused by fusarium wilt and weak uncertified suckers.",
     "about.p2":
-      "Today, with a modern in-vitro laboratory and 2.8 hectares of acclimatization greenhouses, we partner with hundreds of growers from initial planting to lucrative harvests.",
+      "Today, with a modern in-vitro laboratory and 2.8 hectares of acclimatization greenhouses, we cultivate premium banana seedlings and sengon timber saplings, partnering with hundreds of growers from initial planting to lucrative harvests.",
     "about.badge": "100% Certified Pathogen-Free",
 
     // Journal Section

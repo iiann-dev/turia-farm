@@ -111,7 +111,7 @@ export const Hero: React.FC = () => {
                   {lang === "id" ? "Siap Tanam Lapangan" : "Field Ready"}
                 </div>
                 <div className="font-serif text-lg font-bold text-[#00251d]">
-                  Cavendish & Raja Bulu Super
+                  Cavendish, Raja Bulu & Sengon Solomon
                 </div>
                 <div className="text-xs text-[#414845] mt-1 flex items-center justify-between">
                   <span>{lang === "id" ? "Ketinggian 35-45 cm • Akar Aktif" : "35-45 cm Height • Active Roots"}</span>

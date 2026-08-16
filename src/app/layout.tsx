@@ -4,16 +4,18 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://turiafarm.id"),
   title: {
-    default: "Turia Farm | Pembibitan Pisang Kultur Jaringan Kediri",
+    default: "Turia Farm | Pembibitan Pisang & Bibit Sengon Kediri",
     template: "%s | Turia Farm Kediri",
   },
   description:
-    "Pusat bibit pisang kultur jaringan dan anakan unggul bersertifikasi (Cavendish, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan) di Batuaji, Kab. Kediri, Jawa Timur.",
+    "Pusat bibit pisang kultur jaringan dan anakan unggul bersertifikasi (Cavendish, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan) serta bibit sengon di Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur.",
   keywords: [
     "bibit pisang kediri",
     "bibit pisang batuaji",
     "bibit pisang ringinrejo",
     "bibit pisang kultur jaringan jawa timur",
+    "bibit sengon kediri",
+    "jual bibit sengon solomon",
     "jual bibit pisang cavendish",
     "bibit pisang kepok tanjung",
     "bibit pisang raja bulu",
@@ -36,9 +38,9 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Turia Farm | Pembibitan Pisang Unggul & Kultur Jaringan Kediri",
+    title: "Turia Farm | Pembibitan Pisang Unggul & Bibit Sengon Kediri",
     description:
-      "Bibit pisang sehat, akar kuat, seragam & garansi hidup sampai lahan. Nursery 2.8 Hektar di Batuaji, Kab. Kediri.",
+      "Bibit pisang sehat, akar kuat, seragam & garansi hidup sampai lahan. Nursery 2.8 Hektar di Batuaji, Ringinrejo, Kab. Kediri.",
     url: "https://turiafarm.id",
     siteName: "Turia Farm",
     locale: "id_ID",
@@ -54,10 +56,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Turia Farm | Pembibitan Pisang Kultur Jaringan Kediri",
+    title: "Turia Farm | Pembibitan Pisang & Bibit Sengon Kediri",
     description:
-      "Pusat bibit pisang unggul bersertifikasi bebas penyakit di Batuaji, Kab. Kediri, Jawa Timur.",
-    images: ["https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1200&q=80&auto=format"],
+      "Pusat bibit pisang unggul bersertifikasi & bibit sengon di Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur.",
+    images: ["https://images.unsplash.com/photo-1679255728321-88375291b36c?w=1200&q=80&auto=format"],
   },
   robots: {
     index: true,
@@ -75,12 +77,12 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Turia Farm - Pembibitan Pisang Unggul",
-  image: "https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1200&q=80&auto=format",
+  name: "Turia Farm - Pembibitan Pisang & Bibit Sengon",
+  image: "https://images.unsplash.com/photo-1679255728321-88375291b36c?w=1200&q=80&auto=format",
   "@id": "https://turiafarm.id",
   url: "https://turiafarm.id",
   telephone: "+6281234567890",
-  priceRange: "Rp 10.000 - Rp 15.000",
+  priceRange: "Rp 2.000 - Rp 15.000",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Batuaji, Ringinrejo",

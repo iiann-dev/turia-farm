@@ -4,9 +4,9 @@ import { Hero } from "@/components/Hero";
 import { HomeHighlights } from "@/components/HomeHighlights";
 
 export const metadata: Metadata = {
-  title: "Turia Farm | Pusat Pembibitan Pisang Kultur Jaringan Kediri",
+  title: "Turia Farm | Pusat Pembibitan Pisang & Bibit Sengon Kediri",
   description:
-    "Nursery bibit pisang kultur jaringan dan anakan super (Cavendish, Raja Bulu, Kepok Tanjung) di Batuaji, Kab. Kediri. Bebas fusarium, siap tanam, bergaransi.",
+    "Nursery bibit pisang kultur jaringan dan anakan super (Cavendish, Raja Bulu, Kepok Tanjung) serta bibit sengon unggul di Batuaji, Kab. Kediri. Bebas fusarium, siap tanam, bergaransi.",
   keywords: [
     "bibit pisang kediri",
     "bibit pisang kultur jaringan",

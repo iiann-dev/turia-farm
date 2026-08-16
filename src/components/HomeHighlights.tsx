@@ -26,14 +26,14 @@ export const HomeHighlights: React.FC = () => {
               <span>{lang === "id" ? "Varietas Terpopuler" : "Featured Varieties"}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#00251d]">
-              {lang === "id" ? "Bibit Pisang Siap Tanam" : "Field-Ready Banana Seedlings"}
+              {lang === "id" ? "Bibit Pisang & Sengon Siap Tanam" : "Field-Ready Banana & Sengon Seedlings"}
             </h2>
           </div>
           <Link
             href="/bibit-pisang"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors group"
           >
-            <span>{lang === "id" ? "Lihat Semua 6 Varietas & Harga" : "View All 6 Varieties & Prices"}</span>
+            <span>{lang === "id" ? "Lihat Semua 8 Varietas & Harga" : "View All 8 Varieties & Prices"}</span>
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

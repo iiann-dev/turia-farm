@@ -70,6 +70,26 @@ export const ContactAndLocation: React.FC = () => {
                   <div className="text-xs text-[#717975] mt-1">
                     {SITE_CONFIG.nurseryArea}
                   </div>
+                  {/* Google Maps Embed */}
+                  <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">
+                    <iframe
+                      src={SITE_CONFIG.mapsEmbed}
+                      title="Turia's Farm Kediri - Google Maps"
+                      className="w-full h-44 sm:h-52"
+                      loading="lazy"
+                      allowFullScreen
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                  <a
+                    href={SITE_CONFIG.mapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
+                  >
+                    <MapPin size={14} />
+                    {lang === "id" ? "Buka di Google Maps" : "Open in Google Maps"}
+                  </a>
                 </div>
               </div>
 
