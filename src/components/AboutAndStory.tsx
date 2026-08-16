@@ -25,7 +25,7 @@ export const AboutAndStory: React.FC = () => {
           >
             <div className="relative rounded-[36px] overflow-hidden border-4 border-white shadow-2xl bg-[#efeee8] aspect-[4/3]">
               <Image
-                src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?w=900&q=80&auto=format"
+                src="https://images.unsplash.com/photo-1762512216868-3e7dae3beee5?w=900&q=80&auto=format"
                 alt="Turia Farm Team & Farmers"
                 fill
                 className="object-cover"
