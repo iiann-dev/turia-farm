@@ -18,7 +18,7 @@ export const JournalAndFaq: React.FC = () => {
   };
 
   return (
-    <section id="journal" className="py-24 sm:py-32 bg-[#efeee8] relative">
+    <section id="journal" className="py-24 sm:py-32 bg-[#faf9f3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header: Agronomy Guides */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">

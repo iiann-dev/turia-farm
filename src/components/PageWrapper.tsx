@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/Navbar";
@@ -8,6 +9,7 @@ import { Footer } from "@/components/Footer";
 
 export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -32,6 +34,15 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       lenis.destroy();
     };
   }, []);
+
+  // Guarantee instant scroll-to-top on route change via Lenis
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   return (
     <LanguageProvider>

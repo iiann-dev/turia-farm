@@ -82,10 +82,10 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background-color: #faf9f3;
   color: #1b1c19;
   font-family: var(--font-sans);
+  overflow-y: scroll; /* Prevent layout shift / jitter across pages */
 }
 
 body {
@@ -104,30 +104,10 @@ body {
   border: 1px solid rgba(193, 200, 196, 0.35);
 }
 
-.glass-nav {
-  background: rgba(248, 247, 241, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(193, 200, 196, 0.25);
-}
-
 .editorial-shadow {
   box-shadow: 0 20px 40px -15px rgba(0, 37, 29, 0.07);
 }
 
 .editorial-shadow-lg {
   box-shadow: 0 30px 60px -20px rgba(0, 37, 29, 0.12);
-}
-
-.stamp-rotate {
-  animation: stampSpin 25s linear infinite;
-}
-
-@keyframes stampSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

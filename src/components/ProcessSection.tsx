@@ -26,7 +26,7 @@ export const ProcessSection: React.FC = () => {
   };
 
   return (
-    <section id="process" className="py-24 sm:py-32 bg-[#efeee8] relative overflow-hidden">
+    <section id="process" className="py-24 sm:py-32 bg-[#faf9f3] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Heading */}
         <div className="max-w-3xl mb-16 sm:mb-20">
