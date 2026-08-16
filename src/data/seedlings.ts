@@ -214,7 +214,7 @@ export const ARTICLES: ArticleItem[] = [
       id: "Pelajari pola tanam segitiga 2.2 x 2.2 meter, dosis pupuk dasar kandang fermentasi, dan manajemen sanitasi anakan untuk panen serentak.",
       en: "Learn the 2.2 x 2.2m triangle spacing pattern, fermented manure baseline dosage, and sucker pruning strategies for uniform harvest cycles.",
     },
-    image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80&auto=format",
+    image: "https://images.unsplash.com/photo-1620036924477-c3d6e9ce36fc?w=800&q=80&auto=format",
     author: "Pak Sugiono (Kepala Agronomis Turia)",
   },
   {
@@ -231,7 +231,7 @@ export const ARTICLES: ArticleItem[] = [
       id: "Mengapa pemakaian bibit kultur jaringan bersertifikat dan desinfeksi parang potong adalah benteng utama petani dari kerugian gagal panen total.",
       en: "Why disease-free tissue culture seedlings and pruning tool sterilization remain a grower's strongest defense against sudden total crop failure.",
     },
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80&auto=format",
+    image: "https://images.unsplash.com/photo-1552901633-210088e17486?w=800&q=80&auto=format",
     author: "Ir. Larasati Putri (Laboratorium Biotek)",
   },
   {
@@ -248,7 +248,7 @@ export const ARTICLES: ArticleItem[] = [
       id: "Rincian kebutuhan bibit (2.000 pohon/ha), instalasi irigasi tetes murah, estimasi panen bulan ke-11, dan serapan pasar induk buah lokal.",
       en: "Detailed itemized costs for 2,000 seedlings/ha, budget drip irrigation setup, month-11 harvest projections, and wholesale buyer channels.",
     },
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80&auto=format",
+    image: "https://images.unsplash.com/photo-1762512216868-3e7dae3beee5?w=800&q=80&auto=format",
     author: "Alfian Pratama (Manajer Kemitraan)",
   },
 ];

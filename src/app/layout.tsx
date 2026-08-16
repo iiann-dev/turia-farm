@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1200&q=80&auto=format",
+        url: "https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1200&q=80&auto=format",
         width: 1200,
         height: 630,
         alt: "Turia Farm - Pembibitan Pisang Kultur Jaringan Kediri",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "Turia Farm | Pembibitan Pisang Kultur Jaringan Kediri",
     description:
       "Pusat bibit pisang unggul bersertifikasi bebas penyakit di Batuaji, Kab. Kediri, Jawa Timur.",
-    images: ["https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1200&q=80&auto=format"],
+    images: ["https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1200&q=80&auto=format"],
   },
   robots: {
     index: true,
@@ -76,7 +76,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Turia Farm - Pembibitan Pisang Unggul",
-  image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1200&q=80&auto=format",
+  image: "https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1200&q=80&auto=format",
   "@id": "https://turiafarm.id",
   url: "https://turiafarm.id",
   telephone: "+6281234567890",

@@ -91,7 +91,7 @@ export const ProcessSection: React.FC = () => {
         <div className="mt-16 rounded-[36px] bg-[#00251d] text-[#faf9f3] p-8 sm:p-12 relative overflow-hidden shadow-2xl">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:block opacity-20">
             <Image
-              src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80&auto=format"
+              src="https://images.unsplash.com/photo-1643892343594-1e3be700217b?w=800&q=80&auto=format"
               alt="Turia Farm Greenhouse"
               fill
               className="object-cover"

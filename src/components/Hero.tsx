@@ -95,7 +95,7 @@ export const Hero: React.FC = () => {
             <div className="relative rounded-[36px] overflow-hidden shadow-2xl bg-[#efeee8] border-8 border-white">
               <div className="aspect-[4/5] relative w-full">
                 <Image
-                  src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=1000&q=80&auto=format"
+                  src="https://images.unsplash.com/photo-1668762924635-a3683caf32bf?w=1000&q=80&auto=format"
                   alt="Bibit Pisang Kultur Jaringan Unggul Kediri"
                   fill
                   priority
