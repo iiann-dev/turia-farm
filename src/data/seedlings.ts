@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
   address: "Turia's Farm Kediri, Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur 64172, Indonesia",
   location: "Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur, Indonesia",
   mapsEmbed:
-    "https://maps.google.com/maps?q=-7.966564,112.1038139&z=17&output=embed&hl=id",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.25!2d112.1038139!3d-7.966564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78f1006725ea41%3A0x2a565eacbeca6fbe!2sTURIA'S%20FARM%20KEDIRI%20%23bibitpisang%26sengon!5e0!3m2!1sid!2sid!4v1720000000000",
   mapsLink:
     "https://maps.app.goo.gl/3WbP6pDM9GreKdVG9",
   geo: {
