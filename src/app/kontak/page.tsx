@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageWrapper>
-      <div className="pt-24">
+      <div className="pt-6">
         <ContactAndLocation />
       </div>
     </PageWrapper>

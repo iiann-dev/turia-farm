@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageWrapper>
-      <div className="pt-24">
+      <div className="pt-6">
         <AboutAndStory />
       </div>
     </PageWrapper>

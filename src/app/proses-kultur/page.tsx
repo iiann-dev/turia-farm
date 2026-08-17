@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <PageWrapper>
-      <div className="pt-24">
+      <div className="pt-6">
         <ProcessSection />
       </div>
     </PageWrapper>

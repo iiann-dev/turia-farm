@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function JournalPage() {
   return (
     <PageWrapper>
-      <div className="pt-24">
+      <div className="pt-6">
         <JournalAndFaq />
       </div>
     </PageWrapper>
