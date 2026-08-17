@@ -31,7 +31,7 @@ export const ContactAndLocation: React.FC = () => {
             form.qty
           )} seedlings%0ANote: ${encodeURIComponent(form.message)}`;
 
-    window.open(`https://wa.me/6281234567890?text=${text}`, "_blank");
+    window.open(`https://wa.me/6289508495717?text=${text}`, "_blank");
   };
 
   return (

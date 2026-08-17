@@ -3,8 +3,8 @@ import { SeedlingItem, ProcessStep, ArticleItem, TestimonialItem } from "../type
 export const SITE_CONFIG = {
   name: "Turia Farm",
   tagline: "Pembibitan Pisang Unggul & Bibit Sengon Kediri",
-  phone: "+62 812-3456-7890",
-  whatsapp: "https://wa.me/6281234567890?text=Halo%20Turia%20Farm,%20saya%20tertarik%20konsultasi%20bibit%20pisang%20%26%20sengon",
+  phone: "+62 895-0849-5717",
+  whatsapp: "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20tertarik%20konsultasi%20bibit%20pisang%20%26%20sengon",
   email: "salam@turiafarm.id",
   address: "Turia's Farm Kediri, Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur 64172, Indonesia",
   location: "Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur, Indonesia",

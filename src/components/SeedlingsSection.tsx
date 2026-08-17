@@ -17,7 +17,7 @@ export const SeedlingsSection: React.FC = () => {
       lang === "id"
         ? `Halo Turia Farm, saya berminat memesan bibit *${item.name.id}* (${item.price.id}). Mohon info ketersediaan stok & estimasi ongkir.`
         : `Hello Turia Farm, I am interested in ordering *${item.name.en}* banana seedlings. Please provide stock availability & shipping info.`;
-    return `https://wa.me/6281234567890?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/6289508495717?text=${encodeURIComponent(text)}`;
   };
 
   return (

@@ -81,7 +81,7 @@ const jsonLd = {
   image: "https://images.unsplash.com/photo-1679255728321-88375291b36c?w=1200&q=80&auto=format",
   "@id": "https://turiafarm.id",
   url: "https://turiafarm.id",
-  telephone: "+6281234567890",
+  telephone: "+6289508495717",
   priceRange: "Rp 2.000 - Rp 15.000",
   address: {
     "@type": "PostalAddress",
@@ -93,8 +93,8 @@ const jsonLd = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: -7.9528,
-    longitude: 112.0156,
+    latitude: -7.966309,
+    longitude: 112.104104,
   },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
@@ -102,7 +102,7 @@ const jsonLd = {
     opens: "07:30",
     closes: "16:30",
   },
-  sameAs: ["https://wa.me/6281234567890"],
+  sameAs: ["https://wa.me/6289508495717"],
 };
 
 export default function RootLayout({
