@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { TESTIMONIALS, SITE_CONFIG } from "../data/seedlings";
 import { Users, HeartHandshake, ShieldAlert, Star, Quote } from "lucide-react";
@@ -16,13 +15,7 @@ export const AboutAndStory: React.FC = () => {
         {/* Story Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           {/* Visual Collage */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6 relative"
-          >
+          <div className="reveal-left lg:col-span-6 relative">
             <div className="relative rounded-[36px] overflow-hidden border-4 border-white shadow-2xl bg-[#efeee8] aspect-[4/3]">
               <Image
                 src="https://images.unsplash.com/photo-1762512216868-3e7dae3beee5?w=900&q=80&auto=format"
@@ -43,16 +36,10 @@ export const AboutAndStory: React.FC = () => {
                   : "60,000 active acclimated seedlings per planting cycle."}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Editorial Story */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-6"
-          >
+          <div className="reveal-right lg:col-span-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <Users size={13} className="text-[#2d6953]" />
               <span>{t("about.eyebrow")}</span>
@@ -88,7 +75,7 @@ export const AboutAndStory: React.FC = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Testimonials Block */}
@@ -105,13 +92,10 @@ export const AboutAndStory: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((testi, idx) => (
-              <motion.div
+              <div
                 key={testi.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="rounded-3xl bg-white p-7 border border-[#c1c8c4]/40 shadow-sm flex flex-col justify-between"
+                style={{ animationDelay: `${idx * 0.08}s` }}
+                className="reveal rounded-3xl bg-white p-7 border border-[#c1c8c4]/40 shadow-sm flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center gap-1 mb-4 text-amber-500">
@@ -135,7 +119,7 @@ export const AboutAndStory: React.FC = () => {
                     {testi.location} • {testi.farmSize}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

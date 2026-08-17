@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { SEEDLINGS, PROCESS_STEPS, ARTICLES, SITE_CONFIG } from "../data/seedlings";
 import { ArrowRight, ArrowUpRight, Sparkles, ShieldCheck, BookOpen, CheckCircle2, ChevronRight } from "lucide-react";
@@ -40,13 +39,10 @@ export const HomeHighlights: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {featuredSeedlings.map((item, idx) => (
-            <motion.div
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-3xl bg-white border border-[#c1c8c4]/40 overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              style={{ animationDelay: `${idx * 0.08}s` }}
+              className="reveal group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#2d6953]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
             >
               <div>
                 <div className="relative aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
@@ -86,7 +82,7 @@ export const HomeHighlights: React.FC = () => {
                   <ArrowUpRight size={14} />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>

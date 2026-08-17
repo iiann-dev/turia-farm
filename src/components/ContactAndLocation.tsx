@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Truck, CheckCircle2 } from "lucide-react";
@@ -144,12 +143,7 @@ export const ContactAndLocation: React.FC = () => {
           </div>
 
           {/* Right Consultation Form */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white border border-[#c1c8c4]/60 shadow-lg"
-          >
+          <div className="reveal lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white border border-[#c1c8c4]/60 shadow-lg">
             <h3 className="font-serif text-2xl font-bold text-[#00251d] mb-2">
               {lang === "id" ? "Formulir Konsultasi & Pemesanan Bibit" : "Consultation & Order Form"}
             </h3>
@@ -251,7 +245,7 @@ export const ContactAndLocation: React.FC = () => {
                 <span>{t("contact.form.submit")}</span>
               </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
