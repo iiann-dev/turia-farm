@@ -12,11 +12,6 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
   const pathname = usePathname();
 
   useEffect(() => {
-    // Lenis smooth scroll ONLY on desktop (fine pointer).
-    // On touch devices, native scroll feels better & avoids jank.
-    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-    if (!isFinePointer) return;
-
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -40,7 +35,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
     };
   }, []);
 
-  // Guarantee instant scroll-to-top on route change (Lenis on desktop, native on mobile)
+  // Guarantee instant scroll-to-top on route change via Lenis
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });

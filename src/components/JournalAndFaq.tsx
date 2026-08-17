@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { ARTICLES, FAQS, SITE_CONFIG } from "../data/seedlings";
 import { ArticleItem } from "../types";
@@ -40,10 +41,13 @@ export const JournalAndFaq: React.FC = () => {
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {ARTICLES.map((article, idx) => (
-            <article
+            <motion.article
               key={article.id}
-              style={{ animationDelay: `${idx * 0.08}s` }}
-              className="reveal rounded-3xl bg-[#faf9f3] border border-[#c1c8c4]/60 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="rounded-3xl bg-[#faf9f3] border border-[#c1c8c4]/60 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="aspect-[16/10] relative w-full bg-[#dbdad4] overflow-hidden">
@@ -93,7 +97,7 @@ export const JournalAndFaq: React.FC = () => {
                   <ArrowUpRight size={14} />
                 </button>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
@@ -185,9 +189,14 @@ export const JournalAndFaq: React.FC = () => {
                   </button>
 
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]">
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]"
+                    >
                       {faq.a[lang]}
-                    </div>
+                    </motion.div>
                   )}
                 </div>
               );

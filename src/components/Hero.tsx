@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG } from "../data/seedlings";
 import { ArrowRight, CheckCircle2, Sprout, Award, ShieldCheck } from "lucide-react";
@@ -23,7 +23,12 @@ export const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Editorial Copy */}
-          <div className="reveal-instant lg:col-span-7 flex flex-col items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col items-start"
+          >
             {/* Pill Eyebrow */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#efeee8] border border-[#c1c8c4]/60 text-xs font-semibold text-[#00251d] tracking-wide mb-6">
               <Sprout size={14} className="text-[#2d6953]" />
@@ -78,10 +83,15 @@ export const Hero: React.FC = () => {
                 <span>{lang === "id" ? "Pendampingan SOP Tani" : "Agronomy Support"}</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Clean Botanical Visual without floating stamp */}
-          <div className="reveal-scale lg:col-span-5 relative">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative"
+          >
             <div className="relative rounded-[36px] overflow-hidden shadow-2xl bg-[#efeee8] border-8 border-white">
               <div className="aspect-[4/5] relative w-full">
                 <Image
@@ -126,7 +136,7 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Highlight Numbers Strip */}

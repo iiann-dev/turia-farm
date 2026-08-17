@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { PROCESS_STEPS, SITE_CONFIG } from "../data/seedlings";
 import { ShieldCheck, ArrowRight, Dna, Sprout, SunMedium, Truck } from "lucide-react";
@@ -44,10 +45,13 @@ export const ProcessSection: React.FC = () => {
         {/* 4-Step Process Timeline Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PROCESS_STEPS.map((p, index) => (
-            <div
+            <motion.div
               key={p.step}
-              style={{ animationDelay: `${index * 0.1}s` }}
-              className="reveal rounded-3xl bg-[#faf9f3] p-7 border border-[#c1c8c4]/60 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: index * 0.12 }}
+              className="rounded-3xl bg-[#faf9f3] p-7 border border-[#c1c8c4]/60 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Step Header */}
@@ -79,7 +83,7 @@ export const ProcessSection: React.FC = () => {
                   {p.highlight[lang]}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

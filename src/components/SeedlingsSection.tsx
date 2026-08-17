@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
-import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
+import { SEEDLINGS, SITE_CONFIG } from "../data/seedlings";
 import { SeedlingItem } from "../types";
-import { Sparkles, ArrowUpRight, Check, Minus, Plus, Scale, Clock, Ruler } from "lucide-react";
+import { ArrowUpRight, Check, Sparkles, Scale, Clock, Ruler } from "lucide-react";
 import Image from "next/image";
 
 export const SeedlingsSection: React.FC = () => {
@@ -41,10 +42,13 @@ export const SeedlingsSection: React.FC = () => {
         {/* Seedlings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SEEDLINGS.map((item, index) => (
-            <div
+            <motion.div
               key={item.id}
-              style={{ animationDelay: `${index * 0.08}s` }}
-              className="group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#2d6953]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden reveal"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#2d6953]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Image Container */}
               <div className="relative aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
@@ -123,7 +127,7 @@ export const SeedlingsSection: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
