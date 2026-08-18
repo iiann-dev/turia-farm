@@ -1,39 +1,59 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Lenis from "lenis";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
+// Lenis is imported dynamically so phones never download it (they use native
+// scrolling). Desktop & tablets load it on demand for smooth scroll.
+type LenisInstance = { scrollTo: (t: number, o?: object) => void; destroy: () => void; raf: (t: number) => void };
+let LenisCtor: (new (opts: object) => LenisInstance) | null = null;
+
 export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const lenisRef = useRef<Lenis | null>(null);
+  const lenisRef = useRef<LenisInstance | null>(null);
   const pathname = usePathname();
+  const [isPhone] = useState<boolean>(() =>
+    typeof navigator !== "undefined" && /Android|iPhone|Windows Phone/i.test(navigator.userAgent)
+  );
 
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+    // Phones get native scrolling (Lenis smooth-scroll fights touch and adds
+    // CPU overhead on low-end devices). Desktop & tablets keep smooth scroll.
+    if (isPhone) return;
+
+    let cancelled = false;
+    import("lenis").then((mod) => {
+      if (cancelled) return;
+      LenisCtor = mod.default;
+      const lenis = new LenisCtor!({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 2,
+      });
+
+      lenisRef.current = lenis;
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
     });
 
-    lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
     return () => {
-      lenis.destroy();
+      cancelled = true;
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+      }
     };
-  }, []);
+  }, [isPhone]);
 
   // Guarantee instant scroll-to-top on route change via Lenis
   useEffect(() => {

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import Link from "next/link";
 import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG } from "../data/seedlings";
@@ -23,7 +23,7 @@ export const Hero: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Editorial Copy */}
-          <motion.div
+          <Animated
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -83,10 +83,10 @@ export const Hero: React.FC = () => {
                 <span>{lang === "id" ? "Pendampingan SOP Tani" : "Agronomy Support"}</span>
               </div>
             </div>
-          </motion.div>
+          </Animated>
 
           {/* Right Column: Clean Botanical Visual without floating stamp */}
-          <motion.div
+          <Animated
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -136,7 +136,7 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Animated>
         </div>
 
         {/* Highlight Numbers Strip */}

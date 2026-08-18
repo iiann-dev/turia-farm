@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { ARTICLES, FAQS, SITE_CONFIG } from "../data/seedlings";
 import { ArticleItem } from "../types";
@@ -41,7 +41,8 @@ export const JournalAndFaq: React.FC = () => {
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {ARTICLES.map((article, idx) => (
-            <motion.article
+            <Animated
+              as="article"
               key={article.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -97,7 +98,7 @@ export const JournalAndFaq: React.FC = () => {
                   <ArrowUpRight size={14} />
                 </button>
               </div>
-            </motion.article>
+            </Animated>
           ))}
         </div>
 
@@ -189,14 +190,14 @@ export const JournalAndFaq: React.FC = () => {
                   </button>
 
                   {isOpen && (
-                    <motion.div
+                    <Animated
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       transition={{ duration: 0.3 }}
                       className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]"
                     >
                       {faq.a[lang]}
-                    </motion.div>
+                    </Animated>
                   )}
                 </div>
               );

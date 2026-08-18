@@ -77,8 +77,8 @@
   --color-pale-mint: #c4ebde;
   --color-botanical-green: #2d6953;
 
-  --font-serif: "Noto Serif", Georgia, serif;
-  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-noto-serif), Georgia, serif;
+  --font-sans: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html {

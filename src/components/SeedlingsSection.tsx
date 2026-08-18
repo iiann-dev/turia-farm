@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { SEEDLINGS, SITE_CONFIG } from "../data/seedlings";
 import { SeedlingItem } from "../types";
@@ -42,7 +42,7 @@ export const SeedlingsSection: React.FC = () => {
         {/* Seedlings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SEEDLINGS.map((item, index) => (
-            <motion.div
+            <Animated
               key={item.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +127,7 @@ export const SeedlingsSection: React.FC = () => {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </Animated>
           ))}
         </div>
 

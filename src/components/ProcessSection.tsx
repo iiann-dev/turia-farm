@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { PROCESS_STEPS, SITE_CONFIG } from "../data/seedlings";
 import { ShieldCheck, ArrowRight, Dna, Sprout, SunMedium, Truck } from "lucide-react";
@@ -45,7 +45,7 @@ export const ProcessSection: React.FC = () => {
         {/* 4-Step Process Timeline Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {PROCESS_STEPS.map((p, index) => (
-            <motion.div
+            <Animated
               key={p.step}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ export const ProcessSection: React.FC = () => {
                   {p.highlight[lang]}
                 </div>
               </div>
-            </motion.div>
+            </Animated>
           ))}
         </div>
 

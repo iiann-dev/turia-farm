@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Truck, CheckCircle2 } from "lucide-react";
@@ -144,7 +144,7 @@ export const ContactAndLocation: React.FC = () => {
           </div>
 
           {/* Right Consultation Form */}
-          <motion.div
+          <Animated
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -251,7 +251,7 @@ export const ContactAndLocation: React.FC = () => {
                 <span>{t("contact.form.submit")}</span>
               </button>
             </form>
-          </motion.div>
+          </Animated>
         </div>
       </div>
     </section>

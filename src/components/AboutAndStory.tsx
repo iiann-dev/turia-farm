@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { TESTIMONIALS, SITE_CONFIG } from "../data/seedlings";
 import { Users, HeartHandshake, ShieldAlert, Star, Quote } from "lucide-react";
@@ -16,7 +16,7 @@ export const AboutAndStory: React.FC = () => {
         {/* Story Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
           {/* Visual Collage */}
-          <motion.div
+          <Animated
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -43,10 +43,10 @@ export const AboutAndStory: React.FC = () => {
                   : "60,000 active acclimated seedlings per planting cycle."}
               </div>
             </div>
-          </motion.div>
+          </Animated>
 
           {/* Editorial Story */}
-          <motion.div
+          <Animated
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -88,7 +88,7 @@ export const AboutAndStory: React.FC = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Animated>
         </div>
 
         {/* Testimonials Block */}
@@ -105,7 +105,7 @@ export const AboutAndStory: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((testi, idx) => (
-              <motion.div
+              <Animated
                 key={testi.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -135,7 +135,7 @@ export const AboutAndStory: React.FC = () => {
                     {testi.location} • {testi.farmSize}
                   </div>
                 </div>
-              </motion.div>
+              </Animated>
             ))}
           </div>
         </div>

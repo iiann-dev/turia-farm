@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { Animated } from "./Animated";
 import { useLanguage } from "../context/LanguageContext";
 import { SEEDLINGS, PROCESS_STEPS, ARTICLES, SITE_CONFIG } from "../data/seedlings";
 import { ArrowRight, ArrowUpRight, Sparkles, ShieldCheck, BookOpen, CheckCircle2, ChevronRight } from "lucide-react";
@@ -40,7 +40,7 @@ export const HomeHighlights: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {featuredSeedlings.map((item, idx) => (
-            <motion.div
+            <Animated
               key={item.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ export const HomeHighlights: React.FC = () => {
                   <ArrowUpRight size={14} />
                 </Link>
               </div>
-            </motion.div>
+            </Animated>
           ))}
         </div>
       </section>
