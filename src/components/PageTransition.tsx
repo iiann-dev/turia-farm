@@ -2,16 +2,27 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
-export const PageTransition: React.FC<{
-  children: ReactNode;
-  onExitComplete?: () => void;
-}> = ({ children, onExitComplete }) => {
+export const PageTransition: React.FC<{ children: ReactNode }> = ({ children }) => {
   const pathname = usePathname();
+  const hasMounted = useRef(false);
+
+  // Scroll to top when new page content MOUNTS (after exit animation + DOM ready)
+  useEffect(() => {
+    if (hasMounted.current) {
+      // New page mounted - scroll to top
+      requestAnimationFrame(() => {
+        window.scrollTo(0, 0);
+      });
+    } else {
+      // First mount - don't scroll
+      hasMounted.current = true;
+    }
+  }, [pathname]);
 
   return (
-    <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
+    <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
         initial={{ opacity: 0, y: 20 }}

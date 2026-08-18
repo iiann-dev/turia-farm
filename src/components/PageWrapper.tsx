@@ -64,20 +64,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       <div className="min-h-screen flex flex-col bg-[#faf9f3] text-[#1b1c19] selection:bg-[#c4ebde] selection:text-[#00251d]">
         <Navbar />
         <main className="flex-grow">
-          <PageTransition
-            onExitComplete={() => {
-              // Fires exactly when the old page finishes exiting and the new
-              // page mounts. Scroll back to top here so the new page starts
-              // from the top even when coming from a scrolled position.
-              if (lenisRef.current) {
-                lenisRef.current.scrollTo(0, { immediate: true });
-              } else {
-                window.scrollTo(0, 0);
-              }
-            }}
-          >
-            {children}
-          </PageTransition>
+          <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
       </div>
