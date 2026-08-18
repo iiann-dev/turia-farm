@@ -32,9 +32,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-12 pt-3 sm:pt-4 pointer-events-none"
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-12 pt-3 sm:pt-4 pointer-events-none">
       {/* Top Banner for Local Nursery */}
       <div className="max-w-7xl mx-auto mb-2 hidden md:flex items-center justify-between px-6 py-1.5 rounded-full bg-[#173b32]/90 backdrop-blur-md text-[#c4ebde] text-xs font-medium border border-[#2d6953]/40 pointer-events-auto shadow-xs">
         <div className="flex items-center gap-2">

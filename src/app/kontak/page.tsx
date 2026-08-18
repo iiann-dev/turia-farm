@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ContactAndLocation } from "@/components/ContactAndLocation";
-import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Kontak & Alamat Nursery Batuaji Kediri | Turia Farm",
@@ -22,11 +21,9 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <PageWrapper>
-      <PageTransition>
-        <div className="pt-6">
-          <ContactAndLocation />
-        </div>
-      </PageTransition>
+      <div className="pt-6">
+        <ContactAndLocation />
+      </div>
     </PageWrapper>
   );
 }

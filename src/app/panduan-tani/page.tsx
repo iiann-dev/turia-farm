@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { JournalAndFaq } from "@/components/JournalAndFaq";
-import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Panduan Budidaya Pisang & FAQ | Edukasi Tani Turia Farm",
@@ -21,11 +20,9 @@ export const metadata: Metadata = {
 export default function JournalPage() {
   return (
     <PageWrapper>
-      <PageTransition>
-        <div className="pt-6">
-          <JournalAndFaq />
-        </div>
-      </PageTransition>
+      <div className="pt-6">
+        <JournalAndFaq />
+      </div>
     </PageWrapper>
   );
 }
