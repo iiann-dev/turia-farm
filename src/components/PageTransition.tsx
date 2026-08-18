@@ -4,11 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
-export const PageTransition: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const PageTransition: React.FC<{
+  children: ReactNode;
+  onExitComplete?: () => void;
+}> = ({ children, onExitComplete }) => {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
       <motion.div
         key={pathname}
         initial={{ opacity: 0, y: 20 }}
