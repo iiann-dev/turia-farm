@@ -19,6 +19,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
     typeof navigator !== "undefined" && /Android|iPhone|Windows Phone/i.test(navigator.userAgent)
   );
 
+  // Re-initialize Lenis on route change to avoid stale instances preserving scroll
   useEffect(() => {
     // Phones get native scrolling (Lenis smooth-scroll fights touch and adds
     // CPU overhead on low-end devices). Desktop & tablets keep smooth scroll.
@@ -54,10 +55,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
         lenisRef.current = null;
       }
     };
-  }, [isPhone]);
-
-  // Note: scroll-to-top is now handled in PageTransition to ensure it runs
-  // at the right moment (after exit animation, when new content mounts)
+  }, [isPhone, pathname]);
 
   return (
     <LanguageProvider>
