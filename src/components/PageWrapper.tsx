@@ -62,7 +62,18 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       <div className="min-h-screen flex flex-col bg-[#faf9f3] text-[#1b1c19] selection:bg-[#c4ebde] selection:text-[#00251d]">
         <Navbar />
         <main className="flex-grow">
-          <PageTransition>{children}</PageTransition>
+          <PageTransition
+            onEnter={() => {
+              // Fires when the new page content mounts (inside the keyed motion.div)
+              if (lenisRef.current) {
+                lenisRef.current.scrollTo(0, { immediate: true });
+              } else {
+                window.scrollTo(0, 0);
+              }
+            }}
+          >
+            {children}
+          </PageTransition>
         </main>
         <Footer />
       </div>

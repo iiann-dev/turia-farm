@@ -2,24 +2,23 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect } from "react";
 
-export const PageTransition: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const pathname = usePathname();
-  const hasMounted = useRef(false);
-
-  // Scroll to top when new page content MOUNTS (after exit animation + DOM ready)
+// Mounts together with each page (inside the keyed motion.div), so its effect
+// runs AFTER the new page is in the DOM — the correct moment for scroll reset.
+const PageEnterEffect: React.FC<{ onEnter: () => void }> = ({ onEnter }) => {
   useEffect(() => {
-    if (hasMounted.current) {
-      // New page mounted - scroll to top
-      requestAnimationFrame(() => {
-        window.scrollTo(0, 0);
-      });
-    } else {
-      // First mount - don't scroll
-      hasMounted.current = true;
-    }
-  }, [pathname]);
+    onEnter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return null;
+};
+
+export const PageTransition: React.FC<{
+  children: ReactNode;
+  onEnter?: () => void;
+}> = ({ children, onEnter }) => {
+  const pathname = usePathname();
 
   return (
     <AnimatePresence mode="wait">
@@ -34,6 +33,7 @@ export const PageTransition: React.FC<{ children: ReactNode }> = ({ children }) 
         }}
         className="min-h-screen"
       >
+        <PageEnterEffect onEnter={onEnter ?? (() => {})} />
         {children}
       </motion.div>
     </AnimatePresence>
