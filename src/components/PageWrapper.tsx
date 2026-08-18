@@ -24,7 +24,11 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     // Phones get native scrolling (Lenis smooth-scroll fights touch and adds
     // CPU overhead on low-end devices). Desktop & tablets keep smooth scroll.
-    if (isPhone) return;
+    if (isPhone) {
+      // No Lenis on phones — just scroll to top natively
+      window.scrollTo(0, 0);
+      return;
+    }
 
     let cancelled = false;
     import("lenis").then((mod) => {
