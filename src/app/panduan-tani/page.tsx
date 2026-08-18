@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "analisa usaha tani pisang raja",
   ],
   alternates: {
-    canonical: "https://turiafarm.id/panduan-tani",
+    canonical: "https://turia-farm.vercel.app/panduan-tani",
   },
 };
 

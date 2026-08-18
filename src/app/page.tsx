@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "nursery pisang jawa timur",
   ],
   alternates: {
-    canonical: "https://turiafarm.id",
+    canonical: "https://turia-farm.vercel.app",
   },
 };
 

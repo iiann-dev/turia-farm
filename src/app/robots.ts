@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://turiafarm.id/sitemap.xml",
+    sitemap: "https://turia-farm.vercel.app/sitemap.xml",
   };
 }

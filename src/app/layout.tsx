@@ -21,7 +21,7 @@ const notoSerif = Noto_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://turiafarm.id"),
+  metadataBase: new URL("https://turia-farm.vercel.app"),
   title: {
     default: "Turia Farm | Pembibitan Pisang & Bibit Sengon Kediri",
     template: "%s | Turia Farm Kediri",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Turia Farm | Pembibitan Pisang Unggul & Bibit Sengon Kediri",
     description:
       "Bibit pisang sehat, akar kuat, seragam & garansi hidup sampai lahan. Nursery 2.8 Hektar di Batuaji, Ringinrejo, Kab. Kediri.",
-    url: "https://turiafarm.id",
+    url: "https://turia-farm.vercel.app",
     siteName: "Turia Farm",
     locale: "id_ID",
     type: "website",
@@ -98,8 +98,8 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "Turia Farm - Pembibitan Pisang & Bibit Sengon",
   image: "https://images.unsplash.com/photo-1679255728321-88375291b36c?w=1200&q=80&auto=format",
-  "@id": "https://turiafarm.id",
-  url: "https://turiafarm.id",
+  "@id": "https://turia-farm.vercel.app",
+  url: "https://turia-farm.vercel.app",
   telephone: "+6289508495717",
   priceRange: "Rp 2.000 - Rp 15.000",
   address: {

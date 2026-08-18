@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "standar mutu bibit turia farm",
   ],
   alternates: {
-    canonical: "https://turiafarm.id/proses-kultur",
+    canonical: "https://turia-farm.vercel.app/proses-kultur",
   },
 };
 

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "katalog bibit pisang turia farm",
   ],
   alternates: {
-    canonical: "https://turiafarm.id/bibit-pisang",
+    canonical: "https://turia-farm.vercel.app/bibit-pisang",
   },
 };
 

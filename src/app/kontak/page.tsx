@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "kontak nursery kediri",
   ],
   alternates: {
-    canonical: "https://turiafarm.id/kontak",
+    canonical: "https://turia-farm.vercel.app/kontak",
   },
 };
 

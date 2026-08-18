@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "sejarah nursery pisang batuaji",
   ],
   alternates: {
-    canonical: "https://turiafarm.id/tentang-kami",
+    canonical: "https://turia-farm.vercel.app/tentang-kami",
   },
 };
 
