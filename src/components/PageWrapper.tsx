@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { PageTransition } from "@/components/PageTransition";
 
 // Lenis is imported dynamically so phones never download it (they use native
 // scrolling). Desktop & tablets load it on demand for smooth scroll.
@@ -68,7 +69,9 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
     <LanguageProvider>
       <div className="min-h-screen flex flex-col bg-[#faf9f3] text-[#1b1c19] selection:bg-[#c4ebde] selection:text-[#00251d]">
         <Navbar />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
       </div>
     </LanguageProvider>
