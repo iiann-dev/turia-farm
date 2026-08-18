@@ -20,6 +20,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 
   // Re-initialize Lenis on route change to avoid stale instances preserving scroll
+  // Also scroll to top immediately after creating the new instance
   useEffect(() => {
     // Phones get native scrolling (Lenis smooth-scroll fights touch and adds
     // CPU overhead on low-end devices). Desktop & tablets keep smooth scroll.
@@ -40,6 +41,10 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       });
 
       lenisRef.current = lenis;
+
+      // Scroll to top immediately after Lenis is ready (on route change)
+      // This runs AFTER the new page mounts, so new content starts at top
+      lenis.scrollTo(0, { immediate: true });
 
       function raf(time: number) {
         lenis.raf(time);
@@ -62,18 +67,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       <div className="min-h-screen flex flex-col bg-[#faf9f3] text-[#1b1c19] selection:bg-[#c4ebde] selection:text-[#00251d]">
         <Navbar />
         <main className="flex-grow">
-          <PageTransition
-            onEnter={() => {
-              // Fires when the new page content mounts (inside the keyed motion.div)
-              if (lenisRef.current) {
-                lenisRef.current.scrollTo(0, { immediate: true });
-              } else {
-                window.scrollTo(0, 0);
-              }
-            }}
-          >
-            {children}
-          </PageTransition>
+          <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
       </div>

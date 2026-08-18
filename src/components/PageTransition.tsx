@@ -2,22 +2,9 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
-// Mounts together with each page (inside the keyed motion.div), so its effect
-// runs AFTER the new page is in the DOM — the correct moment for scroll reset.
-const PageEnterEffect: React.FC<{ onEnter: () => void }> = ({ onEnter }) => {
-  useEffect(() => {
-    onEnter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return null;
-};
-
-export const PageTransition: React.FC<{
-  children: ReactNode;
-  onEnter?: () => void;
-}> = ({ children, onEnter }) => {
+export const PageTransition: React.FC<{ children: ReactNode }> = ({ children }) => {
   const pathname = usePathname();
 
   return (
@@ -33,7 +20,6 @@ export const PageTransition: React.FC<{
         }}
         className="min-h-screen"
       >
-        <PageEnterEffect onEnter={onEnter ?? (() => {})} />
         {children}
       </motion.div>
     </AnimatePresence>
