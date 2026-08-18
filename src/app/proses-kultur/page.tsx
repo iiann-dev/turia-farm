@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ProcessSection } from "@/components/ProcessSection";
+import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Proses Kultur Jaringan & Pembibitan | Turia Farm Kediri",
@@ -20,9 +21,11 @@ export const metadata: Metadata = {
 export default function ProcessPage() {
   return (
     <PageWrapper>
-      <div className="pt-6">
-        <ProcessSection />
-      </div>
+      <PageTransition>
+        <div className="pt-6">
+          <ProcessSection />
+        </div>
+      </PageTransition>
     </PageWrapper>
   );
 }

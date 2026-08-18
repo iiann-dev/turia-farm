@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { AboutAndStory } from "@/components/AboutAndStory";
+import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Tentang Kami & Nursery 2.8 Ha | Turia Farm Kediri",
@@ -19,9 +20,11 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageWrapper>
-      <div className="pt-6">
-        <AboutAndStory />
-      </div>
+      <PageTransition>
+        <div className="pt-6">
+          <AboutAndStory />
+        </div>
+      </PageTransition>
     </PageWrapper>
   );
 }

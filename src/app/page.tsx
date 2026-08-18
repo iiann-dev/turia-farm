@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Hero } from "@/components/Hero";
 import { HomeHighlights } from "@/components/HomeHighlights";
+import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Turia Farm | Pusat Pembibitan Pisang & Bibit Sengon Kediri",
@@ -24,8 +25,10 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <PageWrapper>
-      <Hero />
-      <HomeHighlights />
+      <PageTransition>
+        <Hero />
+        <HomeHighlights />
+      </PageTransition>
     </PageWrapper>
   );
 }

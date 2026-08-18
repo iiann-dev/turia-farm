@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { SeedlingsSection } from "@/components/SeedlingsSection";
+import { PageTransition } from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",
@@ -20,9 +21,11 @@ export const metadata: Metadata = {
 export default function SeedlingsPage() {
   return (
     <PageWrapper>
-      <div className="pt-6">
-        <SeedlingsSection />
-      </div>
+      <PageTransition>
+        <div className="pt-6">
+          <SeedlingsSection />
+        </div>
+      </PageTransition>
     </PageWrapper>
   );
 }
