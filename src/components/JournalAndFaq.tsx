@@ -189,16 +189,21 @@ export const JournalAndFaq: React.FC = () => {
                     </div>
                   </button>
 
-                  {isOpen && (
-                    <Animated
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]"
-                    >
-                      {faq.a[lang]}
-                    </Animated>
-                  )}
+                  {/* Smooth expand/collapse via CSS grid-rows (0fr → 1fr).
+                      Works on all devices, no framer-motion needed, and
+                      animates BOTH opening and closing (unlike conditional
+                      mount which pops out instantly). */}
+                  <div
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]">
+                        {faq.a[lang]}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             })}
