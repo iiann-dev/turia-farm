@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Animated } from "./Animated";
+import { StatCounter } from "./StatCounter";
 import Link from "next/link";
 import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG } from "../data/seedlings";
@@ -141,30 +142,63 @@ export const Hero: React.FC = () => {
 
         {/* Highlight Numbers Strip */}
         <div className="mt-16 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-[#efeee8] border border-[#c1c8c4]/50">
-          <div className="text-center md:text-left">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">98.4%</div>
+          {/* Each stat fades/slides in staggered when scrolled into view,
+              and the numbers count up from 0 (desktop/tablet only — phones
+              get the final values instantly via StatCounter). */}
+          <Animated
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center md:text-left"
+          >
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">
+              <StatCounter value={98.4} decimals={1} suffix="%" />
+            </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
               {t("hero.stat1.label")}
             </div>
-          </div>
-          <div className="text-center md:text-left">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">150K+</div>
+          </Animated>
+          <Animated
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center md:text-left"
+          >
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">
+              <StatCounter value={150} suffix="K+" />
+            </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
               {t("hero.stat2.label")}
             </div>
-          </div>
-          <div className="text-center md:text-left">
-            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">500+</div>
+          </Animated>
+          <Animated
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center md:text-left"
+          >
+            <div className="font-serif text-3xl sm:text-4xl font-bold text-[#00251d]">
+              <StatCounter value={500} suffix="+" />
+            </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
               {t("hero.stat3.label")}
             </div>
-          </div>
-          <div className="text-center md:text-left">
+          </Animated>
+          <Animated
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center md:text-left"
+          >
             <div className="font-serif text-3xl sm:text-4xl font-bold text-[#2d6953]">Kediri</div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
               {lang === "id" ? "Nursery 2.8 Ha di Batuaji" : "2.8 Ha Nursery in Batuaji"}
             </div>
-          </div>
+          </Animated>
         </div>
       </div>
     </section>
