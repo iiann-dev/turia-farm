@@ -104,10 +104,8 @@ export const HomeHighlights: React.FC = () => {
                 ? "4 Tahap Pemuliaan Tanpa Kompromi"
                 : "4 Uncompromising Quality Propagation Steps"}
             </h3>
-            <p className="text-[#414845] text-sm leading-relaxed max-w-xl">
-              {lang === "id"
-                ? "Dari pemilihan anakan pisang unggul & penyemaian biji sengon di bedengan kebun 2.8 Ha di Batuaji Kediri. Akar sehat & bebas penyakit."
-                : "From selected banana suckers & seed-grown sengon in our 2.8 Ha nursery grounds in Batuaji Kediri."}
+            <p className="hidden">
+              {/* Removed paragraph per request */}
             </p>
             <Link
               href="/proses-kultur"

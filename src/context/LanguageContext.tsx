@@ -46,7 +46,7 @@ const translations: Record<Language, Record<string, string>> = {
     "seedlings.btnOrder": "Pesan via WA",
     "seedlings.detailMaturity": "Masa Panen",
     "seedlings.detailWeight": "Berat Tandan",
-    "seedlings.detailSweetness": "Kemanisan",
+    "seedlings.detailSweetness": "Karakteristik",
     "seedlings.detailHeight": "Tinggi Pohon",
 
     // Process Section
@@ -130,7 +130,7 @@ const translations: Record<Language, Record<string, string>> = {
     "seedlings.btnOrder": "Order via WA",
     "seedlings.detailMaturity": "Harvest Time",
     "seedlings.detailWeight": "Bunch Weight",
-    "seedlings.detailSweetness": "Sweetness",
+    "seedlings.detailSweetness": "Characteristic",
     "seedlings.detailHeight": "Tree Height",
 
     // Process Section
