@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useSyncExternalStore } from "react";
 import { Language } from "../types";
 
 interface LanguageContextType {
@@ -15,7 +15,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Navigation
     "nav.home": "Beranda",
     "nav.seedlings": "Katalog Bibit",
-    "nav.process": "Proses Kultur",
+    "nav.process": "Proses Pembibitan",
     "nav.about": "Tentang Kami",
     "nav.journal": "Panduan Tani",
     "nav.contact": "Kontak",
@@ -23,11 +23,11 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.openHours": "Buka Senin - Sabtu 07:30 - 16:30 WIB",
 
     // Hero
-    "hero.eyebrow": "Pembibitan Pisang Unggul & Bibit Sengon",
+    "hero.eyebrow": "Pembibitan Pisang & Sengon Unggul Kediri",
     "hero.title1": "Bibit Pisang & Sengon Sehat,",
     "hero.title2": "Panen Berlimpah.",
     "hero.desc":
-      "Pusat pembibitan bibit pisang unggul berbasis kultur jaringan & bibit sengon pilihan. Bebas virus, seragam, dan siap tanam untuk perkebunan mandiri maupun skala komersial.",
+      "Pusat pembibitan pisang dari anakan pilihan & bibit sengon dari biji berkualitas. Berakar sehat, vigor tinggi, dan siap tanam untuk perkebunan mandiri maupun skala komersial.",
     "hero.ctaPrimary": "Pesan Bibit Sekarang",
     "hero.ctaSecondary": "Lihat Varietas & Harga",
     "hero.stat1.val": "98.4%",
@@ -41,7 +41,7 @@ const translations: Record<Language, Record<string, string>> = {
     "seedlings.eyebrow": "Katalog Bibit",
     "seedlings.title": "Bibit Pisang & Sengon Pilihan Siap Tanam",
     "seedlings.desc":
-      "Semua bibit melalui proses aklimatisasi bertahap, berakar sehat aktif dengan media organik kaya trichoderma pelindung jamur.",
+      "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.",
     "seedlings.filter.all": "Semua Varietas",
     "seedlings.btnOrder": "Pesan via WA",
     "seedlings.detailMaturity": "Masa Panen",
@@ -51,18 +51,18 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Process Section
     "process.eyebrow": "Standar Mutu Bibit",
-    "process.title": "4 Tahap Pemuliaan Tanpa Kompromi",
+    "process.title": "4 Tahap Pembibitan Kebun Tradisional",
     "process.desc":
-      "Dari tabung in-vitro steril hingga polybag siap kebun, setiap bibit melewati kontrol mutu biologis ketat.",
+      "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.",
 
     // About Section
     "about.eyebrow": "Tentang Turia Farm",
     "about.title": "Dedikasi untuk Kesejahteraan Petani Indonesia",
     "about.p1":
-      "Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya wabah layu fusarium dan bibit cabutan yang tidak seragam di kalangan petani.",
+      "Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya bibit cabutan asal-asalan dan tidak seragam di kalangan petani.",
     "about.p2":
-      "Kini dengan fasilitas laboratorium kultur jaringan modern dan greenhouse aklimatisasi 2.8 hektar, kami membudidayakan bibit pisang unggul dan bibit sengon, mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
-    "about.badge": "Garansi 100% Bebas Penyakit Bawaan",
+      "Kini dengan lahan pembibitan kebun seluas 2.8 hektar di Batuaji Kediri, kami memproduksi anakan pisang pilihan dari pohon indukan sehat serta penyemaian biji sengon unggul, mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
+    "about.badge": "Bibit Sehat Bergaransi Siap Tanam",
 
     // Journal Section
     "journal.eyebrow": "Edukasi & Riset Tani",
@@ -75,10 +75,10 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Contact & Location
     "contact.eyebrow": "Kunjungi & Hubungi Kami",
-    "contact.title": "Siap Memulai Kebun Pisang Produktif?",
+    "contact.title": "Siap Memulai Kebun Pisang & Sengon Produktif?",
     "contact.desc":
       "Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda.",
-    "contact.addressTitle": "Lokasi Nursery & Greenhouse",
+    "contact.addressTitle": "Lokasi Kebun Pembibitan & Nursery",
     "contact.phoneTitle": "Layanan Konsultasi Tani",
     "contact.emailTitle": "Surat Elektronik",
     "contact.hoursTitle": "Jam Operasional Nursery",
@@ -99,7 +99,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Navigation
     "nav.home": "Home",
     "nav.seedlings": "Catalog",
-    "nav.process": "Process",
+    "nav.process": "Propagation Process",
     "nav.about": "About Us",
     "nav.journal": "Agri Journal",
     "nav.contact": "Contact",
@@ -107,11 +107,11 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.openHours": "Open Mon - Sat 07:30 AM - 04:30 PM",
 
     // Hero
-    "hero.eyebrow": "Premium Banana Seedlings & Sengon Saplings",
+    "hero.eyebrow": "Elite Banana Suckers & Sengon Seedlings Kediri",
     "hero.title1": "Healthier Roots,",
     "hero.title2": "Abundant Harvest.",
     "hero.desc":
-      "Premier nursery combining sterile in-vitro tissue culture for bananas and vigorous sengon timber saplings. Pathogen-free, synchronized growth, ready for smallholders and commercial orchards.",
+      "Premier nursery combining selected banana suckers from healthy mother plants and high-grade seed-grown sengon timber saplings. Pathogen-free, vigorous growth, ready for smallholders and commercial orchards.",
     "hero.ctaPrimary": "Order Seedlings",
     "hero.ctaSecondary": "Explore Varieties",
     "hero.stat1.val": "98.4%",
@@ -125,7 +125,7 @@ const translations: Record<Language, Record<string, string>> = {
     "seedlings.eyebrow": "Catalog",
     "seedlings.title": "Field-Ready Banana & Sengon Seedlings",
     "seedlings.desc":
-      "All seedlings undergo gradual shade hardening, featuring robust white root systems fortified with organic Trichoderma fungi.",
+      "All seedlings are cultivated directly at our Batuaji Kediri nursery grounds, featuring active root systems in organic potting polybags.",
     "seedlings.filter.all": "All Varieties",
     "seedlings.btnOrder": "Order via WA",
     "seedlings.detailMaturity": "Harvest Time",
@@ -135,18 +135,18 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Process Section
     "process.eyebrow": "Quality Standards",
-    "process.title": "4 Uncompromising Propagation Steps",
+    "process.title": "4 Traditional Nursery Propagation Steps",
     "process.desc":
-      "From sterile in-vitro test tubes to fortified nursery polybags, every plant undergoes rigorous biological grading.",
+      "From careful sucker separation & seed sowing to field bed polybag maturation, every plant is nurtured under open-air nursery conditions.",
 
     // About Section
     "about.eyebrow": "About Turia Farm",
-    "about.title": "Empowering Sustainable Banana Farming Across Indonesia",
+    "about.title": "Empowering Sustainable Farming Across Indonesia",
     "about.p1":
-      "Turia Farm started as a local family nursery in Batuaji, Ringinrejo, Kediri, addressing the widespread losses caused by fusarium wilt and weak uncertified suckers.",
+      "Turia Farm started as a local family nursery in Batuaji, Ringinrejo, Kediri, addressing the widespread losses caused by low-quality wild suckers and unselected seeds.",
     "about.p2":
-      "Today, with a modern in-vitro laboratory and 2.8 hectares of acclimatization greenhouses, we cultivate premium banana seedlings and sengon timber saplings, partnering with hundreds of growers from initial planting to lucrative harvests.",
-    "about.badge": "100% Certified Pathogen-Free",
+      "Today, spanning 2.8 hectares of open-air nursery beds in Batuaji Kediri, we propagate selected banana suckers from healthy mother palms and cultivate superior seed-sown sengon saplings, partnering with hundreds of growers from planting to lucrative harvests.",
+    "about.badge": "100% Healthy Field-Ready Guarantee",
 
     // Journal Section
     "journal.eyebrow": "Agronomy Insights",
@@ -162,7 +162,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.title": "Ready to Cultivate a High-Yield Orchard?",
     "contact.desc":
       "Consult on variety selection, orchard budgeting, and dedicated truck delivery directly to your farming plots.",
-    "contact.addressTitle": "Nursery & Greenhouse Facility",
+    "contact.addressTitle": "Nursery & Orchard Facility",
     "contact.phoneTitle": "Agronomy Helpline",
     "contact.emailTitle": "Direct Email",
     "contact.hoursTitle": "Nursery Visiting Hours",
@@ -183,19 +183,38 @@ const translations: Record<Language, Record<string, string>> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLang] = useState<Language>("id");
+// SSR-safe localStorage subscription
+function getStoredLanguage(): Language {
+  if (typeof window === "undefined") return "id";
+  const saved = localStorage.getItem("turia_lang") as Language;
+  return (saved === "id" || saved === "en") ? saved : "id";
+}
 
+function subscribe(callback: () => void) {
+  if (typeof window === "undefined") return () => {};
+  window.addEventListener("storage", callback);
+  return () => window.removeEventListener("storage", callback);
+}
+
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // Synchronous read for initial render - no flash!
+  const [lang, setLangState] = useState<Language>(() => getStoredLanguage());
+
+  // Sync across tabs
+  const syncedLang = useSyncExternalStore(subscribe, getStoredLanguage, () => "id" as Language);
+
+  // Keep local state in sync with storage changes (from other tabs)
   useEffect(() => {
-    const saved = localStorage.getItem("turia_lang") as Language;
-    if (saved === "id" || saved === "en") {
-      setLang(saved);
+    if (syncedLang !== lang) {
+      setLangState(syncedLang);
     }
-  }, []);
+  }, [syncedLang, lang]);
 
   const handleSetLang = (newLang: Language) => {
-    setLang(newLang);
-    localStorage.setItem("turia_lang", newLang);
+    setLangState(newLang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("turia_lang", newLang);
+    }
   };
 
   const toggleLang = () => {

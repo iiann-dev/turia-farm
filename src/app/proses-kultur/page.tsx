@@ -3,14 +3,14 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { ProcessSection } from "@/components/ProcessSection";
 
 export const metadata: Metadata = {
-  title: "Proses Kultur Jaringan & Pembibitan | Turia Farm Kediri",
+  title: "Proses Pembibitan | Turia Farm Kediri",
   description:
-    "Pelajari 4 tahap pemuliaan bibit pisang dan perawatan bibit sengon di laboratorium dan greenhouse Turia Farm Batuaji Ringinrejo Kediri. 99.8% steril, akar aktif bergaransi hidup.",
+    "Pelajari 4 tahap pembibitan pisang anakan dan penyemaian bibit sengon biji di Turia Farm Batuaji Ringinrejo Kediri. Akar aktif bergaransi hidup.",
   keywords: [
-    "proses kultur jaringan pisang",
-    "aklimatisasi bibit pisang kediri",
-    "greenhouse bibit pisang batuaji",
-    "standar mutu bibit turia farm",
+    "proses pembibitan pisang",
+    "penyemaian biji sengon",
+    "kebun bibit pisang batuaji",
+    "nursery pisang kediri",
   ],
   alternates: {
     canonical: "https://turia-farm.vercel.app/proses-kultur",

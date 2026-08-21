@@ -97,17 +97,17 @@ export const HomeHighlights: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <ShieldCheck size={13} className="text-[#2d6953]" />
-              <span>{lang === "id" ? "Bioteknologi Kultur Jaringan" : "In-Vitro Tissue Culture"}</span>
+              <span>{lang === "id" ? "Pembibitan Kebun Autentik" : "Authentic Nursery Propagation"}</span>
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#00251d] mb-4">
               {lang === "id"
                 ? "4 Tahap Pemuliaan Tanpa Kompromi"
                 : "4 Uncompromising Quality Propagation Steps"}
             </h3>
-            <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-6">
+            <p className="text-[#414845] text-sm leading-relaxed max-w-xl">
               {lang === "id"
-                ? "Dari eksplan pucuk steril di lab in-vitro hingga greenhouse aklimatisasi 2.8 Ha di Batuaji Kediri. 99.8% bebas penyakit fusarium & layu darah."
-                : "From sterile shoot meristems in our in-vitro lab to 2.8 hectares acclimatization shadehouses in Batuaji Kediri."}
+                ? "Dari pemilihan anakan pisang unggul & penyemaian biji sengon di bedengan kebun 2.8 Ha di Batuaji Kediri. Akar sehat & bebas penyakit."
+                : "From selected banana suckers & seed-grown sengon in our 2.8 Ha nursery grounds in Batuaji Kediri."}
             </p>
             <Link
               href="/proses-kultur"

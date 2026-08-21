@@ -6,11 +6,11 @@ import { HomeHighlights } from "@/components/HomeHighlights";
 export const metadata: Metadata = {
   title: "Turia Farm | Pusat Pembibitan Pisang & Bibit Sengon Kediri",
   description:
-    "Nursery bibit pisang kultur jaringan dan anakan super (Cavendish, Raja Bulu, Kepok Tanjung) serta bibit sengon unggul di Batuaji, Kab. Kediri. Bebas fusarium, siap tanam, bergaransi.",
+    "Nursery bibit pisang dari anakan super (Cavendish, Raja Bulu, Kepok Tanjung) serta bibit sengon biji unggul di Batuaji, Kab. Kediri. Sehat, vigor tinggi, siap tanam, bergaransi.",
   keywords: [
     "bibit pisang kediri",
-    "bibit pisang kultur jaringan",
-    "jual bibit pisang cavendish kediri",
+    "bibit pisang anakan",
+    "bibit sengon kediri",
     "bibit kepok tanjung kediri",
     "bibit pisang batuaji ringinrejo",
     "turia farm",

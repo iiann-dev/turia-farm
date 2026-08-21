@@ -104,13 +104,13 @@ export const ProcessSection: React.FC = () => {
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-[#faf9f3]">
               {lang === "id"
-                ? "Ingin melihat langsung indukan & proses aklimatisasi kami?"
-                : "Want to inspect our mother plant orchards & shadehouses?"}
+                ? "Ingin melihat langsung kebun pembibitan & indukan kami?"
+                : "Want to visit our nursery and mother trees?"}
             </h3>
-            <p className="text-sm sm:text-base text-[#c1c8c4] leading-relaxed mb-8">
+            <p className="text-sm sm:text-base text-[#c1c8c4] max-w-2xl leading-relaxed mb-8 font-normal">
               {lang === "id"
-                ? "Pintu nursery Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin belajar dan cek mutu bibit sebelum transaksi."
-                : "Our nursery doors in Batuaji, Ringinrejo are always open for individual growers, cooperatives, and commercial investors wanting to verify seedling health on-site."}
+                ? "Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung."
+                : "Our nursery grounds in Batuaji, Ringinrejo are always open for individual growers, cooperatives, and farm investors to inspect seedling quality firsthand."}
             </p>
             <a
               href={SITE_CONFIG.whatsapp}

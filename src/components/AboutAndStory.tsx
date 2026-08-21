@@ -39,8 +39,8 @@ export const AboutAndStory: React.FC = () => {
               </div>
               <div className="text-xs text-[#faf9f3]/90 leading-snug">
                 {lang === "id"
-                  ? "Kapasitas 60.000 polybag bibit aklimatisasi per siklus tanam."
-                  : "60,000 active acclimated seedlings per planting cycle."}
+                  ? "Kapasitas ribuan polybag bibit anakan & bibit sengon per siklus tanam."
+                  : "Thousands of polybags capacity per planting cycle."}
               </div>
             </div>
           </Animated>

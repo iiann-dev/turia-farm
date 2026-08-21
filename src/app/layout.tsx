@@ -27,12 +27,12 @@ export const metadata: Metadata = {
     template: "%s | Turia Farm Kediri",
   },
   description:
-    "Pusat bibit pisang kultur jaringan dan anakan unggul bersertifikasi (Cavendish, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan) serta bibit sengon di Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur.",
+    "Pusat bibit pisang anakan unggul dan bibit sengon biji pilihan (Cavendish, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon) di Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur.",
   keywords: [
     "bibit pisang kediri",
-    "bibit pisang batuaji",
-    "bibit pisang ringinrejo",
-    "bibit pisang kultur jaringan jawa timur",
+    "bibit pisang anakan",
+    "bibit sengon kediri",
+    "bibit pisang jawa timur",
     "bibit sengon kediri",
     "jual bibit sengon solomon",
     "jual bibit pisang cavendish",

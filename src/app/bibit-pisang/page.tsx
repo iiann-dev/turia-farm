@@ -5,7 +5,7 @@ import { SeedlingsSection } from "@/components/SeedlingsSection";
 export const metadata: Metadata = {
   title: "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",
   description:
-    "Daftar harga dan varietas bibit pisang kultur jaringan & bibit sengon Turia Farm di Batuaji Ringinrejo Kediri: Cavendish Grand Naine, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon.",
+    "Daftar harga dan varietas bibit pisang anakan pilihan & bibit sengon biji Turia Farm di Batuaji Ringinrejo Kediri: Cavendish Grand Naine, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon.",
   keywords: [
     "harga bibit pisang cavendish",
     "bibit pisang raja bulu kediri",
