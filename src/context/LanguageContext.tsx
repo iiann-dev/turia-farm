@@ -176,7 +176,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.form.submit": "Inquire via WhatsApp",
 
     // Footer
-    "footer.tagline": "Modern agriculture rooted in nature. Cultivating elite genetics for sustainable food sovereignty.",
+    "footer.tagline": "Agriculture rooted in nature. Cultivating elite genetics for sustainable food sovereignty.",
     "footer.quickLinks": "Quick Links",
     "footer.varieties": "Popular Varieties",
     "footer.rights": "All Rights Reserved.",
