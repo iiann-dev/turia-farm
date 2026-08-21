@@ -21,6 +21,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Kontak",
     "nav.cta": "Konsultasi Bibit",
     "nav.openHours": "Buka Senin - Sabtu 07:30 - 16:30 WIB",
+    "nav.brandSubtitle": "Bibit Pisang & Sengon Kediri",
 
     // Hero
     "hero.eyebrow": "Pembibitan Pisang & Sengon Unggul Kediri",
@@ -90,7 +91,7 @@ const translations: Record<Language, Record<string, string>> = {
     "contact.form.submit": "Kirim Pertanyaan via WhatsApp",
 
     // Footer
-    "footer.tagline": "Modern agriculture rooted in nature. Menumbuhkan bibit unggul untuk masa depan pertanian Nusantara.",
+    "footer.tagline": "Pertanian modern yang berakar pada alam. Menumbuhkan genetik unggul untuk kedaulatan pangan berkelanjutan.",
     "footer.quickLinks": "Tautan Cepat",
     "footer.varieties": "Varietas Populer",
     "footer.rights": "Hak Cipta Dilindungi.",
@@ -105,6 +106,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.contact": "Contact",
     "nav.cta": "Consult Agronomist",
     "nav.openHours": "Open Mon - Sat 07:30 AM - 04:30 PM",
+    "nav.brandSubtitle": "Kediri Banana & Sengon Seedlings",
 
     // Hero
     "hero.eyebrow": "Elite Banana Suckers & Sengon Seedlings Kediri",

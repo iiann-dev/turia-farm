@@ -8,8 +8,8 @@ export interface SeedlingItem {
   desc: { id: string; en: string };
   maturity: { id: string; en: string };
   bunchWeight: { id: string; en: string };
-  sweetness: string;
-  height: string;
+  sweetness: { id: string; en: string };
+  height: { id: string; en: string };
   price: { id: string; en: string };
   image: string;
   status: { id: string; en: string };

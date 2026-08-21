@@ -99,11 +99,11 @@ export const SeedlingsSection: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <Sparkles size={14} className="text-[#2d6953]" />
-                      <span>{item.sweetness}</span>
+                      <span>{item.sweetness[lang]}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Ruler size={14} className="text-[#2d6953]" />
-                      <span>{item.height}</span>
+                      <span>{item.height[lang]}</span>
                     </div>
                   </div>
                 </div>
@@ -167,11 +167,11 @@ export const SeedlingsSection: React.FC = () => {
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
                   <span className="text-[#717975]">{t("seedlings.detailSweetness")}:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.sweetness}</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.sweetness[lang]}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
                   <span className="text-[#717975]">{t("seedlings.detailHeight")}:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.height}</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.height[lang]}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
                   <span className="text-[#717975]">{lang === "id" ? "Rekomendasi Lahan" : "Best For"}:</span>

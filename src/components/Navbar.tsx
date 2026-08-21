@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
               Turia Farm
             </div>
             <div className="text-[10px] sm:text-[10.5px] font-medium tracking-wider uppercase text-[#2d6953] mt-0.5 whitespace-nowrap">
-              Bibit Pisang & Sengon Kediri
+              {t("nav.brandSubtitle")}
             </div>
           </div>
         </Link>

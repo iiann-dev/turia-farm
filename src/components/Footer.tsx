@@ -21,11 +21,11 @@ export const Footer: React.FC = () => {
                 Turia Farm
               </div>
             </div>
-            <p className="text-xs sm:text-sm text-[#a8cfc2] max-w-sm leading-relaxed">
+            <div className="text-xs sm:text-sm text-[#a8cfc2] max-w-sm leading-relaxed">
               {t("footer.tagline")}
-            </p>
+            </div>
             <div className="text-xs text-[#80a691] pt-1">
-              {SITE_CONFIG.address}
+              {SITE_CONFIG.address[lang]}
             </div>
           </div>
 
