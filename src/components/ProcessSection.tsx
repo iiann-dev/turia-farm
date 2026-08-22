@@ -2,14 +2,11 @@
 
 import React from "react";
 import { Animated } from "./Animated";
-import { useLanguage } from "../context/LanguageContext";
 import { PROCESS_STEPS, SITE_CONFIG } from "../data/seedlings";
 import { ShieldCheck, ArrowRight, Dna, Sprout, SunMedium, Truck } from "lucide-react";
 import Image from "next/image";
 
 export const ProcessSection: React.FC = () => {
-  const { lang, t } = useLanguage();
-
   const getStepIcon = (index: number) => {
     switch (index) {
       case 0:
@@ -32,13 +29,13 @@ export const ProcessSection: React.FC = () => {
         <div className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
             <ShieldCheck size={13} className="text-[#2d6953]" />
-            <span>{t("process.eyebrow")}</span>
+            <span>Standar Mutu Bibit</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
-            {t("process.title")}
+            4 Tahap Pembibitan Kebun Tradisional
           </h2>
           <p className="text-base sm:text-lg text-[#414845]">
-            {t("process.desc")}
+            Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.
           </p>
         </div>
 
@@ -65,22 +62,22 @@ export const ProcessSection: React.FC = () => {
                 </div>
 
                 <div className="text-[11px] font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                  {p.tagline[lang]}
+                  {p.tagline}
                 </div>
                 <h3 className="font-serif text-xl font-bold text-[#00251d] mb-3 leading-snug">
-                  {p.title[lang]}
+                  {p.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-6 font-normal">
-                  {p.desc[lang]}
+                  {p.desc}
                 </p>
               </div>
 
               <div className="pt-4 border-t border-[#efeee8]">
                 <div className="text-[11px] text-[#717975] mb-1">
-                  {p.duration[lang]}
+                  {p.duration}
                 </div>
                 <div className="inline-block px-2.5 py-1 rounded-md bg-[#e3e3dd] text-[#00251d] text-[11px] font-semibold">
-                  {p.highlight[lang]}
+                  {p.highlight}
                 </div>
               </div>
             </Animated>
@@ -100,17 +97,13 @@ export const ProcessSection: React.FC = () => {
 
           <div className="relative z-10 max-w-2xl">
             <div className="inline-block px-3 py-1 rounded-full bg-[#173b32] text-[#c4ebde] text-xs font-semibold tracking-wider uppercase mb-4">
-              {lang === "id" ? "Kunjungan & Edukasi Terbuka" : "Open Nursery Facility"}
+              Kunjungan & Edukasi Terbuka
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-[#faf9f3]">
-              {lang === "id"
-                ? "Ingin melihat langsung kebun pembibitan & indukan kami?"
-                : "Want to visit our nursery and mother trees?"}
+              Ingin melihat langsung kebun pembibitan & indukan kami?
             </h3>
             <p className="text-sm sm:text-base text-[#c1c8c4] max-w-2xl leading-relaxed mb-8 font-normal">
-              {lang === "id"
-                ? "Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung."
-                : "Our nursery grounds in Batuaji, Ringinrejo are always open for individual growers, cooperatives, and farm investors to inspect seedling quality firsthand."}
+              Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung.
             </p>
             <a
               href={SITE_CONFIG.whatsapp}
@@ -118,7 +111,7 @@ export const ProcessSection: React.FC = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#b1f0d4] text-[#00251d] hover:bg-white text-sm font-semibold transition-all shadow-md"
             >
-              <span>{lang === "id" ? "Jadwalkan Kunjungan Kebun" : "Schedule a Nursery Visit"}</span>
+              <span>Jadwalkan Kunjungan Kebun</span>
               <ArrowRight size={16} />
             </a>
           </div>

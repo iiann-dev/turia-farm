@@ -4,14 +4,11 @@ import React from "react";
 import { Animated } from "./Animated";
 import { StatCounter } from "./StatCounter";
 import Link from "next/link";
-import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG } from "../data/seedlings";
 import { ArrowRight, CheckCircle2, Sprout, Award, ShieldCheck } from "lucide-react";
 import Image from "next/image";
 
 export const Hero: React.FC = () => {
-  const { lang, t } = useLanguage();
-
   return (
     <section
       id="home"
@@ -33,20 +30,20 @@ export const Hero: React.FC = () => {
             {/* Pill Eyebrow */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#efeee8] border border-[#c1c8c4]/60 text-xs font-semibold text-[#00251d] tracking-wide mb-6">
               <Sprout size={14} className="text-[#2d6953]" />
-              <span>{t("hero.eyebrow")}</span>
+              <span>Pembibitan Pisang & Sengon Unggul Kediri</span>
             </div>
 
             {/* Main Headline */}
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-normal text-[#00251d] leading-[1.08] tracking-tight mb-6">
-              {t("hero.title1")} <br />
+              Bibit Pisang & Sengon Sehat, <br />
               <span className="italic font-normal text-[#2d6953] underline decoration-[#c4ebde] decoration-wavy decoration-2 underline-offset-8">
-                {t("hero.title2")}
+                Panen Berlimpah.
               </span>
             </h1>
 
             {/* Subtext */}
             <p className="text-base sm:text-lg text-[#414845] leading-relaxed max-w-2xl mb-8 font-normal">
-              {t("hero.desc")}
+              Pusat pembibitan pisang dari anakan pilihan & bibit sengon dari biji berkualitas. Berakar sehat, vigor tinggi, dan siap tanam untuk perkebunan mandiri maupun skala komersial.
             </p>
 
             {/* CTAs */}
@@ -57,7 +54,7 @@ export const Hero: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-sm font-semibold tracking-wide shadow-[0_10px_25px_rgba(0,37,29,0.2)] hover:shadow-[0_15px_35px_rgba(0,37,29,0.3)] transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>{t("hero.ctaPrimary")}</span>
+                <span>Pesan Bibit Sekarang</span>
                 <ArrowRight size={17} />
               </a>
 
@@ -65,7 +62,7 @@ export const Hero: React.FC = () => {
                 href="/bibit-pisang"
                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white hover:bg-[#f5f4ee] border border-[#c1c8c4] text-[#00251d] text-sm font-semibold tracking-wide transition-all hover:border-[#00251d]"
               >
-                <span>{t("hero.ctaSecondary")}</span>
+                <span>Lihat Varietas & Harga</span>
               </Link>
             </div>
 
@@ -73,20 +70,20 @@ export const Hero: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 pt-6 border-t border-[#c1c8c4]/40 w-full">
               <div className="flex items-center gap-2.5 text-xs text-[#1b1c19] font-medium">
                 <CheckCircle2 size={16} className="text-[#2d6953] shrink-0" />
-                <span>{lang === "id" ? "Bebas Layu Fusarium" : "Fusarium-Free Guarantee"}</span>
+                <span>Bebas Layu Fusarium</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-[#1b1c19] font-medium">
                 <ShieldCheck size={16} className="text-[#2d6953] shrink-0" />
-                <span>{lang === "id" ? "Garansi Hidup di Perjalanan" : "Transit Live Guarantee"}</span>
+                <span>Garansi Hidup di Perjalanan</span>
               </div>
               <div className="flex items-center gap-2.5 text-xs text-[#1b1c19] font-medium">
                 <Award size={16} className="text-[#2d6953] shrink-0" />
-                <span>{lang === "id" ? "Pendampingan SOP Tani" : "Agronomy Support"}</span>
+                <span>Pendampingan SOP Tani</span>
               </div>
             </div>
           </Animated>
 
-          {/* Right Column: Clean Botanical Visual without floating stamp */}
+          {/* Right Column: Clean Botanical Visual */}
           <Animated
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -109,13 +106,13 @@ export const Hero: React.FC = () => {
               {/* Botanical Overlay Badge inside Image */}
               <div className="absolute bottom-6 left-6 right-6 p-5 rounded-3xl bg-white/95 backdrop-blur-md border border-white/60 text-[#00251d] shadow-lg">
                 <div className="text-xs font-semibold uppercase tracking-wider text-[#2d6953] mb-1">
-                  {lang === "id" ? "Siap Tanam Lapangan" : "Field Ready"}
+                  Siap Tanam Lapangan
                 </div>
                 <div className="font-serif text-lg font-bold text-[#00251d]">
                   Cavendish, Raja Bulu & Sengon Solomon
                 </div>
                 <div className="text-xs text-[#414845] mt-1 flex items-center justify-between">
-                  <span>{lang === "id" ? "Ketinggian 35-45 cm • Akar Aktif" : "35-45 cm Height • Active Roots"}</span>
+                  <span>Ketinggian 35-45 cm • Akar Aktif</span>
                   <span className="font-bold text-[#2d6953]">Batuaji, Kediri</span>
                 </div>
               </div>
@@ -129,10 +126,10 @@ export const Hero: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-[#00251d]">
-                    {lang === "id" ? "150.000+ Bibit / Thn" : "150,000+ Plants / Yr"}
+                    150.000+ Bibit / Thn
                   </div>
                   <div className="text-[11px] text-[#414845]">
-                    {lang === "id" ? "Kirim Se-Jawa, Bali & Luar Pulau" : "Shipped Across Indonesia"}
+                    Kirim Se-Jawa, Bali & Luar Pulau
                   </div>
                 </div>
               </div>
@@ -142,9 +139,6 @@ export const Hero: React.FC = () => {
 
         {/* Highlight Numbers Strip */}
         <div className="mt-16 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 p-6 sm:p-8 rounded-3xl bg-[#efeee8] border border-[#c1c8c4]/50">
-          {/* Each stat fades/slides in staggered when scrolled into view,
-              and the numbers count up from 0 (desktop/tablet only — phones
-              get the final values instantly via StatCounter). */}
           <Animated
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +150,7 @@ export const Hero: React.FC = () => {
               <StatCounter value={98.4} decimals={1} suffix="%" />
             </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
-              {t("hero.stat1.label")}
+              Tingkat Hidup Lapangan
             </div>
           </Animated>
           <Animated
@@ -170,7 +164,7 @@ export const Hero: React.FC = () => {
               <StatCounter value={150} suffix="K+" />
             </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
-              {t("hero.stat2.label")}
+              Bibit Tersalurkan / Thn
             </div>
           </Animated>
           <Animated
@@ -184,7 +178,7 @@ export const Hero: React.FC = () => {
               <StatCounter value={500} suffix="+" />
             </div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
-              {t("hero.stat3.label")}
+              Petani & Kebun Mitra
             </div>
           </Animated>
           <Animated
@@ -196,7 +190,7 @@ export const Hero: React.FC = () => {
           >
             <div className="font-serif text-3xl sm:text-4xl font-bold text-[#2d6953]">Kediri</div>
             <div className="text-xs sm:text-sm text-[#414845] mt-1 font-medium">
-              {lang === "id" ? "Nursery 2.8 Ha di Batuaji" : "2.8 Ha Nursery in Batuaji"}
+              Nursery 2.8 Ha di Batuaji
             </div>
           </Animated>
         </div>

@@ -2,12 +2,10 @@
 
 import React, { useState } from "react";
 import { Animated } from "./Animated";
-import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle, Truck, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Clock, Send, MessageCircle, Truck } from "lucide-react";
 
 export const ContactAndLocation: React.FC = () => {
-  const { lang, t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -18,18 +16,11 @@ export const ContactAndLocation: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text =
-      lang === "id"
-        ? `Halo Turia Farm,%0A%0ANama: ${encodeURIComponent(form.name)}%0AWhatsApp: ${encodeURIComponent(
-            form.phone
-          )}%0AVarietas: ${encodeURIComponent(form.variety)}%0AEstimasi Jumlah: ${encodeURIComponent(
-            form.qty
-          )} bibit%0ACatatan: ${encodeURIComponent(form.message)}`
-        : `Hello Turia Farm,%0A%0AName: ${encodeURIComponent(form.name)}%0AWhatsApp: ${encodeURIComponent(
-            form.phone
-          )}%0AVariety: ${encodeURIComponent(form.variety)}%0AQuantity: ${encodeURIComponent(
-            form.qty
-          )} seedlings%0ANote: ${encodeURIComponent(form.message)}`;
+    const text = `Halo Turia Farm,%0A%0ANama: ${encodeURIComponent(form.name)}%0AWhatsApp: ${encodeURIComponent(
+      form.phone
+    )}%0AVarietas: ${encodeURIComponent(form.variety)}%0AEstimasi Jumlah: ${encodeURIComponent(
+      form.qty
+    )} bibit%0ACatatan: ${encodeURIComponent(form.message)}`;
 
     window.open(`https://wa.me/6289508495717?text=${text}`, "_blank");
   };
@@ -41,13 +32,13 @@ export const ContactAndLocation: React.FC = () => {
         <div className="max-w-2xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
             <MessageCircle size={13} className="text-[#2d6953]" />
-            <span>{t("contact.eyebrow")}</span>
+            <span>Kunjungi & Hubungi Kami</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
-            {t("contact.title")}
+            Siap Memulai Kebun Pisang & Sengon Produktif?
           </h2>
           <p className="text-base sm:text-lg text-[#414845]">
-            {t("contact.desc")}
+            Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda.
           </p>
         </div>
 
@@ -62,13 +53,13 @@ export const ContactAndLocation: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                    {t("contact.addressTitle")}
+                    Lokasi Kebun Pembibitan & Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d] leading-snug">
-                    {SITE_CONFIG.address[lang]}
+                    {SITE_CONFIG.address}
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
-                    {SITE_CONFIG.nurseryArea[lang]}
+                    {SITE_CONFIG.nurseryArea}
                   </div>
                   {/* Google Maps Embed */}
                   <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">
@@ -88,7 +79,7 @@ export const ContactAndLocation: React.FC = () => {
                     className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
                   >
                     <MapPin size={14} />
-                    {lang === "id" ? "Buka di Google Maps" : "Open in Google Maps"}
+                    <span>Buka di Google Maps</span>
                   </a>
                 </div>
               </div>
@@ -99,13 +90,13 @@ export const ContactAndLocation: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                    {t("contact.phoneTitle")}
+                    Layanan Konsultasi Tani
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
                     {SITE_CONFIG.phone} (WhatsApp / Telepon)
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
-                    {lang === "id" ? "Fast response jam kerja" : "Fast response during hours"}
+                    Fast response jam kerja
                   </div>
                 </div>
               </div>
@@ -116,10 +107,10 @@ export const ContactAndLocation: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                    {t("contact.hoursTitle")}
+                    Jam Operasional Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
-                    {SITE_CONFIG.hours[lang]}
+                    {SITE_CONFIG.hours}
                   </div>
                 </div>
               </div>
@@ -132,12 +123,10 @@ export const ContactAndLocation: React.FC = () => {
               </div>
               <div>
                 <div className="font-serif font-bold text-base text-[#faf9f3]">
-                  {lang === "id" ? "Armada Truk & Keranjang Kayu" : "Dedicated Truck & Wooden Crates"}
+                  Armada Truk & Keranjang Kayu
                 </div>
                 <div className="text-xs text-[#a8cfc2] mt-0.5 leading-relaxed">
-                  {lang === "id"
-                    ? "Pengiriman skala besar diantar langsung ke lokasi kebun Anda dengan garansi hidup."
-                    : "Bulk orders delivered direct to farm gates across Java, Bali, and outer islands."}
+                  Pengiriman skala besar diantar langsung ke lokasi kebun Anda dengan garansi hidup.
                 </div>
               </div>
             </div>
@@ -151,19 +140,17 @@ export const ContactAndLocation: React.FC = () => {
             className="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white border border-[#c1c8c4]/60 shadow-lg"
           >
             <h3 className="font-serif text-2xl font-bold text-[#00251d] mb-2">
-              {lang === "id" ? "Formulir Konsultasi & Pemesanan Bibit" : "Consultation & Order Form"}
+              Formulir Konsultasi & Pemesanan Bibit
             </h3>
             <p className="text-xs sm:text-sm text-[#414845] mb-8">
-              {lang === "id"
-                ? "Isi data kebutuhan Anda di bawah ini, kami akan langsung sambungkan ke WhatsApp resmi Agronomis Turia Farm."
-                : "Fill in your requirements below to connect directly with our Agronomist WhatsApp desk."}
+              Isi data kebutuhan Anda di bawah ini, kami akan langsung sambungkan ke WhatsApp resmi Agronomis Turia Farm.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-[#00251d] mb-2">
-                    {t("contact.form.name")}
+                    Nama Lengkap / Kelompok Tani
                   </label>
                   <input
                     type="text"
@@ -177,7 +164,7 @@ export const ContactAndLocation: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-semibold text-[#00251d] mb-2">
-                    {t("contact.form.phone")}
+                    Nomor WhatsApp
                   </label>
                   <input
                     type="tel"
@@ -193,7 +180,7 @@ export const ContactAndLocation: React.FC = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-[#00251d] mb-2">
-                    {t("contact.form.variety")}
+                    Varietas yang Diminati
                   </label>
                   <select
                     value={form.variety}
@@ -201,19 +188,19 @@ export const ContactAndLocation: React.FC = () => {
                     className="w-full px-4 py-3 rounded-2xl bg-[#faf9f3] border border-[#c1c8c4] focus:outline-none focus:border-[#00251d] text-sm text-[#1b1c19]"
                   >
                     {SEEDLINGS.map((s) => (
-                      <option key={s.id} value={s.name[lang]}>
-                        {s.name[lang]}
+                      <option key={s.id} value={s.name}>
+                        {s.name}
                       </option>
                     ))}
                     <option value="Campuran Beberapa Varietas">
-                      {lang === "id" ? "Campuran Beberapa Varietas" : "Mixed Varieties"}
+                      Campuran Beberapa Varietas
                     </option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-[#00251d] mb-2">
-                    {t("contact.form.qty")}
+                    Estimasi Kebutuhan Bibit (Pohon)
                   </label>
                   <input
                     type="number"
@@ -228,17 +215,13 @@ export const ContactAndLocation: React.FC = () => {
 
               <div>
                 <label className="block text-xs font-semibold text-[#00251d] mb-2">
-                  {t("contact.form.message")}
+                  Catatan / Lokasi Lahan Kebun
                 </label>
                 <textarea
                   rows={3}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder={
-                    lang === "id"
-                      ? "Sebutkan lokasi lahan kebun (kabupaten/provinsi) atau pertanyaan khusus Anda..."
-                      : "Describe your farm location or any specific questions..."
-                  }
+                  placeholder="Sebutkan lokasi lahan kebun (kabupaten/provinsi) atau pertanyaan khusus Anda..."
                   className="w-full px-4 py-3 rounded-2xl bg-[#faf9f3] border border-[#c1c8c4] focus:outline-none focus:border-[#00251d] text-sm text-[#1b1c19]"
                 />
               </div>
@@ -248,7 +231,7 @@ export const ContactAndLocation: React.FC = () => {
                 className="w-full py-4 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-sm font-semibold tracking-wide shadow-md flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
               >
                 <Send size={16} />
-                <span>{t("contact.form.submit")}</span>
+                <span>Kirim Pertanyaan via WhatsApp</span>
               </button>
             </form>
           </Animated>

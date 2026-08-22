@@ -2,21 +2,16 @@
 
 import React, { useState } from "react";
 import { Animated } from "./Animated";
-import { useLanguage } from "../context/LanguageContext";
-import { SEEDLINGS, SITE_CONFIG } from "../data/seedlings";
+import { SEEDLINGS } from "../data/seedlings";
 import { SeedlingItem } from "../types";
-import { ArrowUpRight, Check, Sparkles, Scale, Clock, Ruler } from "lucide-react";
+import { ArrowUpRight, Sparkles, Scale, Clock, Ruler } from "lucide-react";
 import Image from "next/image";
 
 export const SeedlingsSection: React.FC = () => {
-  const { lang, t } = useLanguage();
   const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
 
   const getWaLinkForSeedling = (item: SeedlingItem) => {
-    const text =
-      lang === "id"
-        ? `Halo Turia Farm, saya berminat memesan bibit *${item.name.id}* (${item.price.id}). Mohon info ketersediaan stok & estimasi ongkir.`
-        : `Hello Turia Farm, I am interested in ordering *${item.name.en}* banana seedlings. Please provide stock availability & shipping info.`;
+    const text = `Halo Turia Farm, saya berminat memesan bibit *${item.name}* (${item.price}). Mohon info ketersediaan stok & estimasi ongkir.`;
     return `https://wa.me/6289508495717?text=${encodeURIComponent(text)}`;
   };
 
@@ -28,14 +23,14 @@ export const SeedlingsSection: React.FC = () => {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e3e3dd] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <Sparkles size={13} className="text-[#2d6953]" />
-              <span>{t("seedlings.eyebrow")}</span>
+              <span>Katalog Bibit</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight leading-tight">
-              {t("seedlings.title")}
+              Bibit Pisang & Sengon Pilihan Siap Tanam
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#414845] max-w-md font-normal">
-            {t("seedlings.desc")}
+            Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.
           </p>
         </div>
 
@@ -54,19 +49,19 @@ export const SeedlingsSection: React.FC = () => {
               <div className="relative aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
                 <Image
                   src={item.image}
-                  alt={item.name[lang]}
+                  alt={item.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 rounded-full bg-[#00251d]/85 backdrop-blur-md text-white text-[11px] font-medium tracking-wide">
-                    {item.status[lang]}
+                    {item.status}
                   </span>
                 </div>
                 <div className="absolute bottom-3 right-3">
                   <span className="px-3 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#00251d] text-xs font-bold shadow-md">
-                    {item.price[lang]}
+                    {item.price}
                   </span>
                 </div>
               </div>
@@ -75,35 +70,35 @@ export const SeedlingsSection: React.FC = () => {
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="text-[11px] font-semibold tracking-wider uppercase text-[#2d6953] mb-1">
-                    {item.tag[lang]}
+                    {item.tag}
                   </div>
                   <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#00251d] mb-1">
-                    {item.name[lang]}
+                    {item.name}
                   </h3>
                   <div className="text-xs italic text-[#717975] mb-4">
                     {item.scientificName}
                   </div>
                   <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-6">
-                    {item.desc[lang]}
+                    {item.desc}
                   </p>
 
                   {/* Spec Chips */}
                   <div className="grid grid-cols-2 gap-2.5 py-4 border-y border-[#efeee8] text-xs text-[#1b1c19] mb-6">
                     <div className="flex items-center gap-2">
                       <Clock size={14} className="text-[#2d6953]" />
-                      <span>{item.maturity[lang]}</span>
+                      <span>{item.maturity}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Scale size={14} className="text-[#2d6953]" />
-                      <span>{item.bunchWeight[lang]}</span>
+                      <span>{item.bunchWeight}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Sparkles size={14} className="text-[#2d6953]" />
-                      <span>{item.sweetness[lang]}</span>
+                      <span>{item.sweetness}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Ruler size={14} className="text-[#2d6953]" />
-                      <span>{item.height[lang]}</span>
+                      <span>{item.height}</span>
                     </div>
                   </div>
                 </div>
@@ -116,14 +111,14 @@ export const SeedlingsSection: React.FC = () => {
                     rel="noopener noreferrer"
                     className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-xs font-semibold tracking-wide transition-all shadow-xs hover:shadow-md"
                   >
-                    <span>{t("seedlings.btnOrder")}</span>
+                    <span>Pesan via WA</span>
                     <ArrowUpRight size={14} />
                   </a>
                   <button
                     onClick={() => setSelectedItem(item)}
                     className="py-3 px-4 rounded-full border border-[#c1c8c4] hover:border-[#00251d] text-[#00251d] text-xs font-medium transition-colors hover:bg-[#f5f4ee]"
                   >
-                    {lang === "id" ? "Info Detail" : "View Details"}
+                    Info Detail
                   </button>
                 </div>
               </div>
@@ -143,48 +138,45 @@ export const SeedlingsSection: React.FC = () => {
               </button>
 
               <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                {selectedItem.tag[lang]}
+                {selectedItem.tag}
               </div>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#00251d] mb-1">
-                {selectedItem.name[lang]}
+                {selectedItem.name}
               </h3>
               <div className="text-xs italic text-[#717975] mb-4">
                 {selectedItem.scientificName}
               </div>
 
               <p className="text-sm text-[#414845] leading-relaxed mb-6">
-                {selectedItem.desc[lang]}
+                {selectedItem.desc}
               </p>
 
               <div className="space-y-3 bg-white p-4 rounded-2xl border border-[#efeee8] mb-6 text-xs sm:text-sm">
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">{t("seedlings.detailMaturity")}:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.maturity[lang]}</span>
+                  <span className="text-[#717975]">Masa Panen:</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.maturity}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">{t("seedlings.detailWeight")}:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.bunchWeight[lang]}</span>
+                  <span className="text-[#717975]">Berat Tandan:</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.bunchWeight}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
                   <span className="text-[#717975]">
-                    {selectedItem.id.startsWith("sengon")
-                      ? (lang === "id" ? "Karakteristik" : "Characteristic")
-                      : t("seedlings.detailSweetness")
-                    }:
+                    {selectedItem.id.startsWith("sengon") ? "Karakteristik" : "Kemanisan"}:
                   </span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.sweetness[lang]}</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.sweetness}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">{t("seedlings.detailHeight")}:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.height[lang]}</span>
+                  <span className="text-[#717975]">Tinggi Pohon:</span>
+                  <span className="font-semibold text-[#00251d]">{selectedItem.height}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">{lang === "id" ? "Rekomendasi Lahan" : "Best For"}:</span>
-                  <span className="font-semibold text-[#2d6953]">{selectedItem.bestFor[lang]}</span>
+                  <span className="text-[#717975]">Rekomendasi Lahan:</span>
+                  <span className="font-semibold text-[#2d6953]">{selectedItem.bestFor}</span>
                 </div>
                 <div className="flex justify-between py-1">
-                  <span className="text-[#717975]">{lang === "id" ? "Harga Eceran / Partai" : "Pricing"}:</span>
-                  <span className="font-bold text-[#00251d]">{selectedItem.price[lang]}</span>
+                  <span className="text-[#717975]">Harga Eceran / Partai:</span>
+                  <span className="font-bold text-[#00251d]">{selectedItem.price}</span>
                 </div>
               </div>
 
@@ -195,7 +187,7 @@ export const SeedlingsSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="flex-1 py-3.5 px-6 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-sm font-semibold text-center shadow-md flex items-center justify-center gap-2"
                 >
-                  <span>{lang === "id" ? "Konsultasi & Pesan Bibit Ini" : "Order This Variety"}</span>
+                  <span>Konsultasi & Pesan Bibit Ini</span>
                   <ArrowUpRight size={16} />
                 </a>
               </div>

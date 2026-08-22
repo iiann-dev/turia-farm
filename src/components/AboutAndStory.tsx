@@ -2,14 +2,11 @@
 
 import React from "react";
 import { Animated } from "./Animated";
-import { useLanguage } from "../context/LanguageContext";
-import { TESTIMONIALS, SITE_CONFIG } from "../data/seedlings";
-import { Users, HeartHandshake, ShieldAlert, Star, Quote } from "lucide-react";
+import { TESTIMONIALS } from "../data/seedlings";
+import { Users, HeartHandshake, Star } from "lucide-react";
 import Image from "next/image";
 
 export const AboutAndStory: React.FC = () => {
-  const { lang, t } = useLanguage();
-
   return (
     <section id="about" className="py-24 sm:py-32 bg-[#faf9f3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -38,9 +35,7 @@ export const AboutAndStory: React.FC = () => {
                 2.8 Hektar
               </div>
               <div className="text-xs text-[#faf9f3]/90 leading-snug">
-                {lang === "id"
-                  ? "Kapasitas ribuan polybag bibit anakan & bibit sengon per siklus tanam."
-                  : "Thousands of polybags capacity per planting cycle."}
+                Kapasitas ribuan polybag bibit anakan & bibit sengon per siklus tanam.
               </div>
             </div>
           </Animated>
@@ -55,36 +50,36 @@ export const AboutAndStory: React.FC = () => {
           >
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <Users size={13} className="text-[#2d6953]" />
-              <span>{t("about.eyebrow")}</span>
+              <span>Tentang Turia Farm</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-6 leading-tight">
-              {t("about.title")}
+              Dedikasi untuk Kesejahteraan Petani Indonesia
             </h2>
             <div className="space-y-4 text-[#414845] text-sm sm:text-base leading-relaxed mb-8">
-              <p>{t("about.p1")}</p>
-              <p>{t("about.p2")}</p>
+              <p>
+                Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya bibit cabutan asal-asalan dan tidak seragam di kalangan petani.
+              </p>
+              <p>
+                Kini dengan lahan pembibitan kebun seluas 2.8 hektar di Batuaji Kediri, kami memproduksi anakan pisang pilihan dari pohon indukan sehat serta penyemaian biji sengon unggul, mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.
+              </p>
             </div>
 
             {/* Value Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 rounded-2xl bg-[#f5f4ee] border border-[#c1c8c4]/40">
                 <div className="font-serif font-bold text-[#00251d] text-base mb-1">
-                  {lang === "id" ? "Bukan Bibit Cabutan" : "Zero Wild Suckers"}
+                  Bukan Bibit Cabutan
                 </div>
                 <div className="text-xs text-[#414845]">
-                  {lang === "id"
-                    ? "Genetika murni klon unggul dengan riwayat pohon induk tercatat jelas."
-                    : "Pure single-clone genetics with verified mother tree lineage."}
+                  Genetika murni klon unggul dengan riwayat pohon induk tercatat jelas.
                 </div>
               </div>
               <div className="p-4 rounded-2xl bg-[#f5f4ee] border border-[#c1c8c4]/40">
                 <div className="font-serif font-bold text-[#00251d] text-base mb-1">
-                  {lang === "id" ? "Bimbingan Sampai Panen" : "Lifecycle Agronomy"}
+                  Bimbingan Sampai Panen
                 </div>
                 <div className="text-xs text-[#414845]">
-                  {lang === "id"
-                    ? "Konsultasi gratis pupuk & hama langsung via WhatsApp agronomis kami."
-                    : "Free guidance on organic fertilizer & pest management via WhatsApp."}
+                  Konsultasi gratis pupuk & hama langsung via WhatsApp agronomis kami.
                 </div>
               </div>
             </div>
@@ -96,10 +91,10 @@ export const AboutAndStory: React.FC = () => {
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-3">
               <HeartHandshake size={13} className="text-[#2d6953]" />
-              <span>{t("testi.eyebrow")}</span>
+              <span>Pengalaman Mitra</span>
             </div>
             <h3 className="font-serif text-3xl sm:text-4xl font-normal text-[#00251d]">
-              {t("testi.title")}
+              Apa Kata Petani & Pemilik Kebun
             </h3>
           </div>
 
@@ -120,19 +115,19 @@ export const AboutAndStory: React.FC = () => {
                     ))}
                   </div>
                   <p className="text-xs sm:text-sm text-[#414845] leading-relaxed italic mb-6">
-                    &ldquo;{testi.quote[lang]}&rdquo;
+                    &ldquo;{testi.quote}&rdquo;
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-[#f5f4ee]">
                   <div className="font-serif font-bold text-[#00251d] text-base">
-                    {testi.name === "Ibu Ni Wayan Sudarni" ? "Ni Wayan Sudarni" : testi.name}
+                    {testi.name}
                   </div>
                   <div className="text-xs text-[#2d6953] font-medium">
-                    {testi.role[lang]}
+                    {testi.role}
                   </div>
                   <div className="text-[11px] text-[#717975] mt-0.5">
-                    {testi.location} • {testi.farmSize.replace(/Bibit/g, lang === "id" ? "Bibit" : "Seedlings")}
+                    {testi.location} • {testi.farmSize}
                   </div>
                 </div>
               </Animated>

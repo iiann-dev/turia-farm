@@ -3,13 +3,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG } from "../data/seedlings";
 import { BananaLogo } from "./BananaLogo";
-import { Menu, X, Globe, Phone, ArrowUpRight } from "lucide-react";
+import { Menu, X, Phone, ArrowUpRight } from "lucide-react";
 
 export const Navbar: React.FC = () => {
-  const { lang, toggleLang, t } = useLanguage();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -23,12 +21,12 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { href: "/", label: t("nav.home") },
-    { href: "/bibit-pisang", label: t("nav.seedlings") },
-    { href: "/proses-kultur", label: t("nav.process") },
-    { href: "/tentang-kami", label: t("nav.about") },
-    { href: "/panduan-tani", label: t("nav.journal") },
-    { href: "/kontak", label: t("nav.contact") },
+    { href: "/", label: "Beranda" },
+    { href: "/bibit-pisang", label: "Katalog Bibit" },
+    { href: "/proses-kultur", label: "Proses Pembibitan" },
+    { href: "/tentang-kami", label: "Tentang Kami" },
+    { href: "/panduan-tani", label: "Panduan Tani" },
+    { href: "/kontak", label: "Kontak" },
   ];
 
   return (
@@ -37,7 +35,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto mb-2 hidden md:flex items-center justify-between px-6 py-1.5 rounded-full bg-[#173b32]/90 backdrop-blur-md text-[#c4ebde] text-xs font-medium border border-[#2d6953]/40 pointer-events-auto shadow-xs">
         <div className="flex items-center gap-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>{t("nav.openHours")}</span>
+          <span>Buka Senin - Sabtu 07:30 - 16:30 WIB</span>
           <span className="text-[#80a599]">• {SITE_CONFIG.location}</span>
         </div>
         <div className="flex items-center gap-4">
@@ -73,7 +71,7 @@ export const Navbar: React.FC = () => {
               Turia Farm
             </div>
             <div className="text-[10px] sm:text-[10.5px] font-medium tracking-wider uppercase text-[#2d6953] mt-0.5 whitespace-nowrap">
-              {t("nav.brandSubtitle")}
+              Bibit Pisang & Sengon Kediri
             </div>
           </div>
         </Link>
@@ -98,18 +96,8 @@ export const Navbar: React.FC = () => {
           })}
         </div>
 
-        {/* Action Controls & Lang Toggle */}
+        {/* Action Controls */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          {/* Language Switcher */}
-          <button
-            onClick={toggleLang}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#c1c8c4]/60 hover:border-[#00251d] text-xs font-semibold text-[#00251d] bg-white/80 hover:bg-white transition-colors duration-150 cursor-pointer shadow-xs"
-            title="Ganti Bahasa / Switch Language"
-          >
-            <Globe size={14} className="text-[#2d6953]" />
-            <span className="uppercase">{lang}</span>
-          </button>
-
           {/* Consultation Button */}
           <a
             href={SITE_CONFIG.whatsapp}
@@ -117,7 +105,7 @@ export const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-150 shadow-xs"
           >
-            <span>{t("nav.cta")}</span>
+            <span>Konsultasi Bibit</span>
             <ArrowUpRight size={15} />
           </a>
 
@@ -166,7 +154,7 @@ export const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white font-medium text-sm shadow-md"
             >
-              <span>{t("nav.cta")}</span>
+              <span>Konsultasi Bibit</span>
               <ArrowUpRight size={16} />
             </a>
           </div>

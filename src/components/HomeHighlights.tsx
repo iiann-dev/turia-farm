@@ -3,14 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { Animated } from "./Animated";
-import { useLanguage } from "../context/LanguageContext";
-import { SEEDLINGS, PROCESS_STEPS, ARTICLES, SITE_CONFIG } from "../data/seedlings";
-import { ArrowRight, ArrowUpRight, Sparkles, ShieldCheck, BookOpen, CheckCircle2, ChevronRight } from "lucide-react";
+import { SEEDLINGS, PROCESS_STEPS, ARTICLES } from "../data/seedlings";
+import { ArrowRight, ArrowUpRight, Sparkles, ShieldCheck, BookOpen, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 export const HomeHighlights: React.FC = () => {
-  const { lang, t } = useLanguage();
-
   // Top 3 featured varieties for concise homepage presentation
   const featuredSeedlings = SEEDLINGS.slice(0, 3);
   const featuredArticle = ARTICLES[0];
@@ -23,17 +20,17 @@ export const HomeHighlights: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e3e3dd] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-3">
               <Sparkles size={13} className="text-[#2d6953]" />
-              <span>{lang === "id" ? "Varietas Terpopuler" : "Featured Varieties"}</span>
+              <span>Varietas Terpopuler</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#00251d]">
-              {lang === "id" ? "Bibit Pisang & Sengon Siap Tanam" : "Field-Ready Banana & Sengon Seedlings"}
+              Bibit Pisang & Sengon Siap Tanam
             </h2>
           </div>
           <Link
             href="/bibit-pisang"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors group"
           >
-            <span>{lang === "id" ? "Lihat Semua 8 Varietas & Harga" : "View All 8 Varieties & Prices"}</span>
+            <span>Lihat Semua 8 Varietas & Harga</span>
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -52,27 +49,27 @@ export const HomeHighlights: React.FC = () => {
                 <div className="relative aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
                   <Image
                     src={item.image}
-                    alt={item.name[lang]}
+                    alt={item.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute bottom-3 right-3">
                     <span className="px-3 py-1.5 rounded-2xl bg-white/95 backdrop-blur-md text-[#00251d] text-xs font-bold shadow-xs">
-                      {item.price[lang]}
+                      {item.price}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6">
                   <div className="text-[11px] font-semibold text-[#2d6953] uppercase tracking-wider mb-1">
-                    {item.tag[lang]}
+                    {item.tag}
                   </div>
                   <h3 className="font-serif text-xl font-bold text-[#00251d] mb-2">
-                    {item.name[lang]}
+                    {item.name}
                   </h3>
                   <p className="text-xs sm:text-sm text-[#414845] leading-relaxed line-clamp-2">
-                    {item.desc[lang]}
+                    {item.desc}
                   </p>
                 </div>
               </div>
@@ -82,7 +79,7 @@ export const HomeHighlights: React.FC = () => {
                   href="/bibit-pisang"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-xs font-semibold tracking-wide transition-all shadow-xs"
                 >
-                  <span>{lang === "id" ? "Spesifikasi & Pesan" : "Specs & Order"}</span>
+                  <span>Spesifikasi & Pesan</span>
                   <ArrowUpRight size={14} />
                 </Link>
               </div>
@@ -97,12 +94,10 @@ export const HomeHighlights: React.FC = () => {
           <div className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <ShieldCheck size={13} className="text-[#2d6953]" />
-              <span>{lang === "id" ? "Pembibitan Kebun Autentik" : "Authentic Nursery Propagation"}</span>
+              <span>Pembibitan Kebun Autentik</span>
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-[#00251d] mb-4">
-              {lang === "id"
-                ? "4 Tahap Pemuliaan Tanpa Kompromi"
-                : "4 Uncompromising Quality Propagation Steps"}
+              4 Tahap Pemuliaan Tanpa Kompromi
             </h3>
             <p className="hidden">
               {/* Removed paragraph per request */}
@@ -111,7 +106,7 @@ export const HomeHighlights: React.FC = () => {
               href="/proses-kultur"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00251d] text-white text-xs sm:text-sm font-semibold hover:bg-[#173b32] transition-all shadow-sm"
             >
-              <span>{lang === "id" ? "Pelajari Proses Kultur Lengkap" : "Explore Full Process"}</span>
+              <span>Pelajari Proses Kultur Lengkap</span>
               <ArrowRight size={15} />
             </Link>
           </div>
@@ -126,7 +121,7 @@ export const HomeHighlights: React.FC = () => {
                   {step.step}
                 </div>
                 <div className="font-semibold text-xs text-[#00251d] leading-snug">
-                  {step.title[lang]}
+                  {step.title}
                 </div>
               </div>
             ))}
@@ -140,17 +135,17 @@ export const HomeHighlights: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-3">
               <BookOpen size={13} className="text-[#2d6953]" />
-              <span>{lang === "id" ? "Edukasi Petani" : "Farmer Education"}</span>
+              <span>Edukasi Petani</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#00251d]">
-              {lang === "id" ? "Panduan Praktis Kebun Pisang" : "Practical Agronomy Guides"}
+              Panduan Praktis Kebun Pisang
             </h2>
           </div>
           <Link
             href="/panduan-tani"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
           >
-            <span>{lang === "id" ? "Lihat Semua Panduan & FAQ" : "View All Guides & FAQs"}</span>
+            <span>Lihat Semua Panduan & FAQ</span>
             <ChevronRight size={16} />
           </Link>
         </div>
@@ -159,7 +154,7 @@ export const HomeHighlights: React.FC = () => {
           <div className="relative aspect-[16/10] w-full md:w-1/3 rounded-2xl overflow-hidden bg-[#efeee8] shrink-0">
             <Image
               src={featuredArticle.image}
-              alt={featuredArticle.title[lang]}
+              alt={featuredArticle.title}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover"
@@ -167,19 +162,19 @@ export const HomeHighlights: React.FC = () => {
           </div>
           <div className="flex-1">
             <span className="px-3 py-1 rounded-full bg-[#c4ebde] text-[#00251d] text-[11px] font-semibold">
-              {featuredArticle.category[lang]}
+              {featuredArticle.category}
             </span>
             <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#00251d] mt-3 mb-2">
-              {featuredArticle.title[lang]}
+              {featuredArticle.title}
             </h3>
             <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-6 line-clamp-2">
-              {featuredArticle.excerpt[lang]}
+              {featuredArticle.excerpt}
             </p>
             <Link
               href="/panduan-tani"
               className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#00251d] hover:text-[#2d6953] transition-colors"
             >
-              <span>{lang === "id" ? "Baca Panduan Lengkap" : "Read Full Article"}</span>
+              <span>Baca Panduan Lengkap</span>
               <ArrowRight size={14} />
             </Link>
           </div>

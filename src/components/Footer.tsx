@@ -2,13 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { useLanguage } from "../context/LanguageContext";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { BananaLogo } from "./BananaLogo";
 
 export const Footer: React.FC = () => {
-  const { lang, t } = useLanguage();
-
   return (
     <footer className="bg-[#00251d] text-[#faf9f3] pt-12 sm:pt-16 pb-8 border-t border-[#173b32]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -22,47 +19,47 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <div className="text-xs sm:text-sm text-[#a8cfc2] max-w-sm leading-relaxed">
-              {t("footer.tagline")}
+              Pertanian modern yang berakar pada alam. Menumbuhkan genetik unggul untuk kedaulatan pangan berkelanjutan.
             </div>
             <div className="text-xs text-[#80a691] pt-1">
-              {SITE_CONFIG.address[lang]}
+              {SITE_CONFIG.address}
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="lg:col-span-3 space-y-3">
             <div className="text-[11px] font-bold uppercase tracking-wider text-[#c4ebde] mb-3">
-              {t("footer.quickLinks")}
+              Tautan Cepat
             </div>
             <ul className="space-y-2 text-xs text-[#a8cfc2]">
               <li>
                 <Link href="/" className="hover:text-white transition-colors">
-                  {t("nav.home")}
+                  Beranda
                 </Link>
               </li>
               <li>
                 <Link href="/bibit-pisang" className="hover:text-white transition-colors">
-                  {t("nav.seedlings")}
+                  Katalog Bibit
                 </Link>
               </li>
               <li>
                 <Link href="/proses-kultur" className="hover:text-white transition-colors">
-                  {t("nav.process")}
+                  Proses Pembibitan
                 </Link>
               </li>
               <li>
                 <Link href="/tentang-kami" className="hover:text-white transition-colors">
-                  {t("nav.about")}
+                  Tentang Kami
                 </Link>
               </li>
               <li>
                 <Link href="/panduan-tani" className="hover:text-white transition-colors">
-                  {t("nav.journal")}
+                  Panduan Tani
                 </Link>
               </li>
               <li>
                 <Link href="/kontak" className="hover:text-white transition-colors">
-                  {t("nav.contact")}
+                  Kontak
                 </Link>
               </li>
             </ul>
@@ -71,7 +68,7 @@ export const Footer: React.FC = () => {
           {/* Varieties */}
           <div className="lg:col-span-4 space-y-3">
             <div className="text-[11px] font-bold uppercase tracking-wider text-[#c4ebde] mb-3">
-              {t("footer.varieties")}
+              Varietas Populer
             </div>
             <ul className="space-y-1.5 text-xs text-[#a8cfc2]">
               {SEEDLINGS.slice(0, 4).map((s) => (
@@ -80,8 +77,8 @@ export const Footer: React.FC = () => {
                     href="/bibit-pisang"
                     className="hover:text-white transition-colors flex items-center justify-between gap-2"
                   >
-                    <span className="truncate">{s.name[lang]}</span>
-                    <span className="text-[#80a599] text-[11px] whitespace-nowrap">{s.price[lang]}</span>
+                    <span className="truncate">{s.name}</span>
+                    <span className="text-[#80a599] text-[11px] whitespace-nowrap">{s.price}</span>
                   </Link>
                 </li>
               ))}
@@ -92,7 +89,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#80a691]">
           <div>
-            © {new Date().getFullYear()} Turia Farm Kediri. {t("footer.rights")}
+            © {new Date().getFullYear()} Turia Farm Kediri. Hak Cipta Dilindungi.
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <span>Standar Pertanian Berkelanjutan</span>
