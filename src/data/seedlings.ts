@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
     lat: -7.966564,
     lng: 112.1038139,
   },
-  nurseryArea: "2.8 Hektar Nursery & Greenhouse Aklimatisasi",
+  nurseryArea: { id: "2.8 Hektar Nursery & Greenhouse Aklimatisasi", en: "2.8 Hectare Nursery & Acclimatization Greenhouse" },
   hours: {
     id: "Senin - Sabtu: 07.30 - 16.30 WIB",
     en: "Monday - Saturday: 07:30 AM - 04:30 PM (WIB)",

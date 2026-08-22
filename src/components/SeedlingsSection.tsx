@@ -166,7 +166,12 @@ export const SeedlingsSection: React.FC = () => {
                   <span className="font-semibold text-[#00251d]">{selectedItem.bunchWeight[lang]}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">{t("seedlings.detailSweetness")}:</span>
+                  <span className="text-[#717975]">
+                    {selectedItem.id.startsWith("sengon")
+                      ? (lang === "id" ? "Karakteristik" : "Characteristic")
+                      : t("seedlings.detailSweetness")
+                    }:
+                  </span>
                   <span className="font-semibold text-[#00251d]">{selectedItem.sweetness[lang]}</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-[#f5f4ee]">

@@ -68,7 +68,7 @@ export const ContactAndLocation: React.FC = () => {
                     {SITE_CONFIG.address[lang]}
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
-                    {SITE_CONFIG.nurseryArea}
+                    {SITE_CONFIG.nurseryArea[lang]}
                   </div>
                   {/* Google Maps Embed */}
                   <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">

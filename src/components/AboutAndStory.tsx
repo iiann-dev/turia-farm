@@ -126,13 +126,13 @@ export const AboutAndStory: React.FC = () => {
 
                 <div className="pt-4 border-t border-[#f5f4ee]">
                   <div className="font-serif font-bold text-[#00251d] text-base">
-                    {testi.name}
+                    {testi.name === "Ibu Ni Wayan Sudarni" ? "Ni Wayan Sudarni" : testi.name}
                   </div>
                   <div className="text-xs text-[#2d6953] font-medium">
                     {testi.role[lang]}
                   </div>
                   <div className="text-[11px] text-[#717975] mt-0.5">
-                    {testi.location} • {testi.farmSize}
+                    {testi.location} • {testi.farmSize.replace(/Bibit/g, lang === "id" ? "Bibit" : "Seedlings")}
                   </div>
                 </div>
               </Animated>
