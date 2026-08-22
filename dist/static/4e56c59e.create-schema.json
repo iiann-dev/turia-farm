@@ -1,0 +1,1737 @@
+[
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "initialValue": "Pembibitan Pisang & Sengon Unggul Kediri",
+            "name": "eyebrow",
+            "type": "string",
+            "title": "Eyebrow / Tag"
+          },
+          {
+            "rows": 2,
+            "initialValue": "Bibit Pisang & Sengon Sehat,\nPanen Berlimpah.",
+            "name": "headline",
+            "type": "text",
+            "title": "Main Headline"
+          },
+          {
+            "initialValue": "Panen Berlimpah.",
+            "name": "headlineHighlight",
+            "type": "string",
+            "title": "Highlighted Part (italic/underline)"
+          },
+          {
+            "rows": 3,
+            "initialValue": "Pusat pembibitan pisang dari anakan pilihan & bibit sengon dari biji berkualitas. Berakar sehat, vigor tinggi, dan siap tanam untuk perkebunan mandiri maupun skala komersial.",
+            "name": "subtext",
+            "type": "text"
+          },
+          {
+            "fields": [
+              {
+                "initialValue": "Pesan Bibit Sekarang",
+                "name": "text",
+                "type": "string"
+              },
+              {
+                "initialValue": "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20tertarik%20konsultasi%20bibit%20pisang%20%26%20sengon",
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "name": "url",
+                "type": "url"
+              }
+            ],
+            "name": "ctaPrimary",
+            "type": "object",
+            "title": "Primary CTA"
+          },
+          {
+            "fields": [
+              {
+                "initialValue": "Lihat Varietas & Harga",
+                "name": "text",
+                "type": "string"
+              },
+              {
+                "initialValue": "/bibit-pisang",
+                "name": "url",
+                "type": "string"
+              }
+            ],
+            "name": "ctaSecondary",
+            "type": "object",
+            "title": "Secondary CTA"
+          },
+          {
+            "initialValue": [
+              {
+                "icon": "checkCircle2",
+                "text": "Bebas Layu Fusarium"
+              },
+              {
+                "icon": "shieldCheck",
+                "text": "Garansi Hidup di Perjalanan"
+              },
+              {
+                "icon": "award",
+                "text": "Pendampingan SOP Tani"
+              }
+            ],
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "length",
+                    "constraint": 3
+                  }
+                ]
+              }
+            ],
+            "of": [
+              {
+                "fields": [
+                  {
+                    "options": {
+                      "list": [
+                        "checkCircle2",
+                        "shieldCheck",
+                        "award"
+                      ]
+                    },
+                    "name": "icon",
+                    "type": "string"
+                  },
+                  {
+                    "name": "text",
+                    "type": "string"
+                  }
+                ],
+                "type": "object"
+              }
+            ],
+            "name": "assuranceBadges",
+            "type": "array",
+            "title": "Assurance Badges (3 items)"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string",
+                "title": "Alt Text"
+              }
+            ],
+            "name": "image",
+            "type": "image",
+            "title": "Hero Image"
+          },
+          {
+            "fields": [
+              {
+                "initialValue": "Siap Tanam Lapangan",
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "initialValue": "Cavendish, Raja Bulu & Sengon Solomon",
+                "name": "varieties",
+                "type": "string"
+              },
+              {
+                "initialValue": "Ketinggian 35-45 cm • Akar Aktif",
+                "name": "specs",
+                "type": "string"
+              },
+              {
+                "initialValue": "Batuaji, Kediri",
+                "name": "location",
+                "type": "string"
+              }
+            ],
+            "name": "overlayBadge",
+            "type": "object",
+            "title": "Botanical Overlay Badge (inside image)"
+          },
+          {
+            "fields": [
+              {
+                "initialValue": "🌱",
+                "name": "icon",
+                "type": "string"
+              },
+              {
+                "initialValue": "150.000+",
+                "name": "number",
+                "type": "string"
+              },
+              {
+                "initialValue": "Bibit / Thn",
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "initialValue": "Kirim Se-Jawa, Bali & Luar Pulau",
+                "name": "sublabel",
+                "type": "string"
+              }
+            ],
+            "name": "floatingStat",
+            "type": "object",
+            "title": "Floating Stat Card (bottom-left)"
+          }
+        ],
+        "name": "hero",
+        "type": "object",
+        "title": "Hero Section"
+      },
+      {
+        "initialValue": [
+          {
+            "value": 98.4,
+            "suffix": "%",
+            "label": "Tingkat Hidup Lapangan"
+          },
+          {
+            "value": 150,
+            "suffix": "K+",
+            "label": "Bibit Tersalurkan / Thn"
+          },
+          {
+            "value": 500,
+            "suffix": "+",
+            "label": "Petani & Kebun Mitra"
+          },
+          {
+            "value": 0,
+            "label": "Kediri - Nursery 2.8 Ha di Batuaji"
+          }
+        ],
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 4
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "value",
+                "type": "number",
+                "title": "Numeric Value"
+              },
+              {
+                "name": "suffix",
+                "type": "string",
+                "title": "Suffix (%, K+, +, etc)"
+              },
+              {
+                "name": "label",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "highlightStats",
+        "type": "array",
+        "title": "Highlight Stats Strip (4 items)"
+      },
+      {
+        "fields": [
+          {
+            "description": "Select pisang cards that have featured=true in katalogPage",
+            "of": [
+              {
+                "to": [
+                  {
+                    "type": "katalogPage"
+                  }
+                ],
+                "type": "reference",
+                "title": "Reference to katalog page"
+              }
+            ],
+            "name": "featuredSeedlings",
+            "type": "array",
+            "title": "Featured Seedlings (3 refs to katalogPage.pisangGroup)"
+          },
+          {
+            "of": [
+              {
+                "to": [
+                  {
+                    "type": "prosesKulturPage"
+                  }
+                ],
+                "type": "reference",
+                "title": "Reference to proses kultur page"
+              }
+            ],
+            "name": "processTeaser",
+            "type": "array",
+            "title": "Process Teaser (4 refs to prosesKulturPage.steps)"
+          },
+          {
+            "to": [
+              {
+                "type": "panduanTaniPage"
+              }
+            ],
+            "name": "articleSpotlight",
+            "type": "reference",
+            "title": "Article Spotlight (1 ref to panduanTaniPage.article)"
+          }
+        ],
+        "name": "highlights",
+        "type": "object",
+        "title": "Highlights Section"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "homePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "description": "Drag untuk urutkan. Kartu baru pisang otomatis masuk ke sini (di atas grup sengon).",
+        "of": [
+          {
+            "type": "pisangCard"
+          }
+        ],
+        "name": "pisangGroup",
+        "type": "array",
+        "title": "Grup Pisang (Rendered FIRST)"
+      },
+      {
+        "description": "Drag untuk urutkan. Kartu baru sengon otomatis masuk ke sini (di paling bawah).",
+        "of": [
+          {
+            "type": "sengonCard"
+          }
+        ],
+        "name": "sengonGroup",
+        "type": "array",
+        "title": "Grup Sengon (Rendered AFTER pisang)"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "katalogPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nama Varietas"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "scientificName",
+        "type": "string",
+        "title": "Nama Ilmiah"
+      },
+      {
+        "name": "tag",
+        "type": "string",
+        "title": "Tag/Label"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text",
+        "title": "Deskripsi Lengkap"
+      },
+      {
+        "initialValue": "9 - 10 Bulan",
+        "name": "maturity",
+        "type": "string",
+        "title": "Masa Panen"
+      },
+      {
+        "initialValue": "28 - 38 kg / tandan",
+        "name": "bunchWeight",
+        "type": "string",
+        "title": "Berat Tandan"
+      },
+      {
+        "initialValue": "20 - 22° Brix (Manis Segar)",
+        "name": "sweetness",
+        "type": "string",
+        "title": "Kemanisan (Brix)"
+      },
+      {
+        "initialValue": "2,1 - 2,4 meter",
+        "name": "height",
+        "type": "string",
+        "title": "Tinggi Pohon"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "price",
+        "type": "string",
+        "title": "Harga"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Gambar"
+      },
+      {
+        "initialValue": "Tersedia Siap Tanam",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "bestFor",
+        "type": "string",
+        "title": "Cocok Untuk"
+      },
+      {
+        "initialValue": false,
+        "description": "Centang untuk tampil di preview Homepage (max 3)",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured di Homepage"
+      }
+    ],
+    "name": "pisangCard",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nama Varietas"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "scientificName",
+        "type": "string",
+        "title": "Nama Ilmiah"
+      },
+      {
+        "name": "tag",
+        "type": "string",
+        "title": "Tag/Label"
+      },
+      {
+        "rows": 4,
+        "name": "description",
+        "type": "text",
+        "title": "Deskripsi Lengkap"
+      },
+      {
+        "initialValue": "Panen 5 - 7 Tahun",
+        "name": "maturity",
+        "type": "string",
+        "title": "Masa Panen"
+      },
+      {
+        "initialValue": "Diameter 30 - 45 cm",
+        "name": "bunchWeight",
+        "type": "string",
+        "title": "Diameter Batang"
+      },
+      {
+        "initialValue": "Karakter: Kayu Ringan & Putih Bersih",
+        "name": "sweetness",
+        "type": "string",
+        "title": "Karakter Kayu"
+      },
+      {
+        "initialValue": "Tinggi Bibit: 30 - 60 cm",
+        "name": "height",
+        "type": "string",
+        "title": "Tinggi Bibit"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "price",
+        "type": "string",
+        "title": "Harga"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Gambar"
+      },
+      {
+        "initialValue": "Tersedia Siap Tanam",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "name": "bestFor",
+        "type": "string",
+        "title": "Cocok Untuk"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured di Homepage"
+      }
+    ],
+    "name": "sengonCard",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 4
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "processStep"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "4 Tahap Pembibitan"
+      },
+      {
+        "fields": [
+          {
+            "rows": 2,
+            "initialValue": "Ingin melihat langsung kebun pembibitan & indukan kami?",
+            "name": "text",
+            "type": "text"
+          },
+          {
+            "initialValue": "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20tertarik%20konsultasi%20bibit%20pisang%20%26%20sengon",
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "name": "whatsappUrl",
+            "type": "url"
+          }
+        ],
+        "name": "visitCTA",
+        "type": "object"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "nurseryImage",
+        "type": "image",
+        "title": "Nursery/Greenhouse Image"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "prosesKulturPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "stepNumber",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "duration",
+        "type": "string"
+      },
+      {
+        "name": "highlight",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            "sprout",
+            "energy_savings_leaf",
+            "potted_plant",
+            "verified"
+          ]
+        },
+        "name": "icon",
+        "type": "string",
+        "title": "Lucide Icon Key"
+      }
+    ],
+    "name": "processStep",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "article"
+          }
+        ],
+        "name": "articles",
+        "type": "array",
+        "title": "Artikel (3 items)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 4
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "faq",
+            "title": "FAQ"
+          }
+        ],
+        "name": "faqs",
+        "type": "array",
+        "title": "FAQ (4 items)"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "panduanTaniPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Judul"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            "Teknik Budidaya",
+            "Proteksi Tanaman",
+            "Bisnis Tani"
+          ]
+        },
+        "name": "category",
+        "type": "string",
+        "title": "Kategori"
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "title": "Tanggal"
+      },
+      {
+        "name": "readTime",
+        "type": "string",
+        "title": "Waktu Baca"
+      },
+      {
+        "rows": 3,
+        "name": "excerpt",
+        "type": "text",
+        "title": "Ringkasan (untuk card)"
+      },
+      {
+        "of": [
+          {
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "level": "error",
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "of": [],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "type": "block"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "fullContent",
+        "type": "array",
+        "title": "Konten Lengkap"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Gambar Utama"
+      },
+      {
+        "name": "author",
+        "type": "string",
+        "title": "Penulis"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured di Homepage"
+      }
+    ],
+    "name": "article",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "question",
+        "type": "string",
+        "title": "Pertanyaan"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "answer",
+        "type": "text",
+        "title": "Jawaban"
+      },
+      {
+        "options": {
+          "list": [
+            "ordering",
+            "shipping",
+            "quality",
+            "guidance"
+          ]
+        },
+        "name": "category",
+        "type": "string",
+        "title": "Kategori"
+      }
+    ],
+    "name": "faq",
+    "type": "object",
+    "title": "FAQ"
+  },
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "initialValue": "Tentang Turia Farm",
+            "name": "heading",
+            "type": "string"
+          },
+          {
+            "of": [
+              {
+                "lists": [
+                  {
+                    "value": "bullet",
+                    "title": "Bulleted list"
+                  },
+                  {
+                    "value": "number",
+                    "title": "Numbered list"
+                  }
+                ],
+                "marks": {
+                  "annotations": [
+                    {
+                      "i18nTitleKey": "inputs.portable-text.annotation.link",
+                      "options": {
+                        "modal": {
+                          "type": "popover"
+                        }
+                      },
+                      "fields": [
+                        {
+                          "validation": [
+                            {
+                              "level": "error",
+                              "rules": [
+                                {
+                                  "flag": "uri",
+                                  "constraint": {
+                                    "options": {
+                                      "scheme": [
+                                        "/^http$/",
+                                        "/^https$/",
+                                        "/^tel$/",
+                                        "/^mailto$/"
+                                      ],
+                                      "allowRelative": true,
+                                      "relativeOnly": false,
+                                      "allowCredentials": false
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ],
+                          "description": "A valid web, email, phone, or relative link.",
+                          "name": "href",
+                          "type": "url",
+                          "title": "Link"
+                        }
+                      ],
+                      "name": "link",
+                      "type": "object"
+                    }
+                  ],
+                  "decorators": [
+                    {
+                      "value": "strong",
+                      "title": "Strong"
+                    },
+                    {
+                      "value": "em",
+                      "title": "Italic"
+                    },
+                    {
+                      "value": "code",
+                      "title": "Code"
+                    },
+                    {
+                      "value": "underline",
+                      "title": "Underline"
+                    },
+                    {
+                      "value": "strike-through",
+                      "title": "Strike"
+                    }
+                  ]
+                },
+                "of": [],
+                "styles": [
+                  {
+                    "value": "normal",
+                    "title": "Normal"
+                  },
+                  {
+                    "value": "h1",
+                    "title": "Heading 1"
+                  },
+                  {
+                    "value": "h2",
+                    "title": "Heading 2"
+                  },
+                  {
+                    "value": "h3",
+                    "title": "Heading 3"
+                  },
+                  {
+                    "value": "h4",
+                    "title": "Heading 4"
+                  },
+                  {
+                    "value": "h5",
+                    "title": "Heading 5"
+                  },
+                  {
+                    "value": "h6",
+                    "title": "Heading 6"
+                  },
+                  {
+                    "value": "blockquote",
+                    "title": "Quote"
+                  }
+                ],
+                "type": "block"
+              }
+            ],
+            "name": "body",
+            "type": "array"
+          },
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "name": "alt",
+                "type": "string"
+              }
+            ],
+            "name": "image",
+            "type": "image"
+          }
+        ],
+        "name": "aboutStory",
+        "type": "object",
+        "title": "Cerita Tentang Kami"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "value",
+                "type": "string"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "stats",
+        "type": "array",
+        "title": "Statistik"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "valueCard"
+          }
+        ],
+        "name": "values",
+        "type": "array",
+        "title": "Nilai-Nilai (3 cards)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "testimonial"
+          }
+        ],
+        "name": "testimonials",
+        "type": "array",
+        "title": "Testimoni (3 items)"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "tentangKamiPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "name",
+        "type": "string",
+        "title": "Nama"
+      },
+      {
+        "name": "location",
+        "type": "string",
+        "title": "Lokasi"
+      },
+      {
+        "name": "role",
+        "type": "string",
+        "title": "Peran"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "quote",
+        "type": "text",
+        "title": "Kutipan"
+      },
+      {
+        "name": "farmSize",
+        "type": "string",
+        "title": "Ukuran Kebun / Bibit"
+      },
+      {
+        "initialValue": 5,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ]
+          }
+        ],
+        "name": "rating",
+        "type": "number"
+      }
+    ],
+    "name": "testimonial",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            "dna",
+            "message-circle",
+            "shield-check"
+          ]
+        },
+        "name": "icon",
+        "type": "string",
+        "title": "Icon Key"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "title": "Judul"
+      },
+      {
+        "rows": 2,
+        "name": "description",
+        "type": "text",
+        "title": "Deskripsi"
+      }
+    ],
+    "name": "valueCard",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "rows": 2,
+            "name": "address",
+            "type": "text",
+            "title": "Alamat Lengkap"
+          },
+          {
+            "initialValue": "2.8 Hektar Nursery & Greenhouse Aklimatisasi",
+            "name": "nurseryArea",
+            "type": "string",
+            "title": "Area Nursery"
+          },
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "name": "mapsEmbed",
+            "type": "url",
+            "title": "Google Maps Embed URL"
+          },
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "name": "mapsLink",
+            "type": "url",
+            "title": "Google Maps Link"
+          },
+          {
+            "fields": [
+              {
+                "name": "lat",
+                "type": "number"
+              },
+              {
+                "name": "lng",
+                "type": "number"
+              }
+            ],
+            "name": "geo",
+            "type": "object",
+            "title": "Koordinat GPS"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "title": "Telepon"
+          },
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "uri",
+                    "constraint": {
+                      "options": {
+                        "scheme": [
+                          "/^http$/",
+                          "/^https$/"
+                        ],
+                        "allowRelative": false,
+                        "relativeOnly": false,
+                        "allowCredentials": false
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "name": "whatsapp",
+            "type": "url",
+            "title": "WhatsApp Link"
+          },
+          {
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "initialValue": "Senin - Sabtu: 07.30 - 16.30 WIB",
+            "name": "hours",
+            "type": "string",
+            "title": "Jam Operasional"
+          }
+        ],
+        "name": "contactInfo",
+        "type": "object",
+        "title": "Informasi Kontak"
+      },
+      {
+        "fields": [
+          {
+            "description": "Diisi otomatis dari katalogPage.pisangGroup[].name + sengonGroup[].name",
+            "of": [
+              {
+                "type": "string"
+              }
+            ],
+            "name": "varietalOptions",
+            "type": "array",
+            "title": "Opsi Varietas (auto-synced dari Katalog)"
+          }
+        ],
+        "name": "formConfig",
+        "type": "object",
+        "title": "Konfigurasi Form"
+      },
+      {
+        "to": [
+          {
+            "type": "seoSettings"
+          }
+        ],
+        "name": "seo",
+        "type": "reference",
+        "title": "SEO Settings"
+      }
+    ],
+    "name": "kontakPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            "home",
+            "katalog",
+            "proses-kultur",
+            "panduan-tani",
+            "tentang-kami",
+            "kontak"
+          ]
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "home",
+                  "katalog",
+                  "proses-kultur",
+                  "panduan-tani",
+                  "tentang-kami",
+                  "kontak"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "page",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Meta Title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text",
+        "title": "Meta Description"
+      },
+      {
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "keywords",
+        "type": "array",
+        "title": "Keywords (comma-separated)"
+      },
+      {
+        "name": "ogTitle",
+        "type": "string",
+        "title": "OG Title"
+      },
+      {
+        "rows": 3,
+        "name": "ogDescription",
+        "type": "text",
+        "title": "OG Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "ogImage",
+        "type": "image",
+        "title": "OG Image"
+      }
+    ],
+    "name": "seoSettings",
+    "type": "document",
+    "title": "SEO Settings"
+  }
+]
