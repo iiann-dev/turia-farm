@@ -6,14 +6,25 @@ import { ARTICLES, FAQS } from "../data/seedlings";
 import { ArticleItem } from "../types";
 import { BookOpen, HelpCircle, ArrowUpRight, ChevronDown, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
 
-export const JournalAndFaq: React.FC = () => {
+interface JournalAndFaqProps {
+  cmsArticles?: any[];
+}
+
+export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
+  cmsArticles,
+}) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [readingArticle, setReadingArticle] = useState<ArticleItem | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  // Use CMS data with static fallbacks
+  const articles =
+    cmsArticles && cmsArticles.length > 0 ? cmsArticles : ARTICLES;
 
   return (
     <section id="journal" className="py-24 sm:py-32 bg-[#faf9f3] relative">
@@ -36,66 +47,72 @@ export const JournalAndFaq: React.FC = () => {
 
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {ARTICLES.map((article, idx) => (
-            <Animated
-              as="article"
-              key={article.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="rounded-3xl bg-[#faf9f3] border border-[#c1c8c4]/60 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="aspect-[16/10] relative w-full bg-[#dbdad4] overflow-hidden">
-                  <Image
-                    src={article.image}
-                    alt={article.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full bg-[#00251d]/90 text-white text-[11px] font-semibold">
-                      {article.category}
-                    </span>
+          {articles.map((article, idx) => {
+            const imageSrc = article.image?.asset
+              ? urlFor(article.image).width(800).quality(80).url()
+              : article.image || "https://images.unsplash.com/photo-1620036924477-c3d6e9ce36fc?w=800&q=80&auto=format";
+
+            return (
+              <Animated
+                as="article"
+                key={article.id?.current || article.id || idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="rounded-3xl bg-[#faf9f3] border border-[#c1c8c4]/60 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="aspect-[16/10] relative w-full bg-[#dbdad4] overflow-hidden">
+                    <Image
+                      src={imageSrc}
+                      alt={article.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full bg-[#00251d]/90 text-white text-[11px] font-semibold">
+                        {article.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-xs text-[#717975] mb-3">
+                      <span className="flex items-center gap-1">
+                        <Calendar size={12} />
+                        {article.date}
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Clock size={12} />
+                        {article.readTime}
+                      </span>
+                    </div>
+
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#00251d] mb-3 group-hover:text-[#2d6953] transition-colors leading-snug">
+                      {article.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-[#414845] leading-relaxed line-clamp-3">
+                      {article.excerpt}
+                    </p>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <div className="flex items-center gap-3 text-xs text-[#717975] mb-3">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {article.date}
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {article.readTime}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#00251d] mb-3 group-hover:text-[#2d6953] transition-colors leading-snug">
-                    {article.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-[#414845] leading-relaxed line-clamp-3">
-                    {article.excerpt}
-                  </p>
+                <div className="px-6 pb-6 pt-2">
+                  <button
+                    onClick={() => setReadingArticle(article)}
+                    className="w-full flex items-center justify-between py-2.5 px-4 rounded-full bg-white border border-[#c1c8c4] text-xs font-semibold text-[#00251d] hover:bg-[#00251d] hover:text-white transition-all shadow-xs"
+                  >
+                    <span>Baca Selengkapnya</span>
+                    <ArrowUpRight size={14} />
+                  </button>
                 </div>
-              </div>
-
-              <div className="px-6 pb-6 pt-2">
-                <button
-                  onClick={() => setReadingArticle(article)}
-                  className="w-full flex items-center justify-between py-2.5 px-4 rounded-full bg-white border border-[#c1c8c4] text-xs font-semibold text-[#00251d] hover:bg-[#00251d] hover:text-white transition-all shadow-xs"
-                >
-                  <span>Baca Selengkapnya</span>
-                  <ArrowUpRight size={14} />
-                </button>
-              </div>
-            </Animated>
-          ))}
+              </Animated>
+            );
+          })}
         </div>
 
         {/* Modal Full Article Reader */}

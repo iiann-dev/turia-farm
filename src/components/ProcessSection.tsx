@@ -6,7 +6,20 @@ import { PROCESS_STEPS, SITE_CONFIG } from "../data/seedlings";
 import { ShieldCheck, ArrowRight, Dna, Sprout, SunMedium, Truck } from "lucide-react";
 import Image from "next/image";
 
-export const ProcessSection: React.FC = () => {
+interface ProcessSectionProps {
+  cmsProcessSteps?: any[];
+  cmsSiteConfig?: any;
+}
+
+export const ProcessSection: React.FC<ProcessSectionProps> = ({
+  cmsProcessSteps,
+  cmsSiteConfig,
+}) => {
+  const processSteps =
+    cmsProcessSteps && cmsProcessSteps.length > 0 ? cmsProcessSteps : PROCESS_STEPS;
+
+  const siteConfig = cmsSiteConfig || SITE_CONFIG;
+
   const getStepIcon = (index: number) => {
     switch (index) {
       case 0:
@@ -41,7 +54,7 @@ export const ProcessSection: React.FC = () => {
 
         {/* 4-Step Process Timeline Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PROCESS_STEPS.map((p, index) => (
+          {processSteps.map((p: any, index: number) => (
             <Animated
               key={p.step}
               initial={{ opacity: 0, y: 30 }}
@@ -106,7 +119,7 @@ export const ProcessSection: React.FC = () => {
               Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung.
             </p>
             <a
-              href={SITE_CONFIG.whatsapp}
+              href={siteConfig.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#b1f0d4] text-[#00251d] hover:bg-white text-sm font-semibold transition-all shadow-md"
