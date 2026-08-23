@@ -1,6 +1,7 @@
 import { createClient } from "@sanity/client";
 import { dirname, join } from "path";
 import { readFileSync } from "fs";
+import fetch from "node-fetch";
 
 // Explicitly load .env.local
 try {
@@ -27,6 +28,81 @@ const client = createClient({
   useCdn: false,
   token: process.env.SANITY_API_TOKEN,
 });
+
+// Upload image from URL to Sanity assets
+async function uploadImageFromUrl(url: string, filename: string): Promise<string | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.warn(`Failed to fetch image from ${url}: ${response.statusText}`);
+      return null;
+    }
+    const buffer = await response.buffer();
+    const asset = await client.assets.upload("image", buffer, {
+      filename,
+      contentType: response.headers.get("content-type") || "image/jpeg",
+    });
+    return asset._id;
+  } catch (error) {
+    console.warn(`Error uploading image ${url}:`, error);
+    return null;
+  }
+}
+
+// Distinct image URLs for each seedling variety (Pexels - free for commercial use)
+const SEEDLING_IMAGES: Record<string, { url: string; filename: string }> = {
+  "seedling-cavendish-grand-naine": {
+    url: "https://images.pexels.com/photos/365810/pexels-photo-365810.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "cavendish-grand-naine.jpg",
+  },
+  "seedling-pisang-raja-bulu": {
+    url: "https://images.pexels.com/photos/1093038/pexels-photo-1093038.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "pisang-raja-bulu.jpg",
+  },
+  "seedling-kepok-tanjung": {
+    url: "https://images.pexels.com/photos/10899478/pexels-photo-10899478.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "kepok-tanjung.jpg",
+  },
+  "seedling-pisang-mas-kirana": {
+    url: "https://images.pexels.com/photos/61127/pexels-photo-61127.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "pisang-mas-kirana.jpg",
+  },
+  "seedling-pisang-barangan-merah": {
+    url: "https://images.pexels.com/photos/5938353/pexels-photo-5938353.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "pisang-barangan-merah.jpg",
+  },
+  "seedling-pisang-ambon-kuning": {
+    url: "https://images.pexels.com/photos/1085845/pexels-photo-1085845.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "pisang-ambon-kuning.jpg",
+  },
+  "seedling-sengon-solomon": {
+    url: "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "sengon-solomon.jpg",
+  },
+  "seedling-sengon-lokal": {
+    url: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    filename: "sengon-lokal.jpg",
+  },
+};
+
+// Upload all seedling images and return map of _id -> assetId
+async function uploadSeedlingImages(): Promise<Record<string, string>> {
+  console.log("📸 Uploading seedling images to Sanity assets...");
+  const assetMap: Record<string, string> = {};
+  
+  for (const [seedlingId, { url, filename }] of Object.entries(SEEDLING_IMAGES)) {
+    console.log(`  Uploading ${filename} for ${seedlingId}...`);
+    const assetId = await uploadImageFromUrl(url, filename);
+    if (assetId) {
+      assetMap[seedlingId] = assetId;
+      console.log(`    ✅ Uploaded: ${assetId}`);
+    } else {
+      console.log(`    ⚠️ Failed to upload ${filename}`);
+    }
+  }
+  
+  return assetMap;
+}
 
 async function seedHomePage() {
   console.log("🌱 Seeding Home Page...");
@@ -189,7 +265,7 @@ async function seedSiteConfig() {
   console.log("✅ Site Config seeded");
 }
 
-async function seedSeedlings() {
+async function seedSeedlings(assetMap: Record<string, string> = {}) {
   console.log("🌱 Seeding Seedlings...");
 
   const seedlings = [
@@ -206,7 +282,9 @@ async function seedSeedlings() {
       sweetness: "20 - 22° Brix (Manis Segar)",
       height: "2,1 - 2,4 meter",
       price: "Rp 12.500 / polybag",
-      image: null, // Will be uploaded separately
+      image: assetMap["seedling-cavendish-grand-naine"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-cavendish-grand-naine"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Perkebunan komersial & agribisnis",
       featured: true,
@@ -225,7 +303,9 @@ async function seedSeedlings() {
       sweetness: "24 - 26° Brix (Manis Karamel Pekat)",
       height: "2,8 - 3,2 meter",
       price: "Rp 14.000 / polybag",
-      image: null,
+      image: assetMap["seedling-pisang-raja-bulu"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-pisang-raja-bulu"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Pasar tradisional premium & olahan kue",
       featured: true,
@@ -244,7 +324,9 @@ async function seedSeedlings() {
       sweetness: "21 - 23° Brix (Manis Pulen Sedang)",
       height: "3,0 - 3,5 meter",
       price: "Rp 13.500 / polybag",
-      image: null,
+      image: assetMap["seedling-kepok-tanjung"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-kepok-tanjung"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Sentra UKM olahan, keripik & kebun tumpang sari",
       featured: true,
@@ -263,7 +345,9 @@ async function seedSeedlings() {
       sweetness: "23 - 25° Brix (Manis Madu Lembut)",
       height: "1,8 - 2,2 meter",
       price: "Rp 11.000 / polybag",
-      image: null,
+      image: assetMap["seedling-pisang-mas-kirana"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-pisang-mas-kirana"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Kebun pekarangan & pasar buah segar harian",
       featured: false,
@@ -282,7 +366,9 @@ async function seedSeedlings() {
       sweetness: "22 - 24° Brix (Manis Aromatik)",
       height: "2,5 - 2,8 meter",
       price: "Rp 12.000 / polybag",
-      image: null,
+      image: assetMap["seedling-pisang-barangan-merah"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-pisang-barangan-merah"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Petani mitra & pasar regional pulau Jawa-Bali",
       featured: false,
@@ -301,7 +387,9 @@ async function seedSeedlings() {
       sweetness: "21 - 23° Brix (Manis Lembut Vanila)",
       height: "2,6 - 3,0 meter",
       price: "Rp 12.500 / polybag",
-      image: null,
+      image: assetMap["seedling-pisang-ambon-kuning"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-pisang-ambon-kuning"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Kebun komersial & konsumsi harian keluarga",
       featured: false,
@@ -320,7 +408,9 @@ async function seedSeedlings() {
       sweetness: "Karakter: Kayu Ringan & Putih Bersih",
       height: "Tinggi Bibit: 30 - 60 cm",
       price: "Rp 2.500 / polybag",
-      image: null,
+      image: assetMap["seedling-sengon-solomon"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-sengon-solomon"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Agroforestri & investasi kayu industri",
       featured: false,
@@ -339,7 +429,9 @@ async function seedSeedlings() {
       sweetness: "Karakter: Serat Halus & Mudah Kering",
       height: "Tinggi Bibit: 30 - 50 cm",
       price: "Rp 2.000 / polybag",
-      image: null,
+      image: assetMap["seedling-sengon-lokal"]
+        ? { _type: "image", asset: { _type: "reference", _ref: assetMap["seedling-sengon-lokal"] } }
+        : null,
       status: "Tersedia Siap Tanam",
       bestFor: "Hutan rakyat & lahan kering",
       featured: false,
@@ -349,7 +441,7 @@ async function seedSeedlings() {
 
   const mutations = seedlings.map((doc) => ({ createOrReplace: doc }));
   await client.transaction(mutations).commit();
-  console.log("✅ 8 Seedlings seeded");
+  console.log("✅ 8 Seedlings seeded with images");
 }
 
 async function seedArticles() {
@@ -609,8 +701,11 @@ async function main() {
   console.log("🚀 Starting Sanity seed for Turia Farm...\n");
 
   try {
+    // Upload images first
+    const assetMap = await uploadSeedlingImages();
+    
     // Seed referenced documents FIRST
-    await seedSeedlings();
+    await seedSeedlings(assetMap);
     await seedArticles();
     await seedProcessSteps();
     // Then seed Page Singletons
@@ -623,10 +718,10 @@ async function main() {
     console.log("  • 1 Home Page (singleton)");
     console.log("  • 1 Catalog Page (singleton)");
     console.log("  • 1 Site Config (singleton)");
-    console.log("  • 8 Seedlings (3 featured)");
+    console.log("  • 8 Seedlings (3 featured) with images");
     console.log("  • 3 Articles");
     console.log("  • 4 Process Steps");
-    console.log("\n💡 Next: Upload images to Sanity assets and update references");
+    console.log("\n💡 Images uploaded to Sanity assets and linked to seedlings");
   } catch (error) {
     console.error("❌ Seed failed:", error);
     process.exit(1);
