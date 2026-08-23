@@ -300,8 +300,50 @@ async function seedArticles() {
       date: "2026-08-12",
       readTime: "5 menit baca",
       excerpt: "Pelajari pola tanam segitiga 2.2 x 2.2 meter, dosis pupuk dasar kandang fermentasi, dan manajemen sanitasi anakan untuk panen serentak.",
-      content: [],
-      image: null,
+      content: [
+        {
+          _type: "block",
+          _key: "b0",
+          style: "normal",
+          children: [{ _type: "span", text: "Penataan populasi pohon per hektar dan ukuran lubang tanam awal sangat menentukan kecepatan perakaran bibit cavendish hasil anakan maupun kultur jaringan." }]
+        },
+        {
+          _type: "block",
+          _key: "b1",
+          style: "h3",
+          children: [{ _type: "span", text: "1. Ukuran Lubang Tanam Ideal" }]
+        },
+        {
+          _type: "block",
+          _key: "b2",
+          style: "normal",
+          children: [{ _type: "span", text: "Buat lubang tanam berukuran 50cm x 50cm x 50cm setidaknya 2 minggu sebelum tanam. Pisahkan tanah galian atas (topsoil) dengan tanah galian bawah. Campurkan topsoil dengan 10-15 kg pupuk kandang matang/kompos terdekomposisi sempurna dan 250 gram kapur dolomit." }]
+        },
+        {
+          _type: "block",
+          _key: "b3",
+          style: "h3",
+          children: [{ _type: "span", text: "2. Jarak Tanam Populasi Optimal" }]
+        },
+        {
+          _type: "block",
+          _key: "b4",
+          style: "normal",
+          children: [{ _type: "span", text: "• Populasi Tunggal: 2,5 m x 2,5 m (sekitar 1.600 pohon/ha) untuk pencahayaan maksimal.\n• Populasi Ganda (Double Row): 2,0 m x 2,0 m x 3,0 m (sekitar 1.800-2.000 pohon/ha) untuk target tonase tinggi." }]
+        },
+        {
+          _type: "block",
+          _key: "b5",
+          style: "h3",
+          children: [{ _type: "span", text: "3. Penanganan Bibit Polybag Saat Tanam" }]
+        },
+        {
+          _type: "block",
+          _key: "b6",
+          style: "normal",
+          children: [{ _type: "span", text: "Buka plastik polybag secara perlahan tanpa merusak bola akar (root ball). Pastikan posisi leher akar sejajar atau 2-3 cm di bawah permukaan tanah bedengan untuk mencegah rebah saat berbuah." }]
+        }
+      ],
       author: "Pak Sugiono (Kepala Agronomis Turia)",
       published: true,
       order: 1,
@@ -315,8 +357,50 @@ async function seedArticles() {
       date: "2026-07-28",
       readTime: "7 menit baca",
       excerpt: "Mengapa pemakaian anakan pisang unggul dari indukan sehat dan desinfeksi parang potong adalah benteng utama petani dari kerugian gagal panen total.",
-      content: [],
-      image: null,
+      content: [
+        {
+          _type: "block",
+          _key: "b0",
+          style: "normal",
+          children: [{ _type: "span", text: "Penyakit layu darah yang disebabkan oleh bakteri Ralstonia solanacearum phylotype IV merupakan salah satu ancaman utama perkebunan pisang di Jawa Timur." }]
+        },
+        {
+          _type: "block",
+          _key: "b1",
+          style: "h3",
+          children: [{ _type: "span", text: "1. Gejala Khas pada Tanaman" }]
+        },
+        {
+          _type: "block",
+          _key: "b2",
+          style: "normal",
+          children: [{ _type: "span", text: "• Daun menguning dari daun tua, melulai dan patah pada pangkal pelepah.\n• Saat batang semut (pseudostem) dipotong, keluar cairan lendir kental berwarna cokelat kemerahan seperti darah.\n• Daging buah membusuk dan berwarna cokelat kehitaman dari dalam." }]
+        },
+        {
+          _type: "block",
+          _key: "b3",
+          style: "h3",
+          children: [{ _type: "span", text: "2. Jalur Penularan Utama" }]
+        },
+        {
+          _type: "block",
+          _key: "b4",
+          style: "normal",
+          children: [{ _type: "span", text: "Dipertukarkan oleh serangga penyerbuk yang hinggap pada jantung pisang (bunga jantan), peralatan pertanian yang tercemar, serta penggunaan bibit anakan dari induk yang terinfeksi secara tersembunyi." }]
+        },
+        {
+          _type: "block",
+          _key: "b5",
+          style: "h3",
+          children: [{ _type: "span", text: "3. Langkah Pencegahan Efektif" }]
+        },
+        {
+          _type: "block",
+          _key: "b6",
+          style: "normal",
+          children: [{ _type: "span", text: "• Gunakan bibit bebas penyakit bergaransi dari nursery terpercaya.\n• Bungkus tandan pisang (heart bagging) segera setelah sisir terakhir terbentuk.\n• Potong jantung pisang (denaveling) segera setelah pembentukan buah selesai.\n• Sterilisasi parang/alat pangkas dengan alkohol 70% sebelum berpindah antar pohon." }]
+        }
+      ],
       author: "Ir. Larasati Putri (Agronomis)",
       published: true,
       order: 2,
@@ -330,8 +414,62 @@ async function seedArticles() {
       date: "2026-07-15",
       readTime: "6 menit baca",
       excerpt: "Rincian kebutuhan bibit (2.000 pohon/ha), instalasi irigasi tetes murah, estimasi panen bulan ke-11, dan serapan pasar induk buah lokal.",
-      content: [],
-      image: null,
+      content: [
+        {
+          _type: "block",
+          _key: "b0",
+          style: "normal",
+          children: [{ _type: "span", text: "Pisang Raja Bulu memiliki nilai ekonomi sangat tinggi di pasar lokal dan industri kue/oleh-oleh karena aroma khas dan rasa manis legitnya." }]
+        },
+        {
+          _type: "block",
+          _key: "b1",
+          style: "h3",
+          children: [{ _type: "span", text: "1. Kebutuhan Investasi Awal (Tahun ke-1)" }]
+        },
+        {
+          _type: "block",
+          _key: "b2",
+          style: "normal",
+          children: [{ _type: "span", text: "• Sewa Lahan (1 Ha): Rp 15.000.000 / tahun\n• Bibit Raja Bulu Super (1.600 batang @ Rp 14.000): Rp 22.400.000\n• Olah Tanah & Pembuatan Lubang Tanam: Rp 8.000.000\n• Pupuk Dasar & Dolomit: Rp 12.000.000\n• Instalasi Irigasi Sederhana: Rp 10.000.000\nTotal Modal Awal: Rp 67.400.000" }]
+        },
+        {
+          _type: "block",
+          _key: "b3",
+          style: "h3",
+          children: [{ _type: "span", text: "2. Perawatan & Pemeliharaan (Bulan 1 - 12)" }]
+        },
+        {
+          _type: "block",
+          _key: "b4",
+          style: "normal",
+          children: [{ _type: "span", text: "• Pupuk Lanjutan & Nutrisi Organik: Rp 15.000.000\n• Tenaga Kerja Perawatan & Sanitasi Anakan: Rp 12.000.000\nTotal Operasional: Rp 27.000.000" }]
+        },
+        {
+          _type: "block",
+          _key: "b5",
+          style: "h3",
+          children: [{ _type: "span", text: "3. Estimasi Hasil Panen Perdana (Bulan ke-12 s/d 14)" }]
+        },
+        {
+          _type: "block",
+          _key: "b6",
+          style: "normal",
+          children: [{ _type: "span", text: "• Tingkat Keberhasilan Panen: 90% (1.440 pohon berbuah)\n• Rata-rata Berat Tandan: 18 kg / tandan\n• Total Produksi: 25.920 kg\n• Harga Jual Tingkat Petani (Rata-rata): Rp 7.500 / kg\nTotal Pendapatan Kotor: Rp 194.400.000" }]
+        },
+        {
+          _type: "block",
+          _key: "b7",
+          style: "h3",
+          children: [{ _type: "span", text: "4. Laba Bersih Tahun Pertama" }]
+        },
+        {
+          _type: "block",
+          _key: "b8",
+          style: "normal",
+          children: [{ _type: "span", text: "Pendapatan (Rp 194.400.000) - Total Modal & OpEx (Rp 94.400.000) = Rp 100.000.000 Laba Bersih." }]
+        }
+      ],
       author: "Alfian Pratama (Manajer Kemitraan)",
       published: true,
       order: 3,
