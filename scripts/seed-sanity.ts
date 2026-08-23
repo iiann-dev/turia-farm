@@ -151,6 +151,39 @@ async function seedCatalogPage() {
   console.log("✅ Catalog Page seeded");
 }
 
+async function seedSiteConfig() {
+  console.log("🌱 Seeding Site Config...");
+
+  const siteConfigDoc = {
+    _id: "siteConfig",
+    _type: "siteConfig",
+    siteName: "Turia Farm",
+    siteTagline: "Pusat Pembibitan Pisang & Bibit Sengon Kediri",
+    whatsapp: "6289508495717",
+    whatsappLabel: "Konsultasi & Pesan Bibit",
+    address: {
+      street: "Batuaji, Ringinrejo",
+      city: "Kediri",
+      province: "Jawa Timur",
+      postalCode: "64172",
+      country: "Indonesia",
+    },
+    geo: {
+      lat: -7.966564,
+      lng: 112.1038139,
+    },
+    openingHours: {
+      days: "Senin - Sabtu",
+      open: "07:30",
+      close: "16:30",
+      timezone: "WIB",
+    },
+  };
+
+  await client.createOrReplace(siteConfigDoc);
+  console.log("✅ Site Config seeded");
+}
+
 async function seedSeedlings() {
   console.log("🌱 Seeding Seedlings...");
 
@@ -578,11 +611,13 @@ async function main() {
     // Then seed Page Singletons
     await seedHomePage();
     await seedCatalogPage();
+    await seedSiteConfig();
 
     console.log("\n🎉 All content seeded successfully!");
     console.log("\n📋 Summary:");
     console.log("  • 1 Home Page (singleton)");
     console.log("  • 1 Catalog Page (singleton)");
+    console.log("  • 1 Site Config (singleton)");
     console.log("  • 8 Seedlings (3 featured)");
     console.log("  • 3 Articles");
     console.log("  • 4 Process Steps");

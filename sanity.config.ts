@@ -27,9 +27,29 @@ export default defineConfig({
                   .documentId("homePage")
                   .title("Beranda")
               ),
+            // Singleton Catalog Page
+            S.listItem()
+              .title("Katalog Bibit (Halaman)")
+              .id("catalogPage")
+              .child(
+                S.document()
+                  .schemaType("catalogPage")
+                  .documentId("catalogPage")
+                  .title("Katalog Bibit (Halaman)")
+              ),
+            // Singleton Site Config
+            S.listItem()
+              .title("Konfigurasi Situs (Global)")
+              .id("siteConfig")
+              .child(
+                S.document()
+                  .schemaType("siteConfig")
+                  .documentId("siteConfig")
+                  .title("Konfigurasi Situs")
+              ),
             S.divider(),
             // Other document types
-            S.documentTypeListItem("seedling").title("Katalog Bibit"),
+            S.documentTypeListItem("seedling").title("Daftar Varietas Bibit"),
             S.documentTypeListItem("article").title("Artikel Panduan"),
             S.documentTypeListItem("processStep").title("Tahap Proses Kultur"),
           ]),

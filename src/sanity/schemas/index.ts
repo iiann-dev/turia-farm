@@ -3,6 +3,7 @@ import { seedling } from "./seedling";
 import { article } from "./article";
 import { processStep } from "./processStep";
 import { catalogPage } from "./catalogPage";
+import { siteConfig } from "./siteConfig";
 
 export const schemaTypes = [
   homePage,
@@ -16,4 +17,5 @@ export const schemaTypes = [
   article,
   processStep,
   catalogPage,
+  siteConfig,
 ];
