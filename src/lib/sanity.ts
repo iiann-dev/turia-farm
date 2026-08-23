@@ -10,7 +10,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === "production",
+  useCdn: false, // Set to false so server fetch always gets fresh data upon revalidation
 });
 
 const builder = imageUrlBuilder(client);
