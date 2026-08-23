@@ -53,7 +53,6 @@ async function seedHomePage() {
         { _key: "badge-2", icon: "shield", text: "Garansi Hidup di Perjalanan" },
         { _key: "badge-3", icon: "award", text: "Pendampingan SOP Tani" },
       ],
-      heroImage: null, // Will be uploaded separately if needed
       heroBadge: {
         _key: "hero-badge",
         title: "Siap Tanam Lapangan",
@@ -117,7 +116,6 @@ async function seedHomePage() {
         "turia farm",
         "nursery pisang jawa timur",
       ],
-      ogImage: null,
       canonicalUrl: "https://turia-farm.vercel.app",
     },
   };
