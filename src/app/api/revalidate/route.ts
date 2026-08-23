@@ -14,25 +14,37 @@ export async function POST(request: NextRequest) {
     const type = body?._type;
 
     // Target specific paths based on updated content type
+    const pathsToRevalidate: string[] = [];
+
     if (type === "homePage") {
-      revalidatePath("/");
+      pathsToRevalidate.push("/");
     } else if (type === "seedling") {
-      revalidatePath("/");
-      revalidatePath("/bibit-pisang");
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/bibit-pisang");
     } else if (type === "article") {
-      revalidatePath("/");
-      revalidatePath("/panduan-tani");
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/panduan-tani");
     } else if (type === "processStep") {
-      revalidatePath("/");
-      revalidatePath("/proses-kultur");
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/proses-kultur");
     } else {
       // Revalidate all common routes as fallback
-      revalidatePath("/", "layout");
+      pathsToRevalidate.push("/", "layout");
+    }
+
+    // Revalidate all paths
+    for (const path of pathsToRevalidate) {
+      if (path === "layout") {
+        revalidatePath("/", "layout");
+      } else {
+        revalidatePath(path);
+      }
     }
 
     return NextResponse.json({
       revalidated: true,
       type: type || "unknown",
+      paths: pathsToRevalidate,
       now: Date.now(),
     });
   } catch (err: any) {
