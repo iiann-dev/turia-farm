@@ -138,6 +138,11 @@ async function seedCatalogPage() {
         "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.",
       heroImage: null, // Will be uploaded separately
     },
+    featuredSeedlings: [
+      { _type: "reference", _ref: "seedling-cavendish-grand-naine" },
+      { _type: "reference", _ref: "seedling-pisang-raja-bulu" },
+      { _type: "reference", _ref: "seedling-kepok-tanjung" },
+    ],
     seo: {
       _key: "seo",
       metaTitle: "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",

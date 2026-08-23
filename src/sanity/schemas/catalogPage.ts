@@ -40,6 +40,19 @@ export const catalogPage = defineType({
         }),
       ],
     }),
+    // FEATURED SEEDLINGS (Curated Selection for Catalog Page)
+    defineField({
+      name: "featuredSeedlings",
+      title: "Varietas Unggulan (Ditampilkan di Halaman Katalog)",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "seedling" }],
+        },
+      ],
+      description: "Pilih varietas yang ingin ditampilkan di halaman Katalog Bibit. Urutkan sesuai keinginan.",
+    }),
     // SEO
     defineField({
       name: "seo",

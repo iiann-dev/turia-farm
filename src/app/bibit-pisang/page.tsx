@@ -37,15 +37,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SeedlingsPage() {
-  const [seedlings, catalogPage] = await Promise.all([
+  const [allSeedlings, catalogPage] = await Promise.all([
     getSeedlings().catch(() => []),
     getCatalogPage().catch(() => null),
   ]);
 
+  // Use curated featuredSeedlings from CMS, fallback to all seedlings
+  const displaySeedlings = catalogPage?.featuredSeedlings?.length > 0
+    ? catalogPage.featuredSeedlings
+    : allSeedlings;
+
   return (
     <PageWrapper>
       <div className="pt-6">
-        <SeedlingsSection cmsSeedlings={seedlings} cmsCatalogHero={catalogPage?.hero} />
+        <SeedlingsSection
+          cmsSeedlings={displaySeedlings}
+          cmsCatalogHero={catalogPage?.hero}
+        />
       </div>
     </PageWrapper>
   );

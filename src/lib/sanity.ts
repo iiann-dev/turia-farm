@@ -65,7 +65,25 @@ export function getMapsEmbedSrc(lat?: number, lng?: number): string {
 export async function getCatalogPage() {
   const query = `*[_type == "catalogPage"][0]{
     hero,
-    seo
+    seo,
+    "featuredSeedlings": featuredSeedlings[]->{
+      _id,
+      id,
+      name,
+      scientificName,
+      tag,
+      desc,
+      maturity,
+      bunchWeight,
+      sweetness,
+      height,
+      price,
+      image,
+      status,
+      bestFor,
+      featured,
+      order
+    }
   }`;
   return client.fetch(query);
 }
