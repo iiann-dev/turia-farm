@@ -55,3 +55,11 @@ export async function getSiteConfig() {
   const query = `*[_type == "siteConfig"][0]`;
   return client.fetch(query);
 }
+
+export async function getCatalogPage() {
+  const query = `*[_type == "catalogPage"][0]{
+    hero,
+    seo
+  }`;
+  return client.fetch(query);
+}

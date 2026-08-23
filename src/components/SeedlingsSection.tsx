@@ -10,10 +10,17 @@ import { urlFor } from "@/lib/sanity";
 
 interface SeedlingsSectionProps {
   cmsSeedlings?: any[];
+  cmsCatalogHero?: {
+    eyebrowPill?: string;
+    headline?: string;
+    subtext?: string;
+    heroImage?: any;
+  };
 }
 
 export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
   cmsSeedlings,
+  cmsCatalogHero,
 }) => {
   const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
 
@@ -26,25 +33,29 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
     return `https://wa.me/6289508495717?text=${encodeURIComponent(text)}`;
   };
 
+  // Hero content with CMS fallback
+  const eyebrowPill = cmsCatalogHero?.eyebrowPill || "Katalog Bibit";
+  const headline = cmsCatalogHero?.headline || "Bibit Pisang & Sengon Pilihan Siap Tanam";
+  const subtext =
+    cmsCatalogHero?.subtext ||
+    "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.";
+
   return (
-    <section
-      id="seedlings"
-      className="py-24 sm:py-32 bg-[#faf9f3] relative"
-    >
+    <section id="seedlings" className="py-24 sm:py-32 bg-[#faf9f3] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e3e3dd] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <Sparkles size={13} className="text-[#2d6953]" />
-              <span>Katalog Bibit</span>
+              <span>{eyebrowPill}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight leading-tight">
-              Bibit Pisang & Sengon Pilihan Siap Tanam
+              {headline}
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#414845] max-w-md font-normal">
-            Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.
+            {subtext}
           </p>
         </div>
 

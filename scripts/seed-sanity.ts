@@ -124,6 +124,33 @@ async function seedHomePage() {
   console.log("✅ Home Page seeded");
 }
 
+async function seedCatalogPage() {
+  console.log("🌱 Seeding Catalog Page...");
+
+  const catalogPageDoc = {
+    _id: "catalogPage",
+    _type: "catalogPage",
+    hero: {
+      _key: "hero",
+      eyebrowPill: "Katalog Bibit",
+      headline: "Bibit Pisang & Sengon Pilihan Siap Tanam",
+      subtext:
+        "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.",
+      heroImage: null, // Will be uploaded separately
+    },
+    seo: {
+      _key: "seo",
+      metaTitle: "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",
+      metaDescription:
+        "Daftar harga dan varietas bibit pisang anakan pilihan & bibit sengon biji Turia Farm di Batuaji Ringinrejo Kediri: Cavendish Grand Naine, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon.",
+      ogImage: null,
+    },
+  };
+
+  await client.createOrReplace(catalogPageDoc);
+  console.log("✅ Catalog Page seeded");
+}
+
 async function seedSeedlings() {
   console.log("🌱 Seeding Seedlings...");
 
@@ -548,12 +575,14 @@ async function main() {
     await seedSeedlings();
     await seedArticles();
     await seedProcessSteps();
-    // Then seed Home Page (which references them)
+    // Then seed Page Singletons
     await seedHomePage();
+    await seedCatalogPage();
 
     console.log("\n🎉 All content seeded successfully!");
     console.log("\n📋 Summary:");
     console.log("  • 1 Home Page (singleton)");
+    console.log("  • 1 Catalog Page (singleton)");
     console.log("  • 8 Seedlings (3 featured)");
     console.log("  • 3 Articles");
     console.log("  • 4 Process Steps");
