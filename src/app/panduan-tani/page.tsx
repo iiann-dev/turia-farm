@@ -3,6 +3,8 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { JournalAndFaq } from "@/components/JournalAndFaq";
 import { getArticles } from "@/lib/sanity";
 
+export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Panduan Budidaya Pisang & FAQ | Edukasi Tani Turia Farm",

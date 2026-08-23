@@ -3,6 +3,8 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { ProcessSection } from "@/components/ProcessSection";
 import { getProcessSteps, getSiteConfig } from "@/lib/sanity";
 
+export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
+
 export async function generateMetadata(): Promise<Metadata> {
   const siteConfig = await getSiteConfig().catch(() => null);
   return {

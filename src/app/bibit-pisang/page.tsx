@@ -3,6 +3,8 @@ import { PageWrapper } from "@/components/PageWrapper";
 import { SeedlingsSection } from "@/components/SeedlingsSection";
 import { getSeedlings } from "@/lib/sanity";
 
+export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
+
 export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",
