@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Animated } from "./Animated";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { MapPin, Phone, Clock, Send, MessageCircle, Truck } from "lucide-react";
+import { getSiteConfig, getMapsEmbedSrc } from "@/lib/sanity";
 
 export const ContactAndLocation: React.FC = () => {
   const [form, setForm] = useState({
@@ -24,6 +25,9 @@ export const ContactAndLocation: React.FC = () => {
 
     window.open(`https://wa.me/6289508495717?text=${text}`, "_blank");
   };
+
+  // Static fallback data
+  const staticConfig = SITE_CONFIG;
 
   return (
     <section id="contact" className="py-24 sm:py-32 bg-[#faf9f3] relative">
@@ -56,15 +60,15 @@ export const ContactAndLocation: React.FC = () => {
                     Lokasi Kebun Pembibitan & Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d] leading-snug">
-                    {SITE_CONFIG.address}
+                    {staticConfig.address}
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
-                    {SITE_CONFIG.nurseryArea}
+                    {staticConfig.nurseryArea}
                   </div>
-                  {/* Google Maps Embed */}
+                  {/* Google Maps Embed - CMS Driven */}
                   <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">
                     <iframe
-                      src={SITE_CONFIG.mapsEmbed}
+                      src={getMapsEmbedSrc(staticConfig.geo?.lat, staticConfig.geo?.lng)}
                       title="Turia's Farm Kediri - Google Maps"
                       className="w-full h-44 sm:h-52"
                       loading="lazy"
@@ -73,7 +77,7 @@ export const ContactAndLocation: React.FC = () => {
                     />
                   </div>
                   <a
-                    href={SITE_CONFIG.mapsLink}
+                    href={staticConfig.mapsLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
@@ -93,7 +97,7 @@ export const ContactAndLocation: React.FC = () => {
                     Layanan Konsultasi Tani
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
-                    {SITE_CONFIG.phone} (WhatsApp / Telepon)
+                    {staticConfig.phone} (WhatsApp / Telepon)
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
                     Fast response jam kerja
@@ -110,7 +114,7 @@ export const ContactAndLocation: React.FC = () => {
                     Jam Operasional Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
-                    {SITE_CONFIG.hours}
+                    {staticConfig.hours}
                   </div>
                 </div>
               </div>

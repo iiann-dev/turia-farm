@@ -44,11 +44,11 @@ export const siteConfig = defineType({
     }),
     defineField({
       name: "geo",
-      title: "Koordinat GPS",
+      title: "Koordinat GPS (Auto-generate Maps Embed)",
       type: "object",
       fields: [
-        { name: "lat", title: "Latitude", type: "number", initialValue: -7.966564 },
-        { name: "lng", title: "Longitude", type: "number", initialValue: 112.1038139 },
+        { name: "lat", title: "Latitude", type: "number", initialValue: -7.966558679400668 },
+        { name: "lng", title: "Longitude", type: "number", initialValue: 112.10123897405272 },
       ],
     }),
     defineField({

@@ -56,6 +56,12 @@ export async function getSiteConfig() {
   return client.fetch(query);
 }
 
+// Generate Google Maps embed iframe src from lat/lng
+export function getMapsEmbedSrc(lat?: number, lng?: number): string {
+  if (lat === undefined || lng === undefined) return "";
+  return `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3131023966703!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78f1006725ea41%3A0x2a565eacbeca6fbe!2sTURIA%27S%20FARM%20KEDIRI%20%23bibitpisang%20%26%20sengon!5e0!3m2!1sen!2sid!4v1787411138372!5m2!1sen!2sid`;
+}
+
 export async function getCatalogPage() {
   const query = `*[_type == "catalogPage"][0]{
     hero,

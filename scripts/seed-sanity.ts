@@ -169,8 +169,8 @@ async function seedSiteConfig() {
       country: "Indonesia",
     },
     geo: {
-      lat: -7.966564,
-      lng: 112.1038139,
+      lat: -7.966558679400668,
+      lng: 112.10123897405272,
     },
     openingHours: {
       days: "Senin - Sabtu",
