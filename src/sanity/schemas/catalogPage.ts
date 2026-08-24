@@ -31,13 +31,6 @@ export const catalogPage = defineType({
           initialValue:
             "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.",
         }),
-        defineField({
-          name: "heroImage",
-          title: "Gambar Hero (Opsional)",
-          type: "image",
-          options: { hotspot: true },
-          fields: [{ name: "alt", type: "string", title: "Alt Text" }],
-        }),
       ],
     }),
     // FEATURED SEEDLINGS (Curated Selection for Catalog Page)

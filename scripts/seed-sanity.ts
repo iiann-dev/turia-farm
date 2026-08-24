@@ -212,7 +212,6 @@ async function seedCatalogPage() {
       headline: "Bibit Pisang & Sengon Pilihan Siap Tanam",
       subtext:
         "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.",
-      heroImage: null, // Will be uploaded separately
     },
     featuredSeedlings: [
       { _type: "reference", _ref: "seedling-cavendish-grand-naine" },
