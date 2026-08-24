@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { JournalAndFaq } from "@/components/JournalAndFaq";
-import { getGuidePage, projectId, dataset } from "@/lib/sanity";
+import { getGuidePage, getSiteConfig, projectId, dataset } from "@/lib/sanity";
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
 
@@ -13,12 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       seo?.metaDescription ||
       "Kumpulan artikel teknis budidaya pisang: jarak tanam cavendish 30 ton/ha, cara cegah penyakit layu fusarium, analisis modal usaha kebun pisang 1 hektar.",
-    keywords: [
-      "panduan budidaya pisang",
-      "jarak tanam pisang cavendish",
-      "cara mengatasi layu pisang",
-      "analisa usaha tani pisang raja",
-    ],
+    keywords: ["panduan budidaya pisang", "layu fusarium pisang", "modal usaha tani pisang"],
     alternates: {
       canonical: "https://turia-farm.vercel.app/panduan-tani",
     },
@@ -36,11 +31,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function JournalPage() {
-  const guidePage = await getGuidePage().catch(() => null);
+export default async function GuidePage() {
+  const [guidePage, siteConfig] = await Promise.all([
+    getGuidePage().catch(() => null),
+    getSiteConfig().catch(() => null),
+  ]);
 
   return (
-    <PageWrapper>
+    <PageWrapper cmsSiteConfig={siteConfig}>
       <div className="pt-6">
         <JournalAndFaq cmsGuidePage={guidePage} />
       </div>

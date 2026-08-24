@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Hero } from "@/components/Hero";
 import { HomeHighlights } from "@/components/HomeHighlights";
-import { getHomePage, getFeaturedSeedlings, getArticles, getProcessSteps } from "@/lib/sanity";
+import { getHomePage, getFeaturedSeedlings, getArticles, getProcessSteps, getSiteConfig } from "@/lib/sanity";
 
 export async function generateMetadata(): Promise<Metadata> {
   const homeData = await getHomePage().catch(() => null);
@@ -29,15 +29,16 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [homeData, featuredSeedlings, articles, processSteps] = await Promise.all([
+  const [homeData, featuredSeedlings, articles, processSteps, siteConfig] = await Promise.all([
     getHomePage().catch(() => null),
     getFeaturedSeedlings().catch(() => []),
     getArticles().catch(() => []),
     getProcessSteps().catch(() => []),
+    getSiteConfig().catch(() => null),
   ]);
 
   return (
-    <PageWrapper>
+    <PageWrapper cmsSiteConfig={siteConfig}>
       <Hero cmsData={homeData?.hero} statsData={homeData?.stats} />
       <HomeHighlights
         cmsData={homeData}

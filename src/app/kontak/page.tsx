@@ -44,7 +44,7 @@ export default async function ContactPage() {
   ]);
 
   return (
-    <PageWrapper>
+    <PageWrapper cmsSiteConfig={siteConfig}>
       <div className="pt-6">
         <ContactAndLocation
           cmsContactPage={contactPage}

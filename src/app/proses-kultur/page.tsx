@@ -13,12 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       seo?.metaDescription ||
       "Pelajari 4 tahap pembibitan pisang anakan dan penyemaian bibit sengon biji di Turia Farm Batuaji Ringinrejo Kediri. Akar aktif bergaransi hidup.",
-    keywords: [
-      "proses pembibitan pisang",
-      "penyemaian biji sengon",
-      "kebun bibit pisang batuaji",
-      "nursery pisang kediri",
-    ],
+    keywords: ["proses pembibitan pisang", "kultur jaringan pisang", "pembibitan sengon"],
     alternates: {
       canonical: "https://turia-farm.vercel.app/proses-kultur",
     },
@@ -43,12 +38,9 @@ export default async function ProcessPage() {
   ]);
 
   return (
-    <PageWrapper>
+    <PageWrapper cmsSiteConfig={siteConfig}>
       <div className="pt-6">
-        <ProcessSection
-          cmsProcessPage={processPage}
-          cmsSiteConfig={siteConfig}
-        />
+        <ProcessSection cmsProcessPage={processPage} />
       </div>
     </PageWrapper>
   );

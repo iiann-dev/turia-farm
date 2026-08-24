@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { SeedlingsSection } from "@/components/SeedlingsSection";
-import { getSeedlings, getCatalogPage, projectId, dataset } from "@/lib/sanity";
+import { getSeedlings, getCatalogPage, getSiteConfig, projectId, dataset } from "@/lib/sanity";
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
 
@@ -37,9 +37,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SeedlingsPage() {
-  const [allSeedlings, catalogPage] = await Promise.all([
+  const [allSeedlings, catalogPage, siteConfig] = await Promise.all([
     getSeedlings().catch(() => []),
     getCatalogPage().catch(() => null),
+    getSiteConfig().catch(() => null),
   ]);
 
   // Use curated featuredSeedlings from CMS, fallback to all seedlings
@@ -48,7 +49,7 @@ export default async function SeedlingsPage() {
     : allSeedlings;
 
   return (
-    <PageWrapper>
+    <PageWrapper cmsSiteConfig={siteConfig}>
       <div className="pt-6">
         <SeedlingsSection
           cmsSeedlings={displaySeedlings}
