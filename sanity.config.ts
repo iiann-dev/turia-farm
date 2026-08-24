@@ -87,6 +87,16 @@ export default defineConfig({
                   .documentId("siteConfig")
                   .title("Konfigurasi Situs")
               ),
+            // Singleton Footer
+            S.listItem()
+              .title("Footer (Global)")
+              .id("footer")
+              .child(
+                S.document()
+                  .schemaType("footer")
+                  .documentId("footer")
+                  .title("Footer")
+              ),
             S.divider(),
             // Other document types
             S.documentTypeListItem("seedling").title("Daftar Varietas Bibit"),

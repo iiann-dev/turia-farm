@@ -47,6 +47,9 @@ export async function POST(request: NextRequest) {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/kontak");
       pathsToRevalidate.push("/bibit-pisang");
+    } else if (type === "footer") {
+      // Footer appears on every page — revalidate layout
+      pathsToRevalidate.push("/", "layout");
     } else {
       // Revalidate all common routes as fallback
       pathsToRevalidate.push("/", "layout");

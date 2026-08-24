@@ -22,11 +22,27 @@ interface PageWrapperProps {
       youtube?: string;
     };
   };
+  cmsFooter?: {
+    brandSection?: { tagline?: string };
+    quickLinks?: Array<{ label?: string; href?: string; order?: number }>;
+    varietiesSection?: {
+      title?: string;
+      customVarieties?: Array<{ name?: string; price?: string; href?: string }>;
+    };
+    socialLinks?: {
+      whatsapp?: string;
+      facebook?: string;
+      instagram?: string;
+      tiktok?: string;
+      youtube?: string;
+    };
+  };
 }
 
-export const PageWrapper: React.FC<PageWrapperProps> = ({ 
-  children, 
-  cmsSiteConfig 
+export const PageWrapper: React.FC<PageWrapperProps> = ({
+  children,
+  cmsSiteConfig,
+  cmsFooter,
 }) => {
   const lenisRef = useRef<LenisInstance | null>(null);
   const pathname = usePathname();
@@ -87,7 +103,7 @@ export const PageWrapper: React.FC<PageWrapperProps> = ({
       <main className="flex-grow">
         <PageTransition>{children}</PageTransition>
       </main>
-      <Footer cmsSiteConfig={cmsSiteConfig} />
+      <Footer cmsSiteConfig={cmsSiteConfig} cmsFooter={cmsFooter} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ContactAndLocation } from "@/components/ContactAndLocation";
-import { getContactPage, getSiteConfig, projectId, dataset } from "@/lib/sanity";
+import { getContactPage, getSiteConfig, getFooter, projectId, dataset } from "@/lib/sanity";
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
 
@@ -38,13 +38,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactPage() {
-  const [contactPage, siteConfig] = await Promise.all([
+  const [contactPage, siteConfig, footer] = await Promise.all([
     getContactPage().catch(() => null),
     getSiteConfig().catch(() => null),
+    getFooter().catch(() => null),
   ]);
 
   return (
-    <PageWrapper cmsSiteConfig={siteConfig}>
+    <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
         <ContactAndLocation
           cmsContactPage={contactPage}

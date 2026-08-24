@@ -16,16 +16,70 @@ interface FooterProps {
       youtube?: string;
     };
   };
+  cmsFooter?: {
+    brandSection?: { tagline?: string };
+    quickLinks?: Array<{ label?: string; href?: string; order?: number }>;
+    varietiesSection?: {
+      title?: string;
+      customVarieties?: Array<{ name?: string; price?: string; href?: string }>;
+    };
+    socialLinks?: {
+      whatsapp?: string;
+      facebook?: string;
+      instagram?: string;
+      tiktok?: string;
+      youtube?: string;
+    };
+  };
 }
+
+const DEFAULT_QUICK_LINKS = [
+  { label: "Beranda", href: "/" },
+  { label: "Katalog Bibit", href: "/bibit-pisang" },
+  { label: "Proses Pembibitan", href: "/proses-kultur" },
+  { label: "Tentang Kami", href: "/tentang-kami" },
+  { label: "Panduan Tani", href: "/panduan-tani" },
+  { label: "Kontak", href: "/kontak" },
+];
 
 export const Footer: React.FC<FooterProps> = ({
   cmsSiteConfig,
+  cmsFooter,
 }) => {
-  const whatsapp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
-  const rawWhatsApp = whatsapp.startsWith("http") 
-    ? whatsapp 
-    : `https://wa.me/${whatsapp}?text=Halo%20Turia%20Farm`;
-  const facebookUrl = cmsSiteConfig?.socialLinks?.facebook;
+  // Social: footer override > siteConfig > static fallback
+  const whatsappRaw =
+    cmsFooter?.socialLinks?.whatsapp ||
+    cmsSiteConfig?.whatsapp ||
+    SITE_CONFIG.whatsapp;
+  const whatsapp = whatsappRaw.startsWith("http")
+    ? whatsappRaw
+    : `https://wa.me/${whatsappRaw}?text=Halo%20Turia%20Farm`;
+  const facebookUrl =
+    cmsFooter?.socialLinks?.facebook ||
+    cmsSiteConfig?.socialLinks?.facebook;
+
+  // Brand tagline: footer override > static fallback
+  const tagline =
+    cmsFooter?.brandSection?.tagline ||
+    "Pertanian modern yang berakar pada alam. Menumbuhkan genetik unggul untuk kedaulatan pangan berkelanjutan.";
+
+  // Quick Links: footer override > static defaults
+  const quickLinks =
+    cmsFooter?.quickLinks && cmsFooter.quickLinks.length > 0
+      ? [...cmsFooter.quickLinks].sort((a, b) => (a.order || 0) - (b.order || 0))
+      : DEFAULT_QUICK_LINKS;
+
+  // Varieties: footer custom > first 4 from SEEDLINGS
+  const varietiesTitle = cmsFooter?.varietiesSection?.title || "Varietas Populer";
+  const varietiesItems =
+    cmsFooter?.varietiesSection?.customVarieties &&
+    cmsFooter.varietiesSection.customVarieties.length > 0
+      ? cmsFooter.varietiesSection.customVarieties
+      : SEEDLINGS.slice(0, 4).map((s) => ({
+          name: s.name,
+          price: s.price,
+          href: "/bibit-pisang",
+        }));
 
   return (
     <footer className="bg-[#00251d] text-[#faf9f3] pt-12 sm:pt-16 pb-8 border-t border-[#173b32]">
@@ -40,7 +94,7 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </div>
             <div className="text-xs sm:text-sm text-[#a8cfc2] max-w-sm leading-relaxed">
-              Pertanian modern yang berakar pada alam. Menumbuhkan genetik unggul untuk kedaulatan pangan berkelanjutan.
+              {tagline}
             </div>
             <div className="text-xs text-[#80a691] pt-1">
               {SITE_CONFIG.address}
@@ -53,26 +107,37 @@ export const Footer: React.FC<FooterProps> = ({
               Tautan Cepat
             </div>
             <ul className="space-y-2 text-xs text-[#a8cfc2]">
-              <li><Link href="/" className="hover:text-white transition-colors">Beranda</Link></li>
-              <li><Link href="/bibit-pisang" className="hover:text-white transition-colors">Katalog Bibit</Link></li>
-              <li><Link href="/proses-kultur" className="hover:text-white transition-colors">Proses Pembibitan</Link></li>
-              <li><Link href="/tentang-kami" className="hover:text-white transition-colors">Tentang Kami</Link></li>
-              <li><Link href="/panduan-tani" className="hover:text-white transition-colors">Panduan Tani</Link></li>
-              <li><Link href="/kontak" className="hover:text-white transition-colors">Kontak</Link></li>
+              {quickLinks.map((link, idx) => (
+                <li key={link.label || idx}>
+                  <Link
+                    href={link.href || "#"}
+                    className="hover:text-white transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Varieties */}
           <div className="lg:col-span-4 space-y-3">
             <div className="text-[11px] font-bold uppercase tracking-wider text-[#c4ebde] mb-3">
-              Varietas Populer
+              {varietiesTitle}
             </div>
             <ul className="space-y-1.5 text-xs text-[#a8cfc2]">
-              {SEEDLINGS.slice(0, 4).map((s) => (
-                <li key={s.id}>
-                  <Link href="/bibit-pisang" className="hover:text-white transition-colors flex items-center justify-between gap-2">
+              {varietiesItems.map((s, idx) => (
+                <li key={s.name || idx}>
+                  <Link
+                    href={s.href || "/bibit-pisang"}
+                    className="hover:text-white transition-colors flex items-center justify-between gap-2"
+                  >
                     <span className="truncate">{s.name}</span>
-                    <span className="text-[#80a599] text-[11px] whitespace-nowrap">{s.price}</span>
+                    {s.price && (
+                      <span className="text-[#80a599] text-[11px] whitespace-nowrap">
+                        {s.price}
+                      </span>
+                    )}
                   </Link>
                 </li>
               ))}
@@ -85,9 +150,9 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
             <span>© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
             <div className="flex items-center gap-3">
-                                          {/* WhatsApp */}
+              {/* WhatsApp */}
               <a
-                href={rawWhatsApp}
+                href={whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center w-9 h-9 text-[#25D366] hover:text-[#128C7E] transition-colors"

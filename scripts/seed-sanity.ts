@@ -905,6 +905,33 @@ async function seedContactPage() {
   console.log("✅ Contact Page seeded");
 }
 
+async function seedFooter() {
+  console.log("🌱 Seeding Footer...");
+
+  const footerDoc = {
+    _id: "footer",
+    _type: "footer",
+    brandSection: {
+      tagline: "Pertanian modern yang berakar pada alam. Menumbuhkan genetik unggul untuk kedaulatan pangan berkelanjutan.",
+    },
+    quickLinks: [],
+    varietiesSection: {
+      title: "Varietas Populer",
+      customVarieties: [],
+    },
+    socialLinks: {
+      whatsapp: "https://wa.me/6289508495717?text=Halo%20Turia%20Farm",
+      facebook: "https://facebook.com/turiafarm",
+      instagram: "",
+      tiktok: "",
+      youtube: "",
+    },
+  };
+
+  await client.createOrReplace(footerDoc);
+  console.log("✅ Footer seeded");
+}
+
 async function main() {
   console.log("🚀 Starting Sanity seed for Turia Farm...\n");
 
@@ -923,6 +950,7 @@ async function main() {
     await seedGuidePage();
     await seedAboutPage();
     await seedContactPage();
+    await seedFooter();
     await seedSiteConfig();
 
     console.log("\n🎉 All content seeded successfully!");
@@ -933,6 +961,7 @@ async function main() {
     console.log("  • 1 Guide Page (singleton)");
     console.log("  • 1 About Page (singleton)");
     console.log("  • 1 Contact Page (singleton)");
+    console.log("  • 1 Footer (singleton)");
     console.log("  • 1 Site Config (singleton)");
     console.log("  • 8 Seedlings (3 featured) with images");
     console.log("  • 3 Articles");

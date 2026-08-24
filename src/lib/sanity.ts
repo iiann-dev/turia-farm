@@ -56,6 +56,11 @@ export async function getSiteConfig() {
   return client.fetch(query);
 }
 
+export async function getFooter() {
+  const query = `*[_type == "footer"][0]`;
+  return client.fetch(query);
+}
+
 // Generate Google Maps embed iframe src from lat/lng
 export function getMapsEmbedSrc(lat?: number, lng?: number): string {
   if (lat === undefined || lng === undefined) return "";

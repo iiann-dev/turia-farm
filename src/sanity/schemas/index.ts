@@ -8,6 +8,7 @@ import { processPage } from "./processPage";
 import { guidePage } from "./guidePage";
 import { aboutPage } from "./aboutPage";
 import { contactPage } from "./contactPage";
+import { footer } from "./footer";
 
 export const schemaTypes = [
   homePage,
@@ -16,6 +17,7 @@ export const schemaTypes = [
   guidePage,
   aboutPage,
   contactPage,
+  footer,
   siteConfig,
   seedling,
   article,

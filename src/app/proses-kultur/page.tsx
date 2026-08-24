@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { PageWrapper } from "@/components/PageWrapper";
 import { ProcessSection } from "@/components/ProcessSection";
-import { getProcessPage, getSiteConfig, projectId, dataset } from "@/lib/sanity";
+import { getProcessPage, getSiteConfig, getFooter, projectId, dataset } from "@/lib/sanity";
 
 export const revalidate = 60; // ISR: revalidate every 60 seconds, or on-demand via webhook
 
@@ -32,13 +32,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ProcessPage() {
-  const [processPage, siteConfig] = await Promise.all([
+  const [processPage, siteConfig, footer] = await Promise.all([
     getProcessPage().catch(() => null),
     getSiteConfig().catch(() => null),
+    getFooter().catch(() => null),
   ]);
 
   return (
-    <PageWrapper cmsSiteConfig={siteConfig}>
+    <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
         <ProcessSection cmsProcessPage={processPage} />
       </div>
