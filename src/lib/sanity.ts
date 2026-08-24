@@ -90,8 +90,8 @@ export async function getCatalogPage() {
 
 export async function getProcessPage() {
   const query = `*[_type == "processPage"][0]{
+    sectionHeader,
     hero,
-    seo,
     "processSteps": processSteps[]->{
       _id,
       step,
@@ -103,15 +103,17 @@ export async function getProcessPage() {
       icon,
       image,
       order
-    }
+    },
+    nurseryCard,
+    seo
   }`;
   return client.fetch(query);
 }
 
 export async function getGuidePage() {
   const query = `*[_type == "guidePage"][0]{
+    sectionHeader,
     hero,
-    seo,
     "articles": articles[]->{
       _id,
       id,
@@ -126,7 +128,9 @@ export async function getGuidePage() {
       published,
       readTime,
       order
-    }
+    },
+    faqSection,
+    seo
   }`;
   return client.fetch(query);
 }

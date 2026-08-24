@@ -271,6 +271,13 @@ async function seedProcessPage() {
   const processPageDoc = {
     _id: "processPage",
     _type: "processPage",
+    sectionHeader: {
+      _key: "section-header",
+      eyebrowPill: "Standar Mutu Bibit",
+      headline: "4 Tahap Pembibitan Kebun Tradisional",
+      subtext:
+        "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.",
+    },
     hero: {
       _key: "hero",
       eyebrowPill: "Proses Pembibitan",
@@ -285,11 +292,21 @@ async function seedProcessPage() {
       { _type: "reference", _ref: "processStep-03" },
       { _type: "reference", _ref: "processStep-04" },
     ],
+    nurseryCard: {
+      _key: "nursery-card",
+      eyebrowPill: "Kunjungan & Edukasi Terbuka",
+      headline: "Ingin melihat langsung kebun pembibitan & indukan kami?",
+      description:
+        "Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung.",
+      ctaText: "Jadwalkan Kunjungan Kebun",
+      ctaLink: "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20ingin%20jadwalkan%20kunjungan%20kebun",
+      heroImage: null,
+    },
     seo: {
       _key: "seo",
-      metaTitle: "Proses Pembibitan Pisang & Sengon | Turia Farm Kediri",
+      metaTitle: "Proses Pembibitan | Turia Farm Kediri",
       metaDescription:
-        "Pelajari 4 tahap proses pembibitan pisang anakan unggul & bibit sengon biji di Turia Farm Kediri: Seleksi Indukan, Pemisahan Anakan, Pembesaran Polybag, hingga Grading & Pengiriman Bergaransi.",
+        "Pelajari 4 tahap pembibitan pisang anakan dan penyemaian bibit sengon biji di Turia Farm Batuaji Ringinrejo Kediri. Akar aktif bergaransi hidup.",
       ogImage: null,
     },
   };
@@ -304,6 +321,13 @@ async function seedGuidePage() {
   const guidePageDoc = {
     _id: "guidePage",
     _type: "guidePage",
+    sectionHeader: {
+      _key: "section-header",
+      eyebrowPill: "Edukasi & Riset Tani",
+      headline: "Panduan & Tips Budidaya Terkini",
+      subtext:
+        "Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda.",
+    },
     hero: {
       _key: "hero",
       eyebrowPill: "Panduan Tani",
@@ -317,11 +341,42 @@ async function seedGuidePage() {
       { _type: "reference", _ref: "article-mencegah-penyakit-layu-fusarium" },
       { _type: "reference", _ref: "article-analisis-usaha-tani-pisang-raja" },
     ],
+    faqSection: {
+      _key: "faq-section",
+      eyebrowPill: "FAQ • Pertanyaan Umum",
+      headline: "Pertanyaan Seputar Pemesanan & Pengiriman",
+      faqs: [
+        {
+          _key: "faq-1",
+          question: "Berapa minimum pemesanan bibit?",
+          answer:
+            "Minimum pemesanan 500 bibit per varietas untuk pengiriman via armada truk. Untuk pengambilan langsung di kebun, tidak ada batas minimum.",
+        },
+        {
+          _key: "faq-2",
+          question: "Bagaimana sistem garansi hidup bibit?",
+          answer:
+            "Kami memberikan garansi ganti bibit baru jika bibit mati dalam 30 hari setelah tanam (syarat & ketentuan berlaku: tanam sesuai SOP, lahan siap tanam, irigasi tersedia).",
+        },
+        {
+          _key: "faq-3",
+          question: "Apakah pengiriman tersedia ke luar pulau Jawa?",
+          answer:
+            "Ya, kami kirim ke seluruh Indonesia (Sumatera, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Papua) via armada truk & kapal ro-ro. Biaya ongkir disesuaikan lokasi.",
+        },
+        {
+          _key: "faq-4",
+          question: "Apakah bisa konsultasi teknis sebelum pesan?",
+          answer:
+            "Tentu! Tim agronomis kami siap konsultasi gratis via WhatsApp untuk rekomendasi varietas, tata tanam, estimasi modal, hingga jadwal panen.",
+        },
+      ],
+    },
     seo: {
       _key: "seo",
-      metaTitle: "Panduan Tani Pisang & Sengon | Turia Farm Kediri",
+      metaTitle: "Panduan Budidaya Pisang & FAQ | Edukasi Tani Turia Farm",
       metaDescription:
-        "Artikel panduan budidaya pisang Cavendish, Raja Bulu, Kepok Tanjung & bibit sengon Solomon. Termasuk jarak tanam, pencegahan layu fusarium, analisis modal usaha tani, hingga FAQ.",
+        "Kumpulan artikel teknis budidaya pisang: jarak tanam cavendish 30 ton/ha, cara cegah penyakit layu fusarium, analisis modal usaha kebun pisang 1 hektar.",
       ogImage: null,
     },
   };

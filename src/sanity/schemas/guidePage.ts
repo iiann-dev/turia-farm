@@ -5,10 +5,38 @@ export const guidePage = defineType({
   title: "Panduan Tani (Halaman)",
   type: "document",
   fields: [
-    // HERO SECTION
+    // SECTION HEADER
+    defineField({
+      name: "sectionHeader",
+      title: "Section Header (Artikel)",
+      type: "object",
+      fields: [
+        defineField({
+          name: "eyebrowPill",
+          title: "Badge / Pill Text",
+          type: "string",
+          initialValue: "Edukasi & Riset Tani",
+        }),
+        defineField({
+          name: "headline",
+          title: "Judul Utama",
+          type: "string",
+          initialValue: "Panduan & Tips Budidaya Terkini",
+        }),
+        defineField({
+          name: "subtext",
+          title: "Deskripsi Pendek",
+          type: "text",
+          rows: 3,
+          initialValue:
+            "Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda.",
+        }),
+      ],
+    }),
+    // HERO SECTION (optional - for future use)
     defineField({
       name: "hero",
-      title: "Hero Section",
+      title: "Hero Section (Opsional)",
       type: "object",
       fields: [
         defineField({
@@ -48,6 +76,50 @@ export const guidePage = defineType({
       of: [{ type: "reference", to: [{ type: "article" }] }],
       description: "Pilih artikel yang ingin ditampilkan di halaman Panduan Tani. Urutkan sesuai keinginan.",
     }),
+    // FAQ SECTION
+    defineField({
+      name: "faqSection",
+      title: "FAQ Section (Pertanyaan Umum)",
+      type: "object",
+      fields: [
+        defineField({
+          name: "eyebrowPill",
+          title: "Badge / Pill Text",
+          type: "string",
+          initialValue: "FAQ • Pertanyaan Umum",
+        }),
+        defineField({
+          name: "headline",
+          title: "Judul FAQ",
+          type: "string",
+          initialValue: "Pertanyaan Seputar Pemesanan & Pengiriman",
+        }),
+        defineField({
+          name: "faqs",
+          title: "Daftar FAQ",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                defineField({
+                  name: "question",
+                  title: "Pertanyaan (Q)",
+                  type: "string",
+                }),
+                defineField({
+                  name: "answer",
+                  title: "Jawaban (A)",
+                  type: "text",
+                  rows: 4,
+                }),
+              ],
+            },
+          ],
+          description: "Tambah/edit pertanyaan dan jawaban FAQ di sini.",
+        }),
+      ],
+    }),
     // SEO
     defineField({
       name: "seo",
@@ -58,7 +130,7 @@ export const guidePage = defineType({
           name: "metaTitle",
           title: "Meta Title",
           type: "string",
-          initialValue: "Panduan Tani Pisang & Sengon | Turia Farm Kediri",
+          initialValue: "Panduan Budidaya Pisang & FAQ | Edukasi Tani Turia Farm",
         }),
         defineField({
           name: "metaDescription",
@@ -66,7 +138,7 @@ export const guidePage = defineType({
           type: "text",
           rows: 3,
           initialValue:
-            "Artikel panduan budidaya pisang Cavendish, Raja Bulu, Kepok Tanjung & bibit sengon Solomon. Termasuk jarak tanam, pencegahan layu fusarium, analisis modal usaha tani, hingga FAQ.",
+            "Kumpulan artikel teknis budidaya pisang: jarak tanam cavendish 30 ton/ha, cara cegah penyakit layu fusarium, analisis modal usaha kebun pisang 1 hektar.",
         }),
         defineField({
           name: "ogImage",

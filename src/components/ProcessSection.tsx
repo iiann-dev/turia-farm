@@ -5,18 +5,23 @@ import { Animated } from "./Animated";
 import { PROCESS_STEPS, SITE_CONFIG } from "../data/seedlings";
 import { ShieldCheck, ArrowRight, Dna, Sprout, SunMedium, Truck } from "lucide-react";
 import Image from "next/image";
+import { urlFor } from "@/lib/sanity";
 
 interface ProcessSectionProps {
-  cmsProcessSteps?: any[];
+  cmsProcessPage?: any;
   cmsSiteConfig?: any;
 }
 
 export const ProcessSection: React.FC<ProcessSectionProps> = ({
-  cmsProcessSteps,
+  cmsProcessPage,
   cmsSiteConfig,
 }) => {
-  const processSteps =
-    cmsProcessSteps && cmsProcessSteps.length > 0 ? cmsProcessSteps : PROCESS_STEPS;
+  const processSteps = cmsProcessPage?.processSteps?.length > 0
+    ? cmsProcessPage.processSteps
+    : PROCESS_STEPS;
+
+  const sectionHeader = cmsProcessPage?.sectionHeader;
+  const nurseryCard = cmsProcessPage?.nurseryCard;
 
   const siteConfig = cmsSiteConfig || SITE_CONFIG;
 
@@ -31,7 +36,7 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
       case 3:
         return <Truck className="text-[#00251d]" size={24} />;
       default:
-        return <ShieldCheck className="text-[#00251d]" size={24} />;
+        return <ShieldCheck className="text-[#2d6953]" size={24} />;
     }
   };
 
@@ -42,13 +47,13 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
         <div className="max-w-3xl mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
             <ShieldCheck size={13} className="text-[#2d6953]" />
-            <span>Standar Mutu Bibit</span>
+            <span>{sectionHeader?.eyebrowPill || "Standar Mutu Bibit"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
-            4 Tahap Pembibitan Kebun Tradisional
+            {sectionHeader?.headline || "4 Tahap Pembibitan Kebun Tradisional"}
           </h2>
           <p className="text-base sm:text-lg text-[#414845]">
-            Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.
+            {sectionHeader?.subtext || "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka."}
           </p>
         </div>
 
@@ -101,7 +106,9 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
         <div className="mt-16 rounded-[36px] bg-[#00251d] text-[#faf9f3] p-8 sm:p-12 relative overflow-hidden shadow-2xl">
           <div className="absolute right-0 top-0 bottom-0 w-1/3 hidden lg:block opacity-20">
             <Image
-              src="https://images.unsplash.com/photo-1643892343594-1e3be700217b?w=800&q=80&auto=format"
+              src={nurseryCard?.heroImage?.asset
+                ? urlFor(nurseryCard.heroImage).width(800).quality(80).url()
+                : "https://images.unsplash.com/photo-1643892343594-1e3be700217b?w=800&q=80&auto=format"}
               alt="Turia Farm Greenhouse"
               fill
               className="object-cover"
@@ -110,21 +117,21 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
 
           <div className="relative z-10 max-w-2xl">
             <div className="inline-block px-3 py-1 rounded-full bg-[#173b32] text-[#c4ebde] text-xs font-semibold tracking-wider uppercase mb-4">
-              Kunjungan & Edukasi Terbuka
+              {nurseryCard?.eyebrowPill || "Kunjungan & Edukasi Terbuka"}
             </div>
             <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal mb-4 text-[#faf9f3]">
-              Ingin melihat langsung kebun pembibitan & indukan kami?
+              {nurseryCard?.headline || "Ingin melihat langsung kebun pembibitan & indukan kami?"}
             </h3>
             <p className="text-sm sm:text-base text-[#c1c8c4] max-w-2xl leading-relaxed mb-8 font-normal">
-              Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung.
+              {nurseryCard?.description || "Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung."}
             </p>
             <a
-              href={siteConfig.whatsapp}
+              href={nurseryCard?.ctaLink || siteConfig.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#b1f0d4] text-[#00251d] hover:bg-white text-sm font-semibold transition-all shadow-md"
             >
-              <span>Jadwalkan Kunjungan Kebun</span>
+              <span>{nurseryCard?.ctaText || "Jadwalkan Kunjungan Kebun"}</span>
               <ArrowRight size={16} />
             </a>
           </div>

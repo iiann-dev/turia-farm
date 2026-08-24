@@ -5,10 +5,38 @@ export const processPage = defineType({
   title: "Proses Kultur (Halaman)",
   type: "document",
   fields: [
-    // HERO SECTION
+    // SECTION HEADER
+    defineField({
+      name: "sectionHeader",
+      title: "Section Header",
+      type: "object",
+      fields: [
+        defineField({
+          name: "eyebrowPill",
+          title: "Badge / Pill Text",
+          type: "string",
+          initialValue: "Standar Mutu Bibit",
+        }),
+        defineField({
+          name: "headline",
+          title: "Judul Utama",
+          type: "string",
+          initialValue: "4 Tahap Pembibitan Kebun Tradisional",
+        }),
+        defineField({
+          name: "subtext",
+          title: "Deskripsi Pendek",
+          type: "text",
+          rows: 3,
+          initialValue:
+            "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.",
+        }),
+      ],
+    }),
+    // HERO SECTION (optional - for future use)
     defineField({
       name: "hero",
-      title: "Hero Section",
+      title: "Hero Section (Opsional)",
       type: "object",
       fields: [
         defineField({
@@ -40,13 +68,60 @@ export const processPage = defineType({
         }),
       ],
     }),
-    // PROCESS TEASER - Reference to processStep documents
+    // PROCESS STEPS - Reference to processStep documents
     defineField({
       name: "processSteps",
       title: "Tahap Proses Kultur (Ditampilkan di Halaman)",
       type: "array",
       of: [{ type: "reference", to: [{ type: "processStep" }] }],
       description: "Pilih tahap proses yang ingin ditampilkan di halaman Proses Kultur. Urutkan sesuai keinginan.",
+    }),
+    // NURSERY FIELD VERIFICATION CARD
+    defineField({
+      name: "nurseryCard",
+      title: "Kartu Kunjungan Kebun (Nursery Field Verification)",
+      type: "object",
+      fields: [
+        defineField({
+          name: "eyebrowPill",
+          title: "Badge / Pill Text",
+          type: "string",
+          initialValue: "Kunjungan & Edukasi Terbuka",
+        }),
+        defineField({
+          name: "headline",
+          title: "Judul Kartu",
+          type: "string",
+          initialValue: "Ingin melihat langsung kebun pembibitan & indukan kami?",
+        }),
+        defineField({
+          name: "description",
+          title: "Deskripsi",
+          type: "text",
+          rows: 4,
+          initialValue:
+            "Pintu kebun pembibitan Turia Farm di Batuaji, Ringinrejo selalu terbuka untuk petani individu, kelompok tani, maupun investor perkebunan yang ingin cek mutu bibit secara langsung.",
+        }),
+        defineField({
+          name: "ctaText",
+          title: "Teks Tombol CTA",
+          type: "string",
+          initialValue: "Jadwalkan Kunjungan Kebun",
+        }),
+        defineField({
+          name: "ctaLink",
+          title: "Link CTA (WhatsApp)",
+          type: "url",
+          initialValue: "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20ingin%20jadwalkan%20kunjungan%20kebun",
+        }),
+        defineField({
+          name: "heroImage",
+          title: "Gambar Background (Opsional)",
+          type: "image",
+          options: { hotspot: true },
+          fields: [{ name: "alt", type: "string", title: "Alt Text" }],
+        }),
+      ],
     }),
     // SEO
     defineField({
@@ -58,7 +133,7 @@ export const processPage = defineType({
           name: "metaTitle",
           title: "Meta Title",
           type: "string",
-          initialValue: "Proses Pembibitan Pisang & Sengon | Turia Farm Kediri",
+          initialValue: "Proses Pembibitan | Turia Farm Kediri",
         }),
         defineField({
           name: "metaDescription",
@@ -66,7 +141,7 @@ export const processPage = defineType({
           type: "text",
           rows: 3,
           initialValue:
-            "Pelajari 4 tahap proses pembibitan pisang anakan unggul & bibit sengon biji di Turia Farm Kediri: Seleksi Indukan, Pemisahan Anakan, Pembesaran Polybag, hingga Grading & Pengiriman Bergaransi.",
+            "Pelajari 4 tahap pembibitan pisang anakan dan penyemaian bibit sengon biji di Turia Farm Batuaji Ringinrejo Kediri. Akar aktif bergaransi hidup.",
         }),
         defineField({
           name: "ogImage",

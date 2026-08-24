@@ -9,11 +9,11 @@ import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 
 interface JournalAndFaqProps {
-  cmsArticles?: any[];
+  cmsGuidePage?: any;
 }
 
 export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
-  cmsArticles,
+  cmsGuidePage,
 }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [readingArticle, setReadingArticle] = useState<ArticleItem | null>(null);
@@ -23,8 +23,10 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
   };
 
   // Use CMS data with static fallbacks
-  const articles =
-    cmsArticles && cmsArticles.length > 0 ? cmsArticles : ARTICLES;
+  const sectionHeader = cmsGuidePage?.sectionHeader;
+  const articles = cmsGuidePage?.articles?.length > 0 ? cmsGuidePage.articles : ARTICLES;
+  const faqSection = cmsGuidePage?.faqSection;
+  const faqs = faqSection?.faqs?.length > 0 ? faqSection.faqs : FAQS;
 
   return (
     <section id="journal" className="py-24 sm:py-32 bg-[#faf9f3] relative">
@@ -34,28 +36,31 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
               <BookOpen size={13} className="text-[#2d6953]" />
-              <span>Edukasi & Riset Tani</span>
+              <span>{sectionHeader?.eyebrowPill || "Edukasi & Riset Tani"}</span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight">
-              Panduan & Tips Budidaya Terkini
+              {sectionHeader?.headline || "Panduan & Tips Budidaya Terkini"}
             </h2>
           </div>
           <p className="text-sm sm:text-base text-[#414845] max-w-md font-normal">
-            Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda.
+            {sectionHeader?.subtext || "Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda."}
           </p>
         </div>
 
         {/* Article Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {articles.map((article, idx) => {
+          {articles.map((article: any, idx: number) => {
+            const articleId = article.id?.current || article.id || `article-${idx}`;
             const imageSrc = article.image?.asset
               ? urlFor(article.image).width(800).quality(80).url()
-              : article.image || "https://images.unsplash.com/photo-1620036924477-c3d6e9ce36fc?w=800&q=80&auto=format";
+              : article.coverImage?.asset
+                ? urlFor(article.coverImage).width(800).quality(80).url()
+                : article.image || "https://images.unsplash.com/photo-1620036924477-c3d6e9ce36fc?w=800&q=80&auto=format";
 
             return (
               <Animated
                 as="article"
-                key={article.id?.current || article.id || idx}
+                key={articleId}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -103,7 +108,7 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
 
                 <div className="px-6 pb-6 pt-2">
                   <button
-                    onClick={() => setReadingArticle(article)}
+                    onClick={() => setReadingArticle(article as ArticleItem)}
                     className="w-full flex items-center justify-between py-2.5 px-4 rounded-full bg-white border border-[#c1c8c4] text-xs font-semibold text-[#00251d] hover:bg-[#00251d] hover:text-white transition-all shadow-xs"
                   >
                     <span>Baca Selengkapnya</span>
@@ -165,19 +170,19 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-3">
               <HelpCircle size={13} className="text-[#2d6953]" />
-              <span>FAQ • Pertanyaan Umum</span>
+              <span>{faqSection?.eyebrowPill || "FAQ • Pertanyaan Umum"}</span>
             </div>
             <h3 className="font-serif text-3xl sm:text-4xl font-normal text-[#00251d]">
-              Pertanyaan Seputar Pemesanan & Pengiriman
+              {faqSection?.headline || "Pertanyaan Seputar Pemesanan & Pengiriman"}
             </h3>
           </div>
 
           <div className="space-y-4">
-            {FAQS.map((faq, index) => {
+            {faqs.map((faq: any, index: number) => {
               const isOpen = openFaq === index;
               return (
                 <div
-                  key={index}
+                  key={faq._key || faq.question || index}
                   className="rounded-2xl bg-[#faf9f3] border border-[#c1c8c4]/60 overflow-hidden shadow-xs"
                 >
                   <button
@@ -185,7 +190,7 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
                     className="w-full px-6 py-5 flex items-center justify-between text-left transition-colors hover:bg-[#f5f4ee]"
                   >
                     <span className="font-serif text-base sm:text-lg font-bold text-[#00251d] pr-4">
-                      {faq.q}
+                      {faq.question || faq.q}
                     </span>
                     <div
                       className={`w-8 h-8 rounded-full bg-[#efeee8] flex items-center justify-center text-[#00251d] transition-transform duration-300 shrink-0 ${
@@ -203,7 +208,7 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
                   >
                     <div className="overflow-hidden">
                       <div className="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#414845] leading-relaxed border-t border-[#efeee8]">
-                        {faq.a}
+                        {faq.answer || faq.a}
                       </div>
                     </div>
                   </div>
