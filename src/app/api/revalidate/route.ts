@@ -27,6 +27,12 @@ export async function POST(request: NextRequest) {
     } else if (type === "processStep") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/proses-kultur");
+    } else if (type === "processPage") {
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/proses-kultur");
+    } else if (type === "guidePage") {
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/panduan-tani");
     } else if (type === "catalogPage") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/bibit-pisang");
