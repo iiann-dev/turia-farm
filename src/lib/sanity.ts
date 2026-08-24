@@ -87,3 +87,46 @@ export async function getCatalogPage() {
   }`;
   return client.fetch(query);
 }
+
+export async function getProcessPage() {
+  const query = `*[_type == "processPage"][0]{
+    hero,
+    seo,
+    "processSteps": processSteps[]->{
+      _id,
+      step,
+      title,
+      tagline,
+      desc,
+      duration,
+      highlight,
+      icon,
+      image,
+      order
+    }
+  }`;
+  return client.fetch(query);
+}
+
+export async function getGuidePage() {
+  const query = `*[_type == "guidePage"][0]{
+    hero,
+    seo,
+    "articles": articles[]->{
+      _id,
+      id,
+      title,
+      slug,
+      excerpt,
+      content,
+      coverImage,
+      category,
+      author,
+      publishedAt,
+      published,
+      readTime,
+      order
+    }
+  }`;
+  return client.fetch(query);
+}

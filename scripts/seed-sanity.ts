@@ -265,6 +265,71 @@ async function seedSiteConfig() {
   console.log("✅ Site Config seeded");
 }
 
+async function seedProcessPage() {
+  console.log("🌱 Seeding Process Page...");
+
+  const processPageDoc = {
+    _id: "processPage",
+    _type: "processPage",
+    hero: {
+      _key: "hero",
+      eyebrowPill: "Proses Pembibitan",
+      headline: "4 Tahap Pemuliaan Tanpa Kompromi",
+      subtext:
+        "Setiap bibit Turia Farm melewati seleksi ketat dari induk unggul hingga siap tanam di lahan Anda. Proses standar SOP berkelanjutan menjamin kualitas genetik & kesehatan tanaman.",
+      heroImage: null,
+    },
+    processSteps: [
+      { _type: "reference", _ref: "processStep-01" },
+      { _type: "reference", _ref: "processStep-02" },
+      { _type: "reference", _ref: "processStep-03" },
+      { _type: "reference", _ref: "processStep-04" },
+    ],
+    seo: {
+      _key: "seo",
+      metaTitle: "Proses Pembibitan Pisang & Sengon | Turia Farm Kediri",
+      metaDescription:
+        "Pelajari 4 tahap proses pembibitan pisang anakan unggul & bibit sengon biji di Turia Farm Kediri: Seleksi Indukan, Pemisahan Anakan, Pembesaran Polybag, hingga Grading & Pengiriman Bergaransi.",
+      ogImage: null,
+    },
+  };
+
+  await client.createOrReplace(processPageDoc);
+  console.log("✅ Process Page seeded");
+}
+
+async function seedGuidePage() {
+  console.log("🌱 Seeding Guide Page...");
+
+  const guidePageDoc = {
+    _id: "guidePage",
+    _type: "guidePage",
+    hero: {
+      _key: "hero",
+      eyebrowPill: "Panduan Tani",
+      headline: "Panduan Praktis & FAQ Kebun Pisang & Sengon",
+      subtext:
+        "Wawasan teknis dari agronomis Turia Farm: jarak tanam optimal, pencegahan penyakit layu, analisis usaha tani, hingga tips panen maksimal. Gratis untuk petani mitra.",
+      heroImage: null,
+    },
+    articles: [
+      { _type: "reference", _ref: "article-panduan-jarak-tanam-cavendish" },
+      { _type: "reference", _ref: "article-mencegah-penyakit-layu-fusarium" },
+      { _type: "reference", _ref: "article-analisis-usaha-tani-pisang-raja" },
+    ],
+    seo: {
+      _key: "seo",
+      metaTitle: "Panduan Tani Pisang & Sengon | Turia Farm Kediri",
+      metaDescription:
+        "Artikel panduan budidaya pisang Cavendish, Raja Bulu, Kepok Tanjung & bibit sengon Solomon. Termasuk jarak tanam, pencegahan layu fusarium, analisis modal usaha tani, hingga FAQ.",
+      ogImage: null,
+    },
+  };
+
+  await client.createOrReplace(guidePageDoc);
+  console.log("✅ Guide Page seeded");
+}
+
 async function seedSeedlings(assetMap: Record<string, string> = {}) {
   console.log("🌱 Seeding Seedlings...");
 
@@ -711,12 +776,16 @@ async function main() {
     // Then seed Page Singletons
     await seedHomePage();
     await seedCatalogPage();
+    await seedProcessPage();
+    await seedGuidePage();
     await seedSiteConfig();
 
     console.log("\n🎉 All content seeded successfully!");
     console.log("\n📋 Summary:");
     console.log("  • 1 Home Page (singleton)");
     console.log("  • 1 Catalog Page (singleton)");
+    console.log("  • 1 Process Page (singleton)");
+    console.log("  • 1 Guide Page (singleton)");
     console.log("  • 1 Site Config (singleton)");
     console.log("  • 8 Seedlings (3 featured) with images");
     console.log("  • 3 Articles");

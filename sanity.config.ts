@@ -37,6 +37,26 @@ export default defineConfig({
                   .documentId("catalogPage")
                   .title("Katalog Bibit (Halaman)")
               ),
+            // Singleton Process Page
+            S.listItem()
+              .title("Proses Kultur (Halaman)")
+              .id("processPage")
+              .child(
+                S.document()
+                  .schemaType("processPage")
+                  .documentId("processPage")
+                  .title("Proses Kultur (Halaman)")
+              ),
+            // Singleton Guide Page
+            S.listItem()
+              .title("Panduan Tani (Halaman)")
+              .id("guidePage")
+              .child(
+                S.document()
+                  .schemaType("guidePage")
+                  .documentId("guidePage")
+                  .title("Panduan Tani (Halaman)")
+              ),
             // Singleton Site Config
             S.listItem()
               .title("Konfigurasi Situs (Global)")
