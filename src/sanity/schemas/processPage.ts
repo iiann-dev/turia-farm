@@ -33,41 +33,6 @@ export const processPage = defineType({
         }),
       ],
     }),
-    // HERO SECTION (optional - for future use)
-    defineField({
-      name: "hero",
-      title: "Hero Section (Opsional)",
-      type: "object",
-      fields: [
-        defineField({
-          name: "eyebrowPill",
-          title: "Badge / Pill Text",
-          type: "string",
-          initialValue: "Proses Pembibitan",
-        }),
-        defineField({
-          name: "headline",
-          title: "Judul Utama",
-          type: "string",
-          initialValue: "4 Tahap Pemuliaan Tanpa Kompromi",
-        }),
-        defineField({
-          name: "subtext",
-          title: "Deskripsi Pendek",
-          type: "text",
-          rows: 3,
-          initialValue:
-            "Setiap bibit Turia Farm melewati seleksi ketat dari induk unggul hingga siap tanam di lahan Anda. Proses standar SOP berkelanjutan menjamin kualitas genetik & kesehatan tanaman.",
-        }),
-        defineField({
-          name: "heroImage",
-          title: "Gambar Hero (Opsional)",
-          type: "image",
-          options: { hotspot: true },
-          fields: [{ name: "alt", type: "string", title: "Alt Text" }],
-        }),
-      ],
-    }),
     // PROCESS STEPS - Reference to processStep documents
     defineField({
       name: "processSteps",

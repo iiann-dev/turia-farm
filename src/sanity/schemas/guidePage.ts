@@ -33,41 +33,6 @@ export const guidePage = defineType({
         }),
       ],
     }),
-    // HERO SECTION (optional - for future use)
-    defineField({
-      name: "hero",
-      title: "Hero Section (Opsional)",
-      type: "object",
-      fields: [
-        defineField({
-          name: "eyebrowPill",
-          title: "Badge / Pill Text",
-          type: "string",
-          initialValue: "Panduan Tani",
-        }),
-        defineField({
-          name: "headline",
-          title: "Judul Utama",
-          type: "string",
-          initialValue: "Panduan Praktis & FAQ Kebun Pisang & Sengon",
-        }),
-        defineField({
-          name: "subtext",
-          title: "Deskripsi Pendek",
-          type: "text",
-          rows: 3,
-          initialValue:
-            "Wawasan teknis dari agronomis Turia Farm: jarak tanam optimal, pencegahan penyakit layu, analisis usaha tani, hingga tips panen maksimal. Gratis untuk petani mitra.",
-        }),
-        defineField({
-          name: "heroImage",
-          title: "Gambar Hero (Opsional)",
-          type: "image",
-          options: { hotspot: true },
-          fields: [{ name: "alt", type: "string", title: "Alt Text" }],
-        }),
-      ],
-    }),
     // ARTICLES - Reference to article documents
     defineField({
       name: "articles",

@@ -91,7 +91,6 @@ export async function getCatalogPage() {
 export async function getProcessPage() {
   const query = `*[_type == "processPage"][0]{
     sectionHeader,
-    hero,
     "processSteps": processSteps[]->{
       _id,
       step,
@@ -113,7 +112,6 @@ export async function getProcessPage() {
 export async function getGuidePage() {
   const query = `*[_type == "guidePage"][0]{
     sectionHeader,
-    hero,
     "articles": articles[]->{
       _id,
       id,

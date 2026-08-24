@@ -278,14 +278,6 @@ async function seedProcessPage() {
       subtext:
         "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka.",
     },
-    hero: {
-      _key: "hero",
-      eyebrowPill: "Proses Pembibitan",
-      headline: "4 Tahap Pemuliaan Tanpa Kompromi",
-      subtext:
-        "Setiap bibit Turia Farm melewati seleksi ketat dari induk unggul hingga siap tanam di lahan Anda. Proses standar SOP berkelanjutan menjamin kualitas genetik & kesehatan tanaman.",
-      heroImage: null,
-    },
     processSteps: [
       { _type: "reference", _ref: "processStep-01" },
       { _type: "reference", _ref: "processStep-02" },
@@ -327,14 +319,6 @@ async function seedGuidePage() {
       headline: "Panduan & Tips Budidaya Terkini",
       subtext:
         "Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda.",
-    },
-    hero: {
-      _key: "hero",
-      eyebrowPill: "Panduan Tani",
-      headline: "Panduan Praktis & FAQ Kebun Pisang & Sengon",
-      subtext:
-        "Wawasan teknis dari agronomis Turia Farm: jarak tanam optimal, pencegahan penyakit layu, analisis usaha tani, hingga tips panen maksimal. Gratis untuk petani mitra.",
-      heroImage: null,
     },
     articles: [
       { _type: "reference", _ref: "article-panduan-jarak-tanam-cavendish" },
