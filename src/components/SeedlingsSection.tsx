@@ -8,6 +8,7 @@ import { SeedlingItem } from "../types";
 import { ArrowUpRight, Sparkles, Scale, Clock, Ruler, Search, X } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
+import { GooeyInput } from "@/components/ui/gooey-input";
 
 interface SeedlingsSectionProps {
   cmsSeedlings?: any[];
@@ -141,8 +142,8 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
     cmsCatalogHero?.subtext ||
     "Semua bibit dirawat langsung di kebun pembibitan Batuaji Kediri, berakar sehat aktif dalam polybag organik siap tanam.";
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
   };
 
   const handleClearSearch = () => {
@@ -176,73 +177,45 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
         </div>
 
         {/* Search Input */}
-        <div className="mb-10 max-w-xl mx-auto w-full">
-          <div className="relative">
-            <Search
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-[#717975] transition-colors duration-200"
-              size={20}
-              aria-hidden="true"
-            />
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
-              className={`
-                w-full pl-12 pr-12 py-3.5 rounded-2xl bg-white border-2 transition-all duration-200
-                text-[#00251d] placeholder:text-[#a8cfc2] text-sm sm:text-base
-                focus:outline-none focus:ring-2 focus:ring-[#2d6953]
-                ${showNoResultsAnimation ? "border-red-500 focus:border-red-500 focus:ring-red-500" : "border-[#c1c8c4]/60 focus:border-[#2d6953]"}
-              `}
-              aria-label="Cari varietas bibit"
-              aria-describedby={filteredSeedlings.length === 0 && searchQuery.trim() ? "search-result-message" : undefined}
-              autoComplete="off"
-            />
-            <AnimatePresence>
-              {searchQuery && (
-                <motion.button
-                  type="button"
-                  onClick={handleClearSearch}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[#717975] hover:text-[#00251d] transition-colors p-1 rounded-full hover:bg-[#efeee8]"
-                  aria-label="Hapus pencarian"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.15 }}
-                >
-                  <X size={18} />
-                </motion.button>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Result count / Empty state message */}
-          <AnimatePresence>
-            {searchQuery.trim() && (
-              <motion.p
-                id="search-result-message"
-                className={`mt-2 text-xs text-center transition-all duration-200 ${
-                  filteredSeedlings.length === 0 ? "text-red-500" : "text-[#717975]"
-                }`}
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -4 }}
-                aria-live="polite"
-              >
-                {filteredSeedlings.length === 0 ? (
-                  <>
-                    Tidak ditemukan varietas untuk &ldquo;{searchQuery}&rdquo;.
-                    <br />
-                    <span className="font-medium">Coba: Cavendish, Raja, Kepok, Mas, Barangan, Sengon...</span>
-                  </>
-                ) : (
-                  `Menampilkan ${filteredSeedlings.length} dari ${allSeedlings.length} varietas`
-                )}
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </div>
+        {/* Search Input */}
+                <div className="mb-10 max-w-xl mx-auto w-full">
+                  <GooeyInput
+                    placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
+                    expandedWidth={360}
+                    collapsedWidth={56}
+                    value={searchQuery}
+                    onValueChange={handleSearchChange}
+                    onOpenChange={(open) => {
+                      if (!open) handleClearSearch();
+                    }}
+                    className="w-full"
+                  />
+                  {/* Result count / Empty state message */}
+                  <AnimatePresence>
+                    {searchQuery.trim() && (
+                      <motion.p
+                        id="search-result-message"
+                        className={`mt-2 text-xs text-center transition-all duration-200 ${
+                          filteredSeedlings.length === 0 ? "text-red-500" : "text-[#717975]"
+                        }`}
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        aria-live="polite"
+                      >
+                        {filteredSeedlings.length === 0 ? (
+                          <>
+                            Tidak ditemukan varietas untuk &ldquo;{searchQuery}&rdquo;.
+                            <br />
+                            <span className="font-medium">Coba: Cavendish, Raja, Kepok, Mas, Barangan, Sengon...</span>
+                          </>
+                        ) : (
+                          `Menampilkan ${filteredSeedlings.length} dari ${allSeedlings.length} varietas`
+                        )}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </div>
 
         {/* Seedlings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
