@@ -57,6 +57,26 @@ export default defineConfig({
                   .documentId("guidePage")
                   .title("Panduan Tani (Halaman)")
               ),
+            // Singleton About Page
+            S.listItem()
+              .title("Tentang Kami (Halaman)")
+              .id("aboutPage")
+              .child(
+                S.document()
+                  .schemaType("aboutPage")
+                  .documentId("aboutPage")
+                  .title("Tentang Kami (Halaman)")
+              ),
+            // Singleton Contact Page
+            S.listItem()
+              .title("Kontak & Alamat (Halaman)")
+              .id("contactPage")
+              .child(
+                S.document()
+                  .schemaType("contactPage")
+                  .documentId("contactPage")
+                  .title("Kontak & Alamat (Halaman)")
+              ),
             // Singleton Site Config
             S.listItem()
               .title("Konfigurasi Situs (Global)")

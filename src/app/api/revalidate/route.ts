@@ -33,6 +33,12 @@ export async function POST(request: NextRequest) {
     } else if (type === "guidePage") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/panduan-tani");
+    } else if (type === "aboutPage") {
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/tentang-kami");
+    } else if (type === "contactPage") {
+      pathsToRevalidate.push("/");
+      pathsToRevalidate.push("/kontak");
     } else if (type === "catalogPage") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/bibit-pisang");

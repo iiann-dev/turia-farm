@@ -4,13 +4,30 @@ import React, { useState } from "react";
 import { Animated } from "./Animated";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { MapPin, Phone, Clock, Send, MessageCircle, Truck } from "lucide-react";
-import { getSiteConfig, getMapsEmbedSrc } from "@/lib/sanity";
+import { getMapsEmbedSrc } from "@/lib/sanity";
 
-export const ContactAndLocation: React.FC = () => {
+interface ContactAndLocationProps {
+  cmsContactPage?: any;
+  cmsSiteConfig?: any;
+}
+
+export const ContactAndLocation: React.FC<ContactAndLocationProps> = ({
+  cmsContactPage,
+  cmsSiteConfig,
+}) => {
+  const siteConfig = cmsSiteConfig || SITE_CONFIG;
+  const sectionHeader = cmsContactPage?.sectionHeader;
+  const deliveryCard = cmsContactPage?.deliveryCard;
+  const formConfig = cmsContactPage?.formFields;
+  const varietasOptions =
+    cmsContactPage?.formVarietasOptions && cmsContactPage.formVarietasOptions.length > 0
+      ? cmsContactPage.formVarietasOptions
+      : SEEDLINGS.map((s) => s.name).concat(["Campuran Beberapa Varietas"]);
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    variety: "Cavendish Grand Naine",
+    variety: varietasOptions[0] || "Cavendish Grand Naine",
     qty: "500",
     message: "",
   });
@@ -23,11 +40,19 @@ export const ContactAndLocation: React.FC = () => {
       form.qty
     )} bibit%0ACatatan: ${encodeURIComponent(form.message)}`;
 
-    window.open(`https://wa.me/6289508495717?text=${text}`, "_blank");
+    const targetWa = formConfig?.whatsappNumber || siteConfig.whatsapp || "6289508495717";
+    window.open(`https://wa.me/${targetWa}?text=${text}`, "_blank");
   };
 
-  // Static fallback data
-  const staticConfig = SITE_CONFIG;
+  const addressText = typeof siteConfig.address === "object"
+    ? `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.province} ${siteConfig.address.postalCode}`
+    : siteConfig.address || SITE_CONFIG.address;
+
+  const hoursText = typeof siteConfig.openingHours === "object"
+    ? `${siteConfig.openingHours.days} (${siteConfig.openingHours.open} - ${siteConfig.openingHours.close} ${siteConfig.openingHours.timezone})`
+    : siteConfig.hours || SITE_CONFIG.hours;
+
+  const phoneText = siteConfig.whatsapp || SITE_CONFIG.phone;
 
   return (
     <section id="contact" className="py-24 sm:py-32 bg-[#faf9f3] relative">
@@ -36,13 +61,13 @@ export const ContactAndLocation: React.FC = () => {
         <div className="max-w-2xl mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#efeee8] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-4">
             <MessageCircle size={13} className="text-[#2d6953]" />
-            <span>Kunjungi & Hubungi Kami</span>
+            <span>{sectionHeader?.eyebrowPill || "Kunjungi & Hubungi Kami"}</span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
-            Siap Memulai Kebun Pisang & Sengon Produktif?
+            {sectionHeader?.headline || "Siap Memulai Kebun Pisang & Sengon Produktif?"}
           </h2>
           <p className="text-base sm:text-lg text-[#414845]">
-            Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda.
+            {sectionHeader?.subtext || "Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda."}
           </p>
         </div>
 
@@ -60,15 +85,15 @@ export const ContactAndLocation: React.FC = () => {
                     Lokasi Kebun Pembibitan & Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d] leading-snug">
-                    {staticConfig.address}
+                    {addressText}
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
-                    {staticConfig.nurseryArea}
+                    {SITE_CONFIG.nurseryArea}
                   </div>
                   {/* Google Maps Embed - CMS Driven */}
                   <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">
                     <iframe
-                      src={getMapsEmbedSrc(staticConfig.geo?.lat, staticConfig.geo?.lng)}
+                      src={getMapsEmbedSrc(siteConfig.geo?.lat || SITE_CONFIG.geo?.lat, siteConfig.geo?.lng || SITE_CONFIG.geo?.lng)}
                       title="Turia's Farm Kediri - Google Maps"
                       className="w-full h-44 sm:h-52"
                       loading="lazy"
@@ -77,7 +102,7 @@ export const ContactAndLocation: React.FC = () => {
                     />
                   </div>
                   <a
-                    href={staticConfig.mapsLink}
+                    href={SITE_CONFIG.mapsLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
@@ -97,7 +122,7 @@ export const ContactAndLocation: React.FC = () => {
                     Layanan Konsultasi Tani
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
-                    {staticConfig.phone} (WhatsApp / Telepon)
+                    +{phoneText} (WhatsApp / Telepon)
                   </div>
                   <div className="text-xs text-[#717975] mt-1">
                     Fast response jam kerja
@@ -114,7 +139,7 @@ export const ContactAndLocation: React.FC = () => {
                     Jam Operasional Nursery
                   </div>
                   <div className="text-sm font-semibold text-[#00251d]">
-                    {staticConfig.hours}
+                    {hoursText}
                   </div>
                 </div>
               </div>
@@ -127,10 +152,10 @@ export const ContactAndLocation: React.FC = () => {
               </div>
               <div>
                 <div className="font-serif font-bold text-base text-[#faf9f3]">
-                  Armada Truk & Keranjang Kayu
+                  {deliveryCard?.title || "Armada Truk & Keranjang Kayu"}
                 </div>
                 <div className="text-xs text-[#a8cfc2] mt-0.5 leading-relaxed">
-                  Pengiriman skala besar diantar langsung ke lokasi kebun Anda dengan garansi hidup.
+                  {deliveryCard?.description || "Pengiriman skala besar diantar langsung ke lokasi kebun Anda dengan garansi hidup."}
                 </div>
               </div>
             </div>
@@ -144,10 +169,10 @@ export const ContactAndLocation: React.FC = () => {
             className="lg:col-span-7 p-8 sm:p-10 rounded-3xl bg-white border border-[#c1c8c4]/60 shadow-lg"
           >
             <h3 className="font-serif text-2xl font-bold text-[#00251d] mb-2">
-              Formulir Konsultasi & Pemesanan Bibit
+              {formConfig?.formTitle || "Formulir Konsultasi & Pemesanan Bibit"}
             </h3>
             <p className="text-xs sm:text-sm text-[#414845] mb-8">
-              Isi data kebutuhan Anda di bawah ini, kami akan langsung sambungkan ke WhatsApp resmi Agronomis Turia Farm.
+              {formConfig?.formDescription || "Isi data kebutuhan Anda di bawah ini, kami akan langsung sambungkan ke WhatsApp resmi Agronomis Turia Farm."}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
@@ -191,14 +216,11 @@ export const ContactAndLocation: React.FC = () => {
                     onChange={(e) => setForm({ ...form, variety: e.target.value })}
                     className="w-full px-4 py-3 rounded-2xl bg-[#faf9f3] border border-[#c1c8c4] focus:outline-none focus:border-[#00251d] text-sm text-[#1b1c19]"
                   >
-                    {SEEDLINGS.map((s) => (
-                      <option key={s.id} value={s.name}>
-                        {s.name}
+                    {varietasOptions.map((v: string) => (
+                      <option key={v} value={v}>
+                        {v}
                       </option>
                     ))}
-                    <option value="Campuran Beberapa Varietas">
-                      Campuran Beberapa Varietas
-                    </option>
                   </select>
                 </div>
 
@@ -235,7 +257,7 @@ export const ContactAndLocation: React.FC = () => {
                 className="w-full py-4 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-sm font-semibold tracking-wide shadow-md flex items-center justify-center gap-2 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
               >
                 <Send size={16} />
-                <span>Kirim Pertanyaan via WhatsApp</span>
+                <span>{formConfig?.submitButtonText || "Kirim Pertanyaan via WhatsApp"}</span>
               </button>
             </form>
           </Animated>

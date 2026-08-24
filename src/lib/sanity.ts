@@ -132,3 +132,26 @@ export async function getGuidePage() {
   }`;
   return client.fetch(query);
 }
+
+export async function getAboutPage() {
+  const query = `*[_type == "aboutPage"][0]{
+    storySection,
+    heroImage,
+    valuePillars,
+    testimonials,
+    farmStatsBadge,
+    seo
+  }`;
+  return client.fetch(query);
+}
+
+export async function getContactPage() {
+  const query = `*[_type == "contactPage"][0]{
+    sectionHeader,
+    deliveryCard,
+    formFields,
+    formVarietasOptions,
+    seo
+  }`;
+  return client.fetch(query);
+}

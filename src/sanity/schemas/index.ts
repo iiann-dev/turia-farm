@@ -6,12 +6,16 @@ import { catalogPage } from "./catalogPage";
 import { siteConfig } from "./siteConfig";
 import { processPage } from "./processPage";
 import { guidePage } from "./guidePage";
+import { aboutPage } from "./aboutPage";
+import { contactPage } from "./contactPage";
 
 export const schemaTypes = [
   homePage,
   catalogPage,
   processPage,
   guidePage,
+  aboutPage,
+  contactPage,
   siteConfig,
   seedling,
   article,

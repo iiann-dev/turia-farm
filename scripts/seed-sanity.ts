@@ -800,6 +800,105 @@ async function seedProcessSteps() {
   console.log("✅ 4 Process Steps seeded");
 }
 
+async function seedAboutPage() {
+  console.log("🌱 Seeding About Page...");
+
+  const aboutPageDoc = {
+    _id: "aboutPage",
+    _type: "aboutPage",
+    storySection: {
+      _key: "story-section",
+      eyebrowPill: "Tentang Turia Farm",
+      headline: "Dedikasi untuk Kesejahteraan Petani Indonesia",
+      paragraphs: [
+        "Turia Farm berawal dari kebun pembibitan keluarga di Batuaji, Ringinrejo, Kediri yang prihatin atas maraknya bibit cabutan asal-asalan dan tidak seragam di kalangan petani.",
+        "Kini dengan lahan pembibitan kebun seluas 2.8 hektar di Batuaji Kediri, kami memproduksi anakan pisang pilihan dari pohon indukan sehat serta penyemaian biji sengon unggul, mendampingi ratusan petani dari nol hingga panen raya yang menguntungkan.",
+      ],
+    },
+    heroImage: null,
+    valuePillars: [
+      {
+        _key: "pillar-1",
+        title: "Bukan Bibit Cabutan",
+        description: "Genetika murni klon unggul dengan riwayat pohon induk tercatat jelas.",
+      },
+      {
+        _key: "pillar-2",
+        title: "Bimbingan Sampai Panen",
+        description: "Konsultasi gratis pupuk & hama langsung via WhatsApp agronomis kami.",
+      },
+    ],
+    testimonials: [],
+    farmStatsBadge: {
+      _key: "farm-stats-badge",
+      title: "2.8 Hektar",
+      description:
+        "Kapasitas ribuan polybag bibit anakan & bibit sengon per siklus tanam.",
+    },
+    seo: {
+      _key: "seo",
+      metaTitle: "Tentang Kami & Nursery 2.8 Ha | Turia Farm Kediri",
+      metaDescription:
+        "Mengenal visi Turia Farm di Batuaji, Ringinrejo, Kediri: Menyejahterakan petani nusantara melalui penyediaan bibit pisang unggul murni bebas layu fusarium dan bibit sengon bermutu.",
+      ogImage: null,
+    },
+  };
+
+  await client.createOrReplace(aboutPageDoc);
+  console.log("✅ About Page seeded");
+}
+
+async function seedContactPage() {
+  console.log("🌱 Seeding Contact Page...");
+
+  const contactPageDoc = {
+    _id: "contactPage",
+    _type: "contactPage",
+    sectionHeader: {
+      _key: "section-header",
+      eyebrowPill: "Kunjungi & Hubungi Kami",
+      headline: "Siap Memulai Kebun Pisang & Sengon Produktif?",
+      subtext:
+        "Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda.",
+    },
+    deliveryCard: {
+      _key: "delivery-card",
+      title: "Armada Truk & Keranjang Kayu",
+      description:
+        "Pengiriman skala besar diantar langsung ke lokasi kebun Anda dengan garansi hidup.",
+    },
+    formFields: {
+      _key: "form-fields",
+      formTitle: "Formulir Konsultasi & Pemesanan Bibit",
+      formDescription:
+        "Isi data kebutuhan Anda di bawah ini, kami akan langsung sambungkan ke WhatsApp resmi Agronomis Turia Farm.",
+      submitButtonText: "Kirim Pertanyaan via WhatsApp",
+      whatsappNumber: "6289508495717",
+    },
+    formVarietasOptions: [
+      "Cavendish Grand Naine",
+      "Pisang Raja Bulu Super",
+      "Kepok Tanjung (Tanpa Jantung)",
+      "Pisang Mas Kirana",
+      "Pisang Barangan Merah",
+      "Pisang Ambon Kuning Super",
+      "Sengon Solomon",
+      "Sengon Lokal / Jeungjing",
+      "Campuran Beberapa Varietas",
+    ],
+    seo: {
+      _key: "seo",
+      metaTitle: "Kontak & Alamat Nursery Batuaji Kediri | Turia Farm",
+      metaDescription:
+        "Hubungi nursery Turia Farm di Batuaji, Ringinrejo, Kab. Kediri untuk konsultasi pemesanan bibit pisang dan bibit sengon skala kecil maupun partai besar perkebunan. Buka Senin-Sabtu.",
+      ogImage: null,
+    },
+  };
+
+  await client.createOrReplace(contactPageDoc);
+  console.log("✅ Contact Page seeded");
+}
+
 async function main() {
   console.log("🚀 Starting Sanity seed for Turia Farm...\n");
 
@@ -816,6 +915,8 @@ async function main() {
     await seedCatalogPage();
     await seedProcessPage();
     await seedGuidePage();
+    await seedAboutPage();
+    await seedContactPage();
     await seedSiteConfig();
 
     console.log("\n🎉 All content seeded successfully!");
@@ -824,6 +925,8 @@ async function main() {
     console.log("  • 1 Catalog Page (singleton)");
     console.log("  • 1 Process Page (singleton)");
     console.log("  • 1 Guide Page (singleton)");
+    console.log("  • 1 About Page (singleton)");
+    console.log("  • 1 Contact Page (singleton)");
     console.log("  • 1 Site Config (singleton)");
     console.log("  • 8 Seedlings (3 featured) with images");
     console.log("  • 3 Articles");
