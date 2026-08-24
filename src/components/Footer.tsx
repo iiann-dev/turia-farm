@@ -84,20 +84,19 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
             <span>© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
             <div className="flex items-center gap-3">
-              {/* WhatsApp */}
+                            {/* WhatsApp */}
               <a
                 href={rawWhatsApp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 transition-colors"
+                className="flex items-center justify-center w-9 h-9 transition-transform hover:scale-110"
                 aria-label="WhatsApp Turia Farm"
               >
                 <img
-                  src="/icons8-whatsapp.gif"
+                  src="/wa-brand.png"
                   alt="WhatsApp"
-                  width={22}
-                  height={22}
-                  style={{ mixBlendMode: 'multiply' }}
+                  width={24}
+                  height={24}
                 />
               </a>
               {/* Facebook */}
@@ -106,15 +105,14 @@ export const Footer: React.FC<FooterProps> = ({
                   href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-9 h-9 transition-colors"
+                  className="flex items-center justify-center w-9 h-9 transition-transform hover:scale-110"
                   aria-label="Facebook Turia Farm"
                 >
                   <img
-                    src="/icons8-facebook.gif"
+                    src="/fb-brand.png"
                     alt="Facebook"
-                    width={22}
-                    height={22}
-                    style={{ mixBlendMode: 'multiply' }}
+                    width={24}
+                    height={24}
                   />
                 </a>
               )}
