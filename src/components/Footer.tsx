@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { BananaLogo } from "./BananaLogo";
-import { MessageCircle } from "lucide-react";
 
 interface FooterProps {
   cmsSiteConfig?: {
@@ -90,10 +89,12 @@ export const Footer: React.FC<FooterProps> = ({
                 href={rawWhatsApp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 rounded-full border border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 transition-all"
+                className="flex items-center justify-center w-9 h-9 text-[#25D366] hover:text-[#128C7E] transition-colors"
                 aria-label="WhatsApp Turia Farm"
               >
-                <MessageCircle size={18} />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382A10 10 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2c2.39 0 4.59.88 6.233 2.337a.5.5 0 0 1 .85.366l-2.793 9.75a.5.5 0 0 1-.793.414H8.07v-3.23a.5.5 0 0 1 .5-.5h3.62l1.18-3.63a.5.5 0 0 1 .5-.42h3.6a.5.5 0 0 1 .5.5v3.52h-2.93a.5.5 0 0 0-.366.15l-1.98 1.38a.5.5 0 0 1-.573-.07L14.2 11.1a29.7 29.7 0 0 0 1.29-2.76c.36-.83.55-1.7.55-2.59 0-4.97-4.03-9-9-9S3 7.03 3 12s4.03 9 9 9c4.31 0 7.96-3.13 8.85-7.25a.5.5 0 0 1 .62.63Z"/>
+                </svg>
               </a>
               {/* Facebook */}
               {facebookUrl && (
@@ -101,10 +102,10 @@ export const Footer: React.FC<FooterProps> = ({
                   href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-9 h-9 rounded-full border border-[#1877F2] text-[#1877F2] hover:bg-[#1877F2]/10 transition-all"
+                  className="flex items-center justify-center w-9 h-9 text-[#1877F2] hover:text-[#0d65d9] transition-colors"
                   aria-label="Facebook Turia Farm"
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
                   </svg>
                 </a>
