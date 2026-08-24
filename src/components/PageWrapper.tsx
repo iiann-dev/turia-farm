@@ -11,7 +11,23 @@ import { PageTransition } from "./PageTransition";
 type LenisInstance = { scrollTo: (t: number, o?: object) => void; destroy: () => void; raf: (t: number) => void };
 let LenisCtor: (new (opts: object) => LenisInstance) | null = null;
 
-export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+interface PageWrapperProps {
+  children: React.ReactNode;
+  cmsSiteConfig?: {
+    whatsapp?: string;
+    socialLinks?: {
+      instagram?: string;
+      facebook?: string;
+      tiktok?: string;
+      youtube?: string;
+    };
+  };
+}
+
+export const PageWrapper: React.FC<PageWrapperProps> = ({ 
+  children, 
+  cmsSiteConfig 
+}) => {
   const lenisRef = useRef<LenisInstance | null>(null);
   const pathname = usePathname();
   const [isPhone] = useState<boolean>(() =>
@@ -71,7 +87,7 @@ export const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children 
       <main className="flex-grow">
         <PageTransition>{children}</PageTransition>
       </main>
-      <Footer />
+      <Footer cmsSiteConfig={cmsSiteConfig} />
     </div>
   );
 };

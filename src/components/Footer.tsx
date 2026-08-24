@@ -4,8 +4,26 @@ import React from "react";
 import Link from "next/link";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { BananaLogo } from "./BananaLogo";
+import { MessageCircle } from "lucide-react";
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  cmsSiteConfig?: {
+    whatsapp?: string;
+    socialLinks?: {
+      instagram?: string;
+      facebook?: string;
+      tiktok?: string;
+      youtube?: string;
+    };
+  };
+}
+
+export const Footer: React.FC<FooterProps> = ({
+  cmsSiteConfig,
+}) => {
+  const whatsapp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
+  const facebookUrl = cmsSiteConfig?.socialLinks?.facebook;
+
   return (
     <footer className="bg-[#00251d] text-[#faf9f3] pt-12 sm:pt-16 pb-8 border-t border-[#173b32]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -86,12 +104,38 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#80a691]">
-          <div>
-            © {new Date().getFullYear()} Turia Farm Kediri. Hak Cipta Dilindungi.
+        {/* Bottom Bar - Added Social Links */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-3 text-xs text-[#80a691]">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <span>© {new Date().getFullYear()} Turia Farm Kediri. Hak Cipta Dilindungi.</span>
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* WhatsApp */}
+              <a
+                href={`https://wa.me/${whatsapp}?text=Halo%20Turia%20Farm`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors"
+                aria-label="WhatsApp Turia Farm"
+              >
+                <MessageCircle size={18} />
+              </a>
+              {/* Facebook */}
+              {facebookUrl && (
+                <a
+                  href={facebookUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1877F2] text-white hover:bg-[#0d65d9] transition-colors"
+                  aria-label="Facebook Turia Farm"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </a>
+              )}
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-[#80a691]">
             <span>Standar Pertanian Berkelanjutan</span>
             <span>Kultur Jaringan Bersertifikasi</span>
           </div>
