@@ -94,7 +94,7 @@ export const ContactAndLocation: React.FC<ContactAndLocationProps> = ({
                   <div className="mt-4 rounded-2xl overflow-hidden border border-[#c1c8c4]/60 shadow-sm">
                     <iframe
                       src={getMapsEmbedSrc(siteConfig.geo?.lat || SITE_CONFIG.geo?.lat, siteConfig.geo?.lng || SITE_CONFIG.geo?.lng)}
-                      title="Turia's Farm Kediri - Google Maps"
+                      title="Turia Farm Kediri - Google Maps"
                       className="w-full h-44 sm:h-52"
                       loading="lazy"
                       allowFullScreen

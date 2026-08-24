@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
   phone: "+62 895-0849-5717",
   whatsapp: "https://wa.me/6289508495717?text=Halo%20Turia%20Farm,%20saya%20tertarik%20konsultasi%20bibit%20pisang%20%26%20sengon",
   email: "salam@turiafarm.id",
-  address: "Turia's Farm Kediri, Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur 64172, Indonesia",
+  address: "Turia Farm Kediri, Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur 64172, Indonesia",
   location: "Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur, Indonesia",
   mapsEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3131023966703!2d112.10123897405272!3d-7.966558679400668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78f1006725ea41%3A0x2a565eacbeca6fbe!2sTURIA'S%20FARM%20KEDIRI%20%23bibitpisang%20%26%20sengon!5e0!3m2!1sen!2sid!4v1787411138372!5m2!1sen!2sid",

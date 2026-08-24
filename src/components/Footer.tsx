@@ -145,36 +145,34 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Bar - Social & Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-3 text-xs text-[#80a691]">
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
-            <span>© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
-            <div className="flex items-center gap-3">
-              {/* WhatsApp */}
+        {/* Bottom Bar - Copyright & Social */}
+        <div className="pt-6 flex flex-col items-center gap-4 text-xs text-[#80a691]">
+          <span className="text-center">© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
+          <div className="flex items-center gap-3">
+            {/* WhatsApp */}
+            <a
+              href={whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-9 h-9 text-[#25D366] hover:text-[#128C7E] transition-colors"
+              aria-label="WhatsApp Turia Farm"
+            >
+              <MessageCircle size={22} />
+            </a>
+            {/* Facebook */}
+            {facebookUrl && (
               <a
-                href={whatsapp}
+                href={facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 text-[#25D366] hover:text-[#128C7E] transition-colors"
-                aria-label="WhatsApp Turia Farm"
+                className="flex items-center justify-center w-9 h-9 text-[#1877F2] hover:text-[#0d65d9] transition-colors"
+                aria-label="Facebook Turia Farm"
               >
-                <MessageCircle size={22} />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
               </a>
-              {/* Facebook */}
-              {facebookUrl && (
-                <a
-                  href={facebookUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-9 h-9 text-[#1877F2] hover:text-[#0d65d9] transition-colors"
-                  aria-label="Facebook Turia Farm"
-                >
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-                  </svg>
-                </a>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
