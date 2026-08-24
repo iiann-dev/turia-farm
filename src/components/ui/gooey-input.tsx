@@ -63,8 +63,8 @@ const transition = {
 };
 
 const iconBubbleVariants = {
-  collapsed: { scale: 0, opacity: 0, y: "-50%" },
-  expanded: { scale: 1, opacity: 1, y: "-50%" },
+  collapsed: { x: 0, scale: 0, opacity: 0, y: "-50%" },
+  expanded: { x: 50, scale: 1, opacity: 1, y: "-50%" },
 };
 
 export interface GooeyInputClassNames {
