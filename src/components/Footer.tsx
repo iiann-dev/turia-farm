@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { SITE_CONFIG, SEEDLINGS } from "../data/seedlings";
 import { BananaLogo } from "./BananaLogo";
+import { MessageCircle } from "lucide-react";
 
 interface FooterProps {
   cmsSiteConfig?: {
@@ -84,20 +85,15 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
             <span>© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
             <div className="flex items-center gap-3">
-                            {/* WhatsApp */}
+                                          {/* WhatsApp */}
               <a
                 href={rawWhatsApp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-9 h-9 transition-transform hover:scale-110"
+                className="flex items-center justify-center w-9 h-9 text-[#25D366] hover:text-[#128C7E] transition-colors"
                 aria-label="WhatsApp Turia Farm"
               >
-                <img
-                  src="/wa-brand.png"
-                  alt="WhatsApp"
-                  width={24}
-                  height={24}
-                />
+                <MessageCircle size={22} />
               </a>
               {/* Facebook */}
               {facebookUrl && (
@@ -105,15 +101,12 @@ export const Footer: React.FC<FooterProps> = ({
                   href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-9 h-9 transition-transform hover:scale-110"
+                  className="flex items-center justify-center w-9 h-9 text-[#1877F2] hover:text-[#0d65d9] transition-colors"
                   aria-label="Facebook Turia Farm"
                 >
-                  <img
-                    src="/fb-brand.png"
-                    alt="Facebook"
-                    width={24}
-                    height={24}
-                  />
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
                 </a>
               )}
             </div>
