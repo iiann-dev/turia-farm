@@ -241,6 +241,12 @@ async function seedSiteConfig() {
     siteTagline: "Pusat Pembibitan Pisang & Bibit Sengon Kediri",
     whatsapp: "6289508495717",
     whatsappLabel: "Konsultasi & Pesan Bibit",
+    socialLinks: {
+      facebook: "https://facebook.com/turiafarm",
+      instagram: "",
+      tiktok: "",
+      youtube: "",
+    },
     address: {
       street: "Batuaji, Ringinrejo",
       city: "Kediri",

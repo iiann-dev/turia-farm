@@ -21,7 +21,10 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({
   cmsSiteConfig,
 }) => {
-  const whatsapp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
+  const rawWhatsApp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
+  const whatsapp = rawWhatsApp.startsWith("http") 
+    ? rawWhatsApp 
+    : `https://wa.me/${rawWhatsApp}?text=Halo%20Turia%20Farm`;
   const facebookUrl = cmsSiteConfig?.socialLinks?.facebook;
 
   return (
