@@ -21,10 +21,10 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({
   cmsSiteConfig,
 }) => {
-  const rawWhatsApp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
-  const whatsapp = rawWhatsApp.startsWith("http") 
-    ? rawWhatsApp 
-    : `https://wa.me/${rawWhatsApp}?text=Halo%20Turia%20Farm`;
+  const whatsapp = cmsSiteConfig?.whatsapp || SITE_CONFIG.whatsapp;
+  const rawWhatsApp = whatsapp.startsWith("http") 
+    ? whatsapp 
+    : `https://wa.me/${whatsapp}?text=Halo%20Turia%20Farm`;
   const facebookUrl = cmsSiteConfig?.socialLinks?.facebook;
 
   return (
@@ -53,36 +53,12 @@ export const Footer: React.FC<FooterProps> = ({
               Tautan Cepat
             </div>
             <ul className="space-y-2 text-xs text-[#a8cfc2]">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Beranda
-                </Link>
-              </li>
-              <li>
-                <Link href="/bibit-pisang" className="hover:text-white transition-colors">
-                  Katalog Bibit
-                </Link>
-              </li>
-              <li>
-                <Link href="/proses-kultur" className="hover:text-white transition-colors">
-                  Proses Pembibitan
-                </Link>
-              </li>
-              <li>
-                <Link href="/tentang-kami" className="hover:text-white transition-colors">
-                  Tentang Kami
-                </Link>
-              </li>
-              <li>
-                <Link href="/panduan-tani" className="hover:text-white transition-colors">
-                  Panduan Tani
-                </Link>
-              </li>
-              <li>
-                <Link href="/kontak" className="hover:text-white transition-colors">
-                  Kontak
-                </Link>
-              </li>
+              <li><Link href="/" className="hover:text-white transition-colors">Beranda</Link></li>
+              <li><Link href="/bibit-pisang" className="hover:text-white transition-colors">Katalog Bibit</Link></li>
+              <li><Link href="/proses-kultur" className="hover:text-white transition-colors">Proses Pembibitan</Link></li>
+              <li><Link href="/tentang-kami" className="hover:text-white transition-colors">Tentang Kami</Link></li>
+              <li><Link href="/panduan-tani" className="hover:text-white transition-colors">Panduan Tani</Link></li>
+              <li><Link href="/kontak" className="hover:text-white transition-colors">Kontak</Link></li>
             </ul>
           </div>
 
@@ -94,10 +70,7 @@ export const Footer: React.FC<FooterProps> = ({
             <ul className="space-y-1.5 text-xs text-[#a8cfc2]">
               {SEEDLINGS.slice(0, 4).map((s) => (
                 <li key={s.id}>
-                  <Link
-                    href="/bibit-pisang"
-                    className="hover:text-white transition-colors flex items-center justify-between gap-2"
-                  >
+                  <Link href="/bibit-pisang" className="hover:text-white transition-colors flex items-center justify-between gap-2">
                     <span className="truncate">{s.name}</span>
                     <span className="text-[#80a599] text-[11px] whitespace-nowrap">{s.price}</span>
                   </Link>
@@ -107,17 +80,17 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Bar - Added Social Links */}
+        {/* Bottom Bar - Social & Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-3 text-xs text-[#80a691]">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <span>© {new Date().getFullYear()} Turia Farm Kediri. Hak Cipta Dilindungi.</span>
-            <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+            <span>© 2026 Turia Farm Kediri. Hak Cipta Dilindungi.</span>
+            <div className="flex items-center gap-3">
               {/* WhatsApp */}
               <a
-                href={`https://wa.me/${whatsapp}?text=Halo%20Turia%20Farm`}
+                href={rawWhatsApp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#25D366] text-white hover:bg-[#128C7E] transition-colors"
+                className="flex items-center justify-center w-9 h-9 rounded-full border border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 transition-all"
                 aria-label="WhatsApp Turia Farm"
               >
                 <MessageCircle size={18} />
@@ -128,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({
                   href={facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#1877F2] text-white hover:bg-[#0d65d9] transition-colors"
+                  className="flex items-center justify-center w-9 h-9 rounded-full border border-[#1877F2] text-[#1877F2] hover:bg-[#1877F2]/10 transition-all"
                   aria-label="Facebook Turia Farm"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -137,10 +110,6 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               )}
             </div>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-[#80a691]">
-            <span>Standar Pertanian Berkelanjutan</span>
-            <span>Kultur Jaringan Bersertifikasi</span>
           </div>
         </div>
       </div>
