@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Animated } from "./Animated";
 import { SEEDLINGS } from "../data/seedlings";
 import { SeedlingItem } from "../types";
-import { ArrowUpRight, Sparkles, Scale, Clock, Ruler, Search, X } from "lucide-react";
+import { ArrowUpRight, Sparkles, Scale, Clock, Ruler } from "lucide-react";
+import { SearchInput } from "./SearchInput";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
-import { GooeyInput } from "@/components/ui/gooey-input";
 
 interface SeedlingsSectionProps {
   cmsSeedlings?: any[];
@@ -112,7 +112,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
 }) => {
   const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showNoResultsAnimation, setShowNoResultsAnimation] = useState(false);
 
   // Use CMS data with static fallbacks
   const allSeedlings =
@@ -120,15 +119,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
 
   // Filter seedlings based on search query
   const filteredSeedlings = filterSeedlings(allSeedlings, searchQuery);
-
-  // Trigger shake animation when no results and query has value
-  useEffect(() => {
-    if (searchQuery.trim() && filteredSeedlings.length === 0) {
-      setShowNoResultsAnimation(true);
-      const timer = setTimeout(() => setShowNoResultsAnimation(false), 600);
-      return () => clearTimeout(timer);
-    }
-  }, [searchQuery, filteredSeedlings.length]);
 
   const getWaLinkForSeedling = (item: any) => {
     const text = `Halo Turia Farm, saya berminat memesan bibit *${item.name}* (${item.price}). Mohon info ketersediaan stok & estimasi ongkir.`;
@@ -148,13 +138,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
 
   const handleClearSearch = () => {
     setSearchQuery("");
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Escape") {
-      handleClearSearch();
-      (e.target as HTMLInputElement).blur();
-    }
   };
 
   return (
@@ -178,42 +161,17 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
 
         {/* Search Input */}
         <div className="mb-10 max-w-xl mx-auto w-full">
-          <GooeyInput
-            placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
-            expandedWidth={360}
-            collapsedWidth={56}
+          <SearchInput
             value={searchQuery}
-            onValueChange={handleSearchChange}
-            onOpenChange={(open) => {
-              if (!open) handleClearSearch();
-            }}
+            onChange={handleSearchChange}
+            onClear={handleClearSearch}
+            placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
+            resultCount={filteredSeedlings.length}
+            totalCount={allSeedlings.length}
+            isSearching={false}
+            aria-label="Cari varietas bibit"
           />
-                  {/* Result count / Empty state message */}
-                  <AnimatePresence>
-                    {searchQuery.trim() && (
-                      <motion.p
-                        id="search-result-message"
-                        className={`mt-2 text-xs text-center transition-all duration-200 ${
-                          filteredSeedlings.length === 0 ? "text-red-500" : "text-[#717975]"
-                        }`}
-                        initial={{ opacity: 0, y: -4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -4 }}
-                        aria-live="polite"
-                      >
-                        {filteredSeedlings.length === 0 ? (
-                          <>
-                            Tidak ditemukan varietas untuk &ldquo;{searchQuery}&rdquo;.
-                            <br />
-                            <span className="font-medium">Coba: Cavendish, Raja, Kepok, Mas, Barangan, Sengon...</span>
-                          </>
-                        ) : (
-                          `Menampilkan ${filteredSeedlings.length} dari ${allSeedlings.length} varietas`
-                        )}
-                      </motion.p>
-                    )}
-                  </AnimatePresence>
-                </div>
+        </div>
 
         {/* Seedlings Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -227,14 +185,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
-                <div
-                  className={`mb-6 p-4 rounded-2xl bg-red-50 border-2 border-red-200 animate-shake-pulse`}
-                  style={{
-                    animation: showNoResultsAnimation
-                      ? "shakePulse 0.6s ease-in-out 2"
-                      : "none",
-                  }}
-                >
+                <div className="mb-6 p-4 rounded-2xl bg-red-50 border-2 border-red-200">
                   <Sparkles size={48} className="text-red-400 mx-auto" />
                 </div>
                 <p className="text-lg text-[#414845] font-medium">
@@ -420,25 +371,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
           </div>
         )}
       </div>
-
-      {/* Global shake-pulse keyframes injected once */}
-      <style jsx global>{`
-        @keyframes shakePulse {
-          0%, 100% { transform: translateX(0); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-          10% { transform: translateX(-8px); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.15); }
-          20% { transform: translateX(8px); }
-          30% { transform: translateX(-6px); }
-          40% { transform: translateX(6px); }
-          50% { transform: translateX(-4px); box-shadow: 0 0 0 12px rgba(239, 68, 68, 0.1); }
-          60% { transform: translateX(4px); }
-          70% { transform: translateX(-2px); }
-          80% { transform: translateX(2px); }
-          90% { transform: translateX(0); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-        }
-        .animate-shake-pulse {
-          animation: shakePulse 0.6s ease-in-out;
-        }
-      `}</style>
     </section>
   );
 };
