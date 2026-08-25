@@ -4,7 +4,6 @@ import {
   useState,
   useRef,
   useEffect,
-  useId,
   useMemo,
   useCallback,
   type ChangeEvent,
@@ -12,17 +11,14 @@ import {
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-function GooeyFilter({
-  filterId,
-  blur,
-}: {
-  filterId: string;
-  blur: number;
-}) {
+// Stable filter ID to avoid SSR hydration mismatch
+const FILTER_ID = "gooey-filter-search";
+
+function GooeyFilter({ blur }: { blur: number }) {
   return (
     <svg className="absolute hidden h-0 w-0" aria-hidden>
       <defs>
-        <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
+        <filter id={FILTER_ID} x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur in="SourceGraphic" stdDeviation={blur} result="blur" />
           <feColorMatrix
             in="blur"
@@ -37,10 +33,9 @@ function GooeyFilter({
   );
 }
 
-function SearchIcon({ layoutId }: { layoutId: string }) {
+function SearchIcon() {
   return (
-    <motion.svg
-      layoutId={layoutId}
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"
@@ -52,7 +47,7 @@ function SearchIcon({ layoutId }: { layoutId: string }) {
     >
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.3-4.3" />
-    </motion.svg>
+    </svg>
   );
 }
 
@@ -110,16 +105,11 @@ export function GooeyInput({
   onOpenChange,
   disabled = false,
 }: GooeyInputProps) {
-  const reactId = useId();
-  const safeId = reactId.replace(/:/g, "");
-  const filterId = `gooey-filter-${safeId}`;
-  const iconLayoutId = `gooey-input-icon-${safeId}`;
-  const inputLayoutId = `gooey-input-field-${safeId}`;
-
   const inputRef = useRef<HTMLInputElement>(null);
   const prevExpandedRef = useRef(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
+  const [isClient, setIsClient] = useState(false);
 
   const isControlled = valueProp !== undefined;
   const searchText = isControlled ? valueProp : uncontrolledValue;
@@ -142,14 +132,20 @@ export function GooeyInput({
     [onOpenChange],
   );
 
+  // Mark client-side hydration complete
   useEffect(() => {
-    if (isExpanded) {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isExpanded && isClient) {
       inputRef.current?.focus();
-    } else if (prevExpandedRef.current) {
+    } else if (prevExpandedRef.current && !searchText) {
       setSearchText("");
     }
     prevExpandedRef.current = isExpanded;
-  }, [isExpanded, setSearchText]);
+  }, [isExpanded, isClient, searchText, setSearchText]);
 
   const buttonVariants = useMemo(
     () => ({
@@ -177,6 +173,36 @@ export function GooeyInput({
   const surfaceClass =
     "bg-foreground text-background shadow-sm ring-1 ring-border/60";
 
+  // Don't render the gooey filter wrapper until client-side to avoid SSR mismatch
+  if (!isClient) {
+    return (
+      <div
+        className={cn(
+          "relative flex items-center justify-center",
+          className,
+          classNames?.root,
+        )}
+      >
+        <div className="relative flex h-10 items-center justify-center">
+          <div className="flex h-10 items-center justify-center" style={{ width: collapsedWidth }}>
+            <button
+              type="button"
+              disabled={disabled}
+              onClick={handleExpand}
+              className={cn(
+                "flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-full px-4 text-sm font-medium outline-none transition-[color,box-shadow] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+                surfaceClass,
+                classNames?.trigger,
+              )}
+            >
+              <SearchIcon />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -185,14 +211,14 @@ export function GooeyInput({
         classNames?.root,
       )}
     >
-      <GooeyFilter filterId={filterId} blur={gooeyBlur} />
+      <GooeyFilter blur={gooeyBlur} />
 
       <div
         className={cn(
           "relative flex h-10 items-center justify-center",
           classNames?.filterWrap,
         )}
-        style={{ filter: `url(#${filterId})` }}
+        style={{ filter: `url(#${FILTER_ID})` }}
       >
         <motion.div
           className={cn("flex h-10 items-center justify-center", classNames?.buttonRow)}
@@ -201,6 +227,7 @@ export function GooeyInput({
           animate={isExpanded ? "expanded" : "collapsed"}
           transition={transition}
         >
+          {/* Trigger button - separate from input wrapper */}
           <button
             type="button"
             disabled={disabled}
@@ -211,11 +238,22 @@ export function GooeyInput({
               classNames?.trigger,
             )}
           >
-            {!isExpanded ? (
-              <SearchIcon layoutId={iconLayoutId} />
-            ) : null}
-            <motion.input
-              layoutId={inputLayoutId}
+            <SearchIcon />
+          </button>
+
+          {/* Input wrapper - separate from button, positioned absolutely when expanded */}
+          <div
+            className={cn(
+              "absolute left-0 top-0 h-10 w-full items-center justify-center px-4",
+              classNames?.input,
+            )}
+            style={{
+              width: isExpanded ? expandedWidth : collapsedWidth,
+              marginLeft: isExpanded ? expandedOffset : 0,
+              transition: "width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), margin-left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+            }}
+          >
+            <input
               ref={inputRef}
               type="search"
               enterKeyHint="search"
@@ -223,17 +261,23 @@ export function GooeyInput({
               value={searchText}
               onChange={handleChange}
               onBlur={handleBlur}
+              onKeyDown={(e) => {
+                if (e.key === "Escape") {
+                  handleBlur();
+                  (e.target as HTMLInputElement).blur();
+                }
+              }}
               disabled={disabled || !isExpanded}
               placeholder={placeholder}
               className={cn(
-                "h-full min-w-0 flex-1 bg-transparent text-sm text-background outline-none",
+                "h-full w-full bg-transparent text-sm text-background outline-none",
                 isExpanded
                   ? "placeholder:text-background/50 dark:placeholder:text-background/45"
-                  : "pointer-events-none placeholder:text-background/80 dark:placeholder:text-background/70",
+                  : "pointer-events-none opacity-0 placeholder:text-background/80 dark:placeholder:text-background/70",
                 classNames?.input,
               )}
             />
-          </button>
+          </div>
         </motion.div>
 
         <motion.div
@@ -253,7 +297,7 @@ export function GooeyInput({
               classNames?.bubbleSurface,
             )}
           >
-            <SearchIcon layoutId={iconLayoutId} />
+            <SearchIcon />
           </div>
         </motion.div>
       </div>

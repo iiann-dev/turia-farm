@@ -177,19 +177,17 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
         </div>
 
         {/* Search Input */}
-        {/* Search Input */}
-                <div className="mb-10 max-w-xl mx-auto w-full">
-                  <GooeyInput
-                    placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
-                    expandedWidth={360}
-                    collapsedWidth={56}
-                    value={searchQuery}
-                    onValueChange={handleSearchChange}
-                    onOpenChange={(open) => {
-                      if (!open) handleClearSearch();
-                    }}
-                    className="w-full"
-                  />
+        <div className="mb-10 max-w-xl mx-auto w-full">
+          <GooeyInput
+            placeholder="Cari varietas... (contoh: Cavendish, Raja Bulu, Sengon)"
+            expandedWidth={360}
+            collapsedWidth={56}
+            value={searchQuery}
+            onValueChange={handleSearchChange}
+            onOpenChange={(open) => {
+              if (!open) handleClearSearch();
+            }}
+          />
                   {/* Result count / Empty state message */}
                   <AnimatePresence>
                     {searchQuery.trim() && (
