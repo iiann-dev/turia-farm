@@ -51,24 +51,6 @@ function SearchIcon() {
   );
 }
 
-function XIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2.5}
-      className="size-3 shrink-0"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  );
-}
-
 const transition = {
   duration: 0.4,
   type: "spring" as const,
@@ -188,14 +170,8 @@ export function GooeyInput({
     if (!searchText) setExpanded(false);
   }, [searchText, setExpanded]);
 
-  const handleClear = useCallback(() => {
-    setSearchText("");
-    setExpanded(true); // keep expanded after clearing
-    inputRef.current?.focus();
-  }, [setSearchText, setExpanded]);
-
   const surfaceClass =
-    "bg-[#00251d] text-[#faf9f3] shadow-sm ring-1 ring-[#2d6953]/40";
+    "bg-foreground text-background shadow-sm ring-1 ring-border/60";
 
   // Don't render the gooey filter wrapper until client-side to avoid SSR mismatch
   if (!isClient) {
@@ -294,23 +270,13 @@ export function GooeyInput({
               disabled={disabled || !isExpanded}
               placeholder={placeholder}
               className={cn(
-                "h-full w-full bg-transparent text-sm text-[#faf9f3] outline-none",
+                "h-full w-full bg-transparent text-sm text-background outline-none",
                 isExpanded
-                  ? "placeholder:text-[#faf9f3]/55"
-                  : "pointer-events-none opacity-0 placeholder:text-[#faf9f3]/80",
+                  ? "placeholder:text-background/50 dark:placeholder:text-background/45"
+                  : "pointer-events-none opacity-0 placeholder:text-background/80 dark:placeholder:text-background/70",
                 classNames?.input,
               )}
             />
-            {searchText && (
-              <button
-                type="button"
-                onClick={handleClear}
-                aria-label="Hapus pencarian"
-                className="absolute right-3 top-1/2 flex size-5 -translate-y-1/2 items-center justify-center rounded-full bg-[#faf9f3]/15 text-[#faf9f3] transition-colors hover:bg-[#faf9f3]/30"
-              >
-                <XIcon />
-              </button>
-            )}
           </div>
         </motion.div>
 
