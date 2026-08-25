@@ -262,3 +262,86 @@ export const FAQS = [
     a: "Anakan pisang kami diambil dari pohon indukan unggul yang terbukti sehat dan produktif, kemudian dibersihkan dan dirawat di polybag tanah subur. Untuk sengon, kami menyemai biji berkualitas dari benih pilihan sehingga memiliki daya tumbuh tinggi dan batang lurus kokoh.",
   },
 ];
+
+/**
+ * Smart-search alias map (Concept B).
+ * Keyed by seedling id. Lets visitors find by use-case / intent instead of
+ * botanical name — e.g. "karpet" or "hajatan" -> Raja Bulu, "keripik" -> Kepok.
+ * Scored relevance sort in SeedlingsSection ranks best alias matches first.
+ */
+export const SEARCH_ALIASES: Record<string, string[]> = {
+  "cavendish-grand-naine": [
+    "export",
+    "swalayan",
+    "supermarket",
+    "komersial",
+    "agribisnis",
+    "tandan rapi",
+    "kulit mulus",
+  ],
+  "pisang-raja-bulu": [
+    "karpet",
+    "hajatan",
+    "karamel",
+    "kue",
+    "kuliner",
+    "prima donna",
+    "raja",
+    "oles",
+  ],
+  "kepok-tanjung": [
+    "keripik",
+    "gorengan",
+    "goreng",
+    "tanpa jantung",
+    "ontong",
+    "layu",
+    "tahan penyakit",
+    "ukm",
+  ],
+  "pisang-mas-kirana": [
+    "meja",
+    "hotel",
+    "mungil",
+    "madu",
+    "pekarangan",
+    "harian",
+    "emas",
+  ],
+  "pisang-barangan-merah": [
+    "merah",
+    "aroma",
+    "pulen",
+    "renyah",
+    "regional",
+    "jawa",
+    "bali",
+  ],
+  "pisang-ambon-kuning": [
+    "ambon",
+    "keluarga",
+    "mpasi",
+    "vanila",
+    "konsumsi",
+    "harian",
+  ],
+  "sengon-solomon": [
+    "kayu",
+    "hutan",
+    "agroforestri",
+    "solomon",
+    "investasi",
+    "pertukangan",
+    "cepat",
+    "batang lurus",
+  ],
+  "sengon-lokal": [
+    "jeungjing",
+    "lokal",
+    "rakyat",
+    "kering",
+    "adaptif",
+    "ekonomis",
+    "hutan",
+  ],
+};

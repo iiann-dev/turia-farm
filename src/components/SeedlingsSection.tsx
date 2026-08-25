@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Animated } from "./Animated";
-import { SEEDLINGS } from "../data/seedlings";
+import { SEEDLINGS, SEARCH_ALIASES } from "../data/seedlings";
 import { SeedlingItem } from "../types";
-import { ArrowUpRight, Sparkles, Scale, Clock, Ruler } from "lucide-react";
+import { ArrowUpRight, Sparkles, Scale, Clock, Ruler, SearchX } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
+import { CatalogSearch, type CatalogCategory } from "./CatalogSearch";
 
 interface SeedlingsSectionProps {
   cmsSeedlings?: any[];
@@ -25,9 +26,70 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
 }) => {
   const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
 
+  // Smart search state (Concept A + B)
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<CatalogCategory>("all");
+
   // Use CMS data with static fallbacks
   const allSeedlings =
     cmsSeedlings && cmsSeedlings.length > 0 ? cmsSeedlings : SEEDLINGS;
+
+  // --- Smart filtering + relevance scoring (Concept A + B) ---
+  const getId = (item: any) =>
+    typeof item.id === "object" && item.id?.current
+      ? item.id.current
+      : item.id;
+
+  const filteredSeedlings = useMemo(() => {
+    const q = query.trim().toLowerCase();
+
+    const matchesCategory = (item: any) => {
+      if (category === "all") return true;
+      const id = getId(item);
+      const isSengon =
+        id?.startsWith("sengon") ||
+        /sengon|falcataria|paraserianthes/i.test(
+          `${item.name} ${item.scientificName}`
+        );
+      return category === "sengon" ? isSengon : !isSengon;
+    };
+
+    const score = (item: any): number => {
+      if (!q) return 0;
+      const id = getId(item);
+      const haystack = [
+        item.name,
+        item.scientificName,
+        item.tag,
+        item.desc,
+        item.bestFor,
+        ...(SEARCH_ALIASES[id] || []),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      let s = 0;
+      if (haystack.includes(q)) s += 1;
+      // Exact name match ranks highest
+      if (item.name?.toLowerCase().includes(q)) s += 3;
+      // Alias hit (intent search) gets a solid bump
+      if ((SEARCH_ALIASES[id] || []).some((a: string) => a.includes(q))) s += 2;
+      return s;
+    };
+
+    let list = allSeedlings;
+    if (category !== "all") {
+      list = list.filter(matchesCategory);
+    }
+    if (q) {
+      list = list
+        .map((item) => ({ item, s: score(item) }))
+        .filter((x) => x.s > 0)
+        .sort((a, b) => b.s - a.s)
+        .map((x) => x.item);
+    }
+    return list;
+  }, [query, category, allSeedlings]);
 
   const getWaLinkForSeedling = (item: any) => {
     const text = `Halo Turia Farm, saya berminat memesan bibit *${item.name}* (${item.price}). Mohon info ketersediaan stok & estimasi ongkir.`;
@@ -60,10 +122,45 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
           </p>
         </div>
 
+        {/* Smart Search (Concept A + B) */}
+        <CatalogSearch
+          query={query}
+          onQueryChange={setQuery}
+          category={category}
+          onCategoryChange={setCategory}
+          total={allSeedlings.length}
+          resultCount={filteredSeedlings.length}
+        />
+
         {/* Seedlings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="wait">
-            {allSeedlings.map((item, index) => {
+        {filteredSeedlings.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
+            <div className="flex size-16 items-center justify-center rounded-full bg-[#efeee8] text-[#2d6953]">
+              <SearchX size={28} />
+            </div>
+            <div>
+              <p className="font-serif text-xl font-bold text-[#00251d]">
+                Bibit tidak ditemukan
+              </p>
+              <p className="mt-1 text-sm text-[#717975]">
+                Coba kata kunci lain atau pilih kategori lain.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setCategory("all");
+              }}
+              className="rounded-full bg-[#00251d] px-5 py-2.5 text-xs font-semibold text-[#faf9f3] transition-colors hover:bg-[#173b32]"
+            >
+              Reset Pencarian
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="wait">
+              {filteredSeedlings.map((item, index) => {
               const imageSrc = (item as any).image?.asset
                 ? urlFor((item as any).image).width(900).quality(80).url()
                 : (item as any).image ||
@@ -159,9 +256,8 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
               );
             })}
           </AnimatePresence>
-        </div>
-
-        {/* Modal Detail */}
+          </div>
+        )}
         {selectedItem && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
             <motion.div
