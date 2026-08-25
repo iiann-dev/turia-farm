@@ -61,7 +61,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
         </div>
 
         {/* Seedlings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
           <AnimatePresence mode="wait">
             {allSeedlings.map((item, index) => {
               const imageSrc = (item as any).image?.asset
@@ -76,10 +76,10 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4, delay: index * 0.08 }}
-                  className="group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#2d6953]/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden"
+                  className="group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#c1c8c4]/60 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col overflow-hidden"
                 >
                   {/* Image Container */}
-                  <div className="relative aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
+                  <div className="relative aspect-square sm:aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
                     <Image
                       src={imageSrc}
                       alt={item.name}
@@ -100,7 +100,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="p-4 sm:p-6 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="text-[11px] font-semibold tracking-wider uppercase text-[#2d6953] mb-1">
                         {item.tag}
@@ -111,12 +111,13 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                       <div className="text-xs italic text-[#717975] mb-4">
                         {item.scientificName}
                       </div>
-                      <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-6">
+                      <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-4 sm:mb-6 hidden sm:block">
+                       {/* Desc: hidden on mobile (<640px), visible on desktop (≥640px) */}
                         {item.desc}
                       </p>
 
                       {/* Spec Chips */}
-                      <div className="grid grid-cols-2 gap-2.5 py-4 border-y border-[#efeee8] text-xs text-[#1b1c19] mb-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5 py-4 border-y border-[#efeee8] text-xs text-[#1b1c19] mb-4 sm:mb-6">
                         <div className="flex items-center gap-2">
                           <Clock size={14} className="text-[#2d6953]" />
                           <span>{item.maturity}</span>
@@ -188,8 +189,9 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                 {selectedItem.scientificName}
               </div>
 
-              <p className="text-sm text-[#414845] leading-relaxed mb-6">
-                {selectedItem.desc}
+              <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-4 sm:mb-6">
+                       {/* Desc: visible in modal for all screen sizes */}
+                       {selectedItem.desc}
               </p>
 
               <div className="space-y-3 bg-white p-4 rounded-2xl border border-[#efeee8] mb-6 text-xs sm:text-sm">
