@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Animated } from "./Animated";
 import { SEEDLINGS } from "../data/seedlings";
 import { SeedlingItem } from "../types";
-import { ArrowUpRight, Sparkles, Scale, Clock, Ruler } from "lucide-react";
+import { ArrowUpRight, Sparkles, Scale, Clock, Ruler, Search, X } from "lucide-react";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity";
 
@@ -24,10 +24,20 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
   cmsCatalogHero,
 }) => {
   const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Use CMS data with static fallbacks
   const allSeedlings =
     cmsSeedlings && cmsSeedlings.length > 0 ? cmsSeedlings : SEEDLINGS;
+
+  const filteredSeedlings = allSeedlings.filter((item) => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      item.name.toLowerCase().includes(searchLower) ||
+      item.scientificName?.toLowerCase().includes(searchLower) ||
+      item.desc?.toLowerCase().includes(searchLower)
+    );
+  });
 
   const getWaLinkForSeedling = (item: any) => {
     const text = `Halo Turia Farm, saya berminat memesan bibit *${item.name}* (${item.price}). Mohon info ketersediaan stok & estimasi ongkir.`;
@@ -60,10 +70,34 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
           </p>
         </div>
 
+        {/* Smart Search */}
+        <div className="flex justify-center md:justify-start mb-12">
+          <div className="relative w-full max-w-sm">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-[#00251d]/40" />
+            </div>
+            <input
+              type="text"
+              placeholder="Cari varietas bibit..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-11 pl-11 pr-11 py-2 bg-white border border-[#c1c8c4]/40 rounded-full shadow-[0_4px_12px_rgba(0,37,29,0.08)] focus:outline-none focus:border-[#2d6953]/50 transition-all duration-300 placeholder:text-[#00251d]/40 text-sm text-[#00251d]"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#00251d]/40 hover:text-[#00251d]"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Seedlings Grid */}
         <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
           <AnimatePresence mode="wait">
-            {allSeedlings.map((item, index) => {
+            {filteredSeedlings.map((item, index) => {
               const imageSrc = (item as any).image?.asset
                 ? urlFor((item as any).image).width(900).quality(80).url()
                 : (item as any).image ||
@@ -112,7 +146,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                         {item.scientificName}
                       </div>
                       <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-4 sm:mb-6 hidden sm:block">
-                       {/* Desc: hidden on mobile (<640px), visible on desktop (≥640px) */}
                         {item.desc}
                       </p>
 
@@ -160,6 +193,11 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
               );
             })}
           </AnimatePresence>
+          {filteredSeedlings.length === 0 && (
+            <div className="col-span-full py-12 text-center text-[#414845]">
+              <p>Tidak ada bibit yang ditemukan untuk pencarian "{searchQuery}".</p>
+            </div>
+          )}
         </div>
 
         {/* Modal Detail */}
@@ -190,8 +228,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
               </div>
 
               <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-4 sm:mb-6">
-                       {/* Desc: visible in modal for all screen sizes */}
-                       {selectedItem.desc}
+                {selectedItem.desc}
               </p>
 
               <div className="space-y-3 bg-white p-4 rounded-2xl border border-[#efeee8] mb-6 text-xs sm:text-sm">
