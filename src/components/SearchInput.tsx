@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, Command, Keyboard } from "lucide-react";
+import { Search, X, Command } from "lucide-react";
 
 interface SearchInputProps {
   value: string;
@@ -17,7 +17,6 @@ interface SearchInputProps {
 }
 
 const SHORTCUT_KEY = "k";
-const SHORTCUT_MODIFIER = "meta"; // ⌘ on Mac, Ctrl on Windows
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   value,
@@ -31,8 +30,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
   "aria-label": ariaLabel = "Cari varietas bibit",
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [showShortcut, setShowShortcut] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
 
@@ -45,10 +44,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         !e.shiftKey &&
         !e.altKey
       ) {
-        // Don't intercept if user is typing in another input
         const active = document.activeElement;
         if (active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement) {
-          if (active === inputRef.current) return; // Already focused
+          if (active === inputRef.current) return;
         }
         e.preventDefault();
         inputRef.current?.focus();
@@ -59,16 +57,16 @@ export const SearchInput: React.FC<SearchInputProps> = ({
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Show shortcut hint after a delay on first visit
+  // Show shortcut hint on hover or after brief delay
   useEffect(() => {
-    const timer = setTimeout(() => setShowShortcut(true), 3000);
+    const timer = setTimeout(() => setShowShortcut(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
   const handleFocus = () => {
     setIsFocused(true);
     setHasInteracted(true);
-    setShowShortcut(false); // Hide hint once focused
+    setShowShortcut(false);
   };
 
   const handleBlur = () => {
@@ -100,8 +98,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 
   return (
     <motion.div
-      ref={containerRef}
+      ref={inputRef}
       className={`relative w-full max-w-xl mx-auto ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       whileHover={{ scale: isFocused ? 1 : 1.005 }}
       transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
     >
@@ -113,32 +113,38 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-[-3px] rounded-[1.25rem] bg-gradient-to-r from-[#2d6953]/30 via-[#2d6953]/10 to-[#2d6953]/30 blur-[24px] -z-10 pointer-events-none"
+            className="absolute inset-[-3px] rounded-[1.25rem] bg-gradient-to-r from-[#2d6953]/40 via-[#2d6953]/15 to-[#2d6953]/40 blur-[24px] -z-10 pointer-events-none"
             aria-hidden="true"
           />
         )}
       </AnimatePresence>
 
-      {/* Main input container - glass morphic */}
+      {/* Main input container - enhanced glass morphic */}
       <div
         className={`
           relative flex items-center gap-3
           rounded-2xl
-          bg-white/80 backdrop-blur-xl
+          bg-gradient-to-br from-white/90 via-white/80 to-[#faf9f3]/80
+          backdrop-blur-2xl
           border-2 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-          shadow-[0_2px_8px_-2px_rgba(0,37,29,0.08),0_0_0_1px_rgba(193,200,196,0.4)]
+          shadow-[0_1px_3px_-1px_rgba(0,37,29,0.06),0_0_0_1px_rgba(193,200,196,0.5),0_4px_12px_-4px_rgba(0,37,29,0.05)]
           ${isFocused
-            ? "border-[#2d6953]/60 shadow-[0_0_0_3px_rgba(45,105,83,0.15),0_8px_32px_-8px_rgba(0,37,29,0.12)]"
+            ? "border-[#2d6953]/70 shadow-[0_0_0_3px_rgba(45,105,83,0.18),0_12px_40px_-12px_rgba(0,37,29,0.15)]"
+            : isHovered
+            ? "border-[#2d6953]/40 shadow-[0_4px_16px_-4px_rgba(0,37,29,0.08),0_0_0_1px_rgba(45,105,83,0.15)]"
             : isFilled
-            ? "border-[#c1c8c4]/80 hover:border-[#2d6953]/40"
-            : "border-[#c1c8c4]/60 hover:border-[#c1c8c4]/80"
+            ? "border-[#c1c8c4]/90 hover:border-[#2d6953]/50"
+            : "border-[#c1c8c4]/70 hover:border-[#c1c8c4]/90"
           }
         `}
       >
+        {/* Subtle inner highlight for depth */}
+        <div className="absolute inset-0 rounded-[1.2rem] bg-gradient-to-b from-white/60 to-transparent pointer-events-none -z-10" aria-hidden="true" />
+
         {/* Leading: Search Icon */}
         <div
           className={`
-            absolute left-4 flex items-center justify-center
+            flex items-center justify-center w-10 h-10
             transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]
             ${isFocused ? "text-[#2d6953]" : isFilled ? "text-[#414845]" : "text-[#717975]"}
           `}
@@ -156,7 +162,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           </motion.div>
         </div>
 
-        {/* Input */}
+        {/* Input - fixed vertical alignment */}
         <input
           ref={inputRef}
           type="search"
@@ -167,9 +173,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className={`
-            flex-1 w-full pl-12 pr-12 py-3.5
+            flex-1 w-full py-3.5
             bg-transparent
-            text-[#00251d] placeholder:text-[#a8cfc2]
+            text-[#00251d] placeholder:text-[#5a8a7a]
             text-sm sm:text-base
             font-[var(--font-sans)]
             outline-none
@@ -195,7 +201,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.8, rotate: 90 }}
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute right-4 flex items-center justify-center text-[#2d6953]"
+              className="flex items-center justify-center w-10 h-10 text-[#2d6953]"
               aria-live="polite"
               aria-atomic="true"
             >
@@ -206,19 +212,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
             </motion.div>
           ) : isFilled ? (
@@ -232,18 +227,20 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
-              className="absolute right-4 flex items-center justify-center w-8 h-8 rounded-xl text-[#717975] hover:text-[#00251d] hover:bg-[#efeee8] transition-colors duration-150"
+              className="flex items-center justify-center w-10 h-10 rounded-xl text-[#717975] hover:text-[#00251d] hover:bg-[#efeee8] transition-colors duration-150"
               aria-label="Hapus pencarian"
             >
               <X size={18} strokeWidth={2.5} />
             </motion.button>
-          ) : null}
+          ) : (
+            <span className="w-10" aria-hidden="true" />
+          )}
         </AnimatePresence>
       </div>
 
       {/* Bottom row: Result badge + Shortcut hint */}
       <AnimatePresence>
-        {(hasResults || noResults || showShortcut) && (
+        {(hasResults || noResults || (showShortcut && (isHovered || isFocused))) && (
           <motion.div
             initial={{ opacity: 0, y: 6, height: 0 }}
             animate={{ opacity: 1, y: 0, height: "auto" }}
@@ -262,7 +259,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                   transition-colors duration-200
                   ${noResults
                     ? "bg-red-50 text-red-600 border border-red-100"
-                    : "bg-[#c4ebde]/80 text-[#00251d] border border-[#a8cfc2]/60"
+                    : "bg-[#c4ebde]/90 text-[#00251d] border border-[#a8cfc2]/70 shadow-sm"
                   }
                 `}
                 aria-live="polite"
@@ -293,7 +290,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
               </motion.span>
             )}
 
-            {/* Keyboard shortcut hint */}
+            {/* Keyboard shortcut hint - shows on hover or after delay */}
             {showShortcut && !isFocused && !hasInteracted && (
               <motion.kbd
                 key="shortcut"
@@ -302,13 +299,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({
                 exit={{ opacity: 0, x: -10 }}
                 className={`
                   inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg
-                  bg-[#e3e3dd]/60 text-[#717975] text-[11px] font-medium
-                  border border-[#c1c8c4]/40
-                  backdrop-blur-sm
+                  bg-[#e3e3dd]/80 text-[#414845] text-[11px] font-medium
+                  border border-[#c1c8c4]/50
+                  backdrop-blur-sm shadow-sm
                 `}
                 aria-hidden="true"
               >
-                <Command size={11} className="opacity-60" />
+                <Command size={11} className="opacity-70" />
                 <span>Cari cepat</span>
               </motion.kbd>
             )}
@@ -317,24 +314,15 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       </AnimatePresence>
 
       {/* Screen reader only announcements */}
-      <div aria-live="polite" aria-atomic="true" className="sr-only">
+      <div aria-live="polite" aria-atomic="true" className="sr-only" style={{
+        position: "absolute", width: "1px", height: "1px", padding: 0,
+        margin: "-1px", overflow: "hidden", clip: "rect(0, 0, 0, 0)",
+        whiteSpace: "nowrap", border: 0
+      }}>
         {isSearching && "Sedang mencari..."}
         {noResults && `Tidak ditemukan varietas untuk ${value}`}
         {hasResults && `Menampilkan ${resultCount} dari ${totalCount} varietas`}
       </div>
     </motion.div>
   );
-};
-
-// Helper component for sr-only
-const srOnlyStyles = {
-  position: "absolute",
-  width: "1px",
-  height: "1px",
-  padding: 0,
-  margin: "-1px",
-  overflow: "hidden",
-  clip: "rect(0, 0, 0, 0)",
-  whiteSpace: "nowrap",
-  border: 0,
 };
