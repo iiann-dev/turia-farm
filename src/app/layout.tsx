@@ -42,11 +42,11 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/logo.png", type: "image/png" },
       { url: "/favicon.ico" },
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   authors: [{ name: "Turia Farm Agronomy Team" }],
   creator: "Turia Farm",
@@ -135,6 +135,7 @@ export default function RootLayout({
       className={`scroll-smooth ${manrope.variable} ${notoSerif.variable}`}
     >
       <head>
+        <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

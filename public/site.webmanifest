@@ -1,0 +1,13 @@
+{
+  "name": "Turia Farm Kediri",
+  "short_name": "Turia Farm",
+  "description": "Pusat bibit pisang anakan unggul dan bibit sengon biji pilihan di Kediri, Jawa Timur.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf9f3",
+  "theme_color": "#00251d",
+  "icons": [
+    { "src": "/android-chrome-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

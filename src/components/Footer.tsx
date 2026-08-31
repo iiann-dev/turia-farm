@@ -88,7 +88,11 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Brand Col - full width on mobile */}
           <div className="col-span-2 md:col-span-2 lg:col-span-5 space-y-3">
             <div className="flex items-center gap-3">
-              <BananaLogo size={36} className="border-emerald-700/50" />
+              <BananaLogo
+                size={36}
+                bg="#00251d"
+                transparent
+              />
               <div className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#faf9f3]">
                 Turia Farm
               </div>
