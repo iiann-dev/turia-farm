@@ -205,117 +205,112 @@ export default async function ArticleDetailPage({
               />
             </div>
 
-            {/* Two-column layout: body + sticky rail */}
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14 items-start">
-              {/* Main body */}
-              <div className="min-w-0">
-                <div className="max-w-3xl">
-                  <p className="font-medium text-base sm:text-lg text-[#1b1c19] leading-relaxed mb-8 border-l-4 border-[#2d6953] pl-5">
-                    {item.excerpt}
+            {/* Article body */}
+            <div className="max-w-3xl w-full mx-auto sm:mx-0">
+              <p className="font-medium text-base sm:text-lg text-[#1b1c19] leading-relaxed mb-8 border-l-4 border-[#2d6953] pl-5">
+                {item.excerpt}
+              </p>
+
+              {item.content?.length > 0 ? (
+                <PortableText value={item.content} components={portableTextComponents} />
+              ) : (
+                <div className="space-y-5 text-sm sm:text-base text-[#414845] leading-relaxed">
+                  <p>
+                    Budidaya pisang intensif memerlukan pendekatan terencana mulai dari persiapan
+                    olah tanah, pembuatan bedengan dengan saluran drainase yang lancar (pisang tidak
+                    menyukai tanah tergenang air), hingga sanitasi anakan rutin (1 pohon induk cukup
+                    pelihara 1 anakan penerus).
                   </p>
+                  <p>
+                    Pemberian nutrisi mikro dan inokulasi hayati seperti jamur Trichoderma harzianum
+                    pada awal tanam terbukti menekan insiden penyakit layu hingga di bawah 1%.
+                    Gunakan mulsa jerami atau daun pisang kering di sekitar piringan pohon untuk
+                    menjaga kelembapan mikro tanah saat kemarau.
+                  </p>
+                </div>
+              )}
+            </div>
 
-                  {item.content?.length > 0 ? (
-                    <PortableText value={item.content} components={portableTextComponents} />
-                  ) : (
-                    <div className="space-y-5 text-sm sm:text-base text-[#414845] leading-relaxed">
-                      <p>
-                        Budidaya pisang intensif memerlukan pendekatan terencana mulai dari persiapan
-                        olah tanah, pembuatan bedengan dengan saluran drainase yang lancar (pisang tidak
-                        menyukai tanah tergenang air), hingga sanitasi anakan rutin (1 pohon induk cukup
-                        pelihara 1 anakan penerus).
-                      </p>
-                      <p>
-                        Pemberian nutrisi mikro dan inokulasi hayati seperti jamur Trichoderma harzianum
-                        pada awal tanam terbukti menekan insiden penyakit layu hingga di bawah 1%.
-                        Gunakan mulsa jerami atau daun pisang kering di sekitar piringan pohon untuk
-                        menjaga kelembapan mikro tanah saat kemarau.
-                      </p>
+            {/* Below-text: author card + related articles (2-col on sm+, stacked on phone) */}
+            <div className="max-w-3xl w-full mx-auto sm:mx-0 mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Author card */}
+              <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-11 h-11 rounded-full bg-[#c4ebde] text-[#00251d] flex items-center justify-center font-serif text-lg font-bold">
+                    {(item.author || "TF").charAt(0)}
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-wider text-[#717975] font-semibold">
+                      Penulis
                     </div>
-                  )}
-
-                  {/* Back link */}
-                  <div className="mt-14 pt-8 border-t border-[#c1c8c4]/50">
-                    <a
-                      href="/panduan-tani"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
-                    >
-                      <ArrowLeft size={14} />
-                      Kembali ke Panduan Tani
-                    </a>
+                    <div className="text-sm font-bold text-[#00251d]">{item.author || "Tim Turia Farm"}</div>
                   </div>
                 </div>
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
+                >
+                  <MessageCircle size={14} />
+                  Konsultasi via WhatsApp
+                </a>
               </div>
 
-              {/* Sticky right rail */}
-              <aside className="lg:sticky lg:top-28 flex flex-col gap-6">
-                {/* Author card */}
+              {/* Other articles */}
+              {otherArticles.length > 0 && (
                 <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-11 h-11 rounded-full bg-[#c4ebde] text-[#00251d] flex items-center justify-center font-serif text-lg font-bold">
-                      {(item.author || "TF").charAt(0)}
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wider text-[#717975] font-semibold">
-                        Penulis
-                      </div>
-                      <div className="text-sm font-bold text-[#00251d]">{item.author || "Tim Turia Farm"}</div>
-                    </div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <BookOpen size={14} className="text-[#2d6953]" />
+                    <h3 className="text-sm font-bold text-[#00251d]">Artikel Lainnya</h3>
                   </div>
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
+                  <div className="space-y-4">
+                    {otherArticles.map((a: any) => (
+                      <Link
+                        key={getSlug(a)}
+                        href={`/panduan-tani/${getSlug(a)}`}
+                        className="group flex items-start gap-3"
+                      >
+                        <div className="relative w-16 h-12 rounded-xl overflow-hidden bg-[#efeee8] shrink-0">
+                          <Image
+                            src={articleImageUrl(a)}
+                            alt={a.title || ""}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-[10px] uppercase tracking-wider text-[#2d6953] font-semibold mb-0.5">
+                            {a.category}
+                          </div>
+                          <div className="text-xs font-semibold text-[#00251d] leading-snug group-hover:text-[#2d6953] transition-colors line-clamp-2">
+                            {a.title}
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href="/panduan-tani"
+                    className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
                   >
-                    <MessageCircle size={14} />
-                    Konsultasi via WhatsApp
-                  </a>
+                    Lihat semua artikel
+                    <ArrowUpRight size={13} />
+                  </Link>
                 </div>
+              )}
+            </div>
 
-                {/* Other articles */}
-                {otherArticles.length > 0 && (
-                  <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
-                    <div className="flex items-center gap-2 mb-4">
-                      <BookOpen size={14} className="text-[#2d6953]" />
-                      <h3 className="text-sm font-bold text-[#00251d]">Artikel Lainnya</h3>
-                    </div>
-                    <div className="space-y-4">
-                      {otherArticles.map((a: any) => (
-                        <Link
-                          key={getSlug(a)}
-                          href={`/panduan-tani/${getSlug(a)}`}
-                          className="group flex items-start gap-3"
-                        >
-                          <div className="relative w-16 h-12 rounded-xl overflow-hidden bg-[#efeee8] shrink-0">
-                            <Image
-                              src={articleImageUrl(a)}
-                              alt={a.title || ""}
-                              fill
-                              sizes="64px"
-                              className="object-cover"
-                            />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-[10px] uppercase tracking-wider text-[#2d6953] font-semibold mb-0.5">
-                              {a.category}
-                            </div>
-                            <div className="text-xs font-semibold text-[#00251d] leading-snug group-hover:text-[#2d6953] transition-colors line-clamp-2">
-                              {a.title}
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                    <Link
-                      href="/panduan-tani"
-                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
-                    >
-                      Lihat semua artikel
-                      <ArrowUpRight size={13} />
-                    </Link>
-                  </div>
-                )}
-              </aside>
+            {/* Back link */}
+            <div className="max-w-3xl w-full mx-auto sm:mx-0 mt-12 pt-8 border-t border-[#c1c8c4]/50">
+              <a
+                href="/panduan-tani"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
+              >
+                <ArrowLeft size={14} />
+                Kembali ke Panduan Tani
+              </a>
             </div>
           </div>
         </article>
