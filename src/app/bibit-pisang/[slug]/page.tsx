@@ -50,7 +50,7 @@ export async function generateMetadata({
   const name = seedling?.name || "Bibit";
   const image = seedlingImageUrl(seedling);
   return {
-    title: `${name} - Harga & Spesifikasi | Katalog Bibit Turia Farm`,
+    title: `Harga & Spesifikasi Bibit ${name} | Turia Farm`,
     description:
       seedling?.desc?.slice(0, 155) ||
       `Info lengkap bibit ${name}: harga, masa panen, berat tandan, karakteristik, dan rekomendasi lahan di Turia Farm Kediri.`,

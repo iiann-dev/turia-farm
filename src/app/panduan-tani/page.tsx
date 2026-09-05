@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const guidePage = await getGuidePage().catch(() => null);
   const seo = guidePage?.seo;
   return {
-    title: seo?.metaTitle || "Panduan Budidaya Pisang & FAQ | Edukasi Tani Turia Farm",
+    title: seo?.metaTitle || "Panduan Budidaya Pisang & Analisis Usaha | Edukasi Tani",
     description:
       seo?.metaDescription ||
       "Kumpulan artikel teknis budidaya pisang: jarak tanam cavendish 30 ton/ha, cara cegah penyakit layu fusarium, analisis modal usaha kebun pisang 1 hektar.",

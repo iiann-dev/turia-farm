@@ -23,8 +23,8 @@ const notoSerif = Noto_Serif({
 export const metadata: Metadata = {
   metadataBase: new URL("https://turia-farm.vercel.app"),
   title: {
-    default: "Turia Farm | Pembibitan Pisang & Bibit Sengon Kediri",
-    template: "%s | Turia Farm Kediri",
+    default: "Turia Farm | Pusat Bibit Pisang Anakan & Bibit Sengon Kediri",
+    template: "%s | Turia Farm",
   },
   description:
     "Pusat bibit pisang anakan unggul dan bibit sengon biji pilihan (Cavendish, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon) di Batuaji, Ringinrejo, Kab. Kediri, Jawa Timur.",

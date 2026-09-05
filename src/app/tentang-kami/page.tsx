@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const aboutPage = await getAboutPage().catch(() => null);
   const seo = aboutPage?.seo;
   return {
-    title: seo?.metaTitle || "Tentang Kami & Nursery 2.8 Ha | Turia Farm Kediri",
+    title: seo?.metaTitle || "Tentang Kami | Nursery Bibit Pisang 2.8 Ha Kediri",
     description:
       seo?.metaDescription ||
       "Mengenal visi Turia Farm di Batuaji, Ringinrejo, Kediri: Menyejahterakan petani nusantara melalui penyediaan bibit pisang unggul murni bebas layu fusarium dan bibit sengon bermutu.",

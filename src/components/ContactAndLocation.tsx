@@ -63,9 +63,9 @@ export const ContactAndLocation: React.FC<ContactAndLocationProps> = ({
             <MessageCircle size={13} className="text-[#2d6953]" />
             <span>{sectionHeader?.eyebrowPill || "Kunjungi & Hubungi Kami"}</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
             {sectionHeader?.headline || "Siap Memulai Kebun Pisang & Sengon Produktif?"}
-          </h2>
+          </h1>
           <p className="text-base sm:text-lg text-[#414845]">
             {sectionHeader?.subtext || "Konsultasikan kebutuhan varietas, estimasi modal kebun, hingga pengiriman armada truk langsung ke lahan Anda."}
           </p>

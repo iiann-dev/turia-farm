@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const processPage = await getProcessPage().catch(() => null);
   const seo = processPage?.seo;
   return {
-    title: seo?.metaTitle || "Proses Pembibitan | Turia Farm Kediri",
+    title: seo?.metaTitle || "Proses Pembibitan Pisang Anakan & Penyemaian Sengon",
     description:
       seo?.metaDescription ||
       "Pelajari 4 tahap pembibitan pisang anakan dan penyemaian bibit sengon biji di Turia Farm Batuaji Ringinrejo Kediri. Akar aktif bergaransi hidup.",

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const contactPage = await getContactPage().catch(() => null);
   const seo = contactPage?.seo;
   return {
-    title: seo?.metaTitle || "Kontak & Alamat Nursery Batuaji Kediri | Turia Farm",
+    title: seo?.metaTitle || "Kontak & Alamat Nursery Bibit Kediri | Konsultasi Pemesanan",
     description:
       seo?.metaDescription ||
       "Hubungi nursery Turia Farm di Batuaji, Ringinrejo, Kab. Kediri untuk konsultasi pemesanan bibit pisang dan bibit sengon skala kecil maupun partai besar perkebunan. Buka Senin-Sabtu.",

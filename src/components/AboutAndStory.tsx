@@ -83,9 +83,9 @@ export const AboutAndStory: React.FC<AboutAndStoryProps> = ({
               <Users size={13} className="text-[#2d6953]" />
               <span>{story?.eyebrowPill || "Tentang Turia Farm"}</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-6 leading-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-6 leading-tight">
               {story?.headline || "Dedikasi untuk Kesejahteraan Petani Indonesia"}
-            </h2>
+            </h1>
             <div className="space-y-4 text-[#414845] text-sm sm:text-base leading-relaxed mb-8">
               {story?.paragraphs?.length > 0 ? (
                 story.paragraphs.map((p: string, idx: number) => (

@@ -49,9 +49,9 @@ export const ProcessSection: React.FC<ProcessSectionProps> = ({
             <ShieldCheck size={13} className="text-[#2d6953]" />
             <span>{sectionHeader?.eyebrowPill || "Standar Mutu Bibit"}</span>
           </div>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight mb-4">
             {sectionHeader?.headline || "4 Tahap Pembibitan Kebun Tradisional"}
-          </h2>
+          </h1>
           <p className="text-base sm:text-lg text-[#414845]">
             {sectionHeader?.subtext || "Dari pemisahan anakan pisang berkualitas & penyemaian biji sengon hingga pemeliharaan di polybag bedengan terbuka."}
           </p>

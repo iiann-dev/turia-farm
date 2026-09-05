@@ -38,9 +38,9 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
               <BookOpen size={13} className="text-[#2d6953]" />
               <span>{sectionHeader?.eyebrowPill || "Edukasi & Riset Tani"}</span>
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-[#00251d] tracking-tight">
               {sectionHeader?.headline || "Panduan & Tips Budidaya Terkini"}
-            </h2>
+            </h1>
           </div>
           <p className="text-sm sm:text-base text-[#414845] max-w-md font-normal">
             {sectionHeader?.subtext || "Artikel praktis berbasis riset lapang dari tim agronomis Turia Farm untuk membantu keberhasilan panen Anda."}

@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const catalogPage = await getCatalogPage().catch(() => null);
   const seo = catalogPage?.seo;
   return {
-    title: seo?.metaTitle || "Katalog Bibit Pisang Unggul & Bibit Sengon | Turia Farm Kediri",
+    title: seo?.metaTitle || "Katalog Bibit Pisang & Sengon Kediri | Harga Bibit Anakan",
     description:
       seo?.metaDescription ||
       "Daftar harga dan varietas bibit pisang anakan pilihan & bibit sengon biji Turia Farm di Batuaji Ringinrejo Kediri: Cavendish Grand Naine, Raja Bulu, Kepok Tanjung, Mas Kirana, Barangan, Sengon Solomon.",
