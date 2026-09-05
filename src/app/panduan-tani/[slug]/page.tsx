@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, User, BookOpen, ArrowUpRight, MessageCircle } from "lucide-react";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import {
   getArticleDetail,
   getAllArticleSlugs,
+  getArticles,
   getSiteConfig,
   getFooter,
   urlFor,
   getSlug,
 } from "@/lib/sanity";
-import { ARTICLES } from "@/data/seedlings";
+import { ARTICLES, SITE_CONFIG } from "@/data/seedlings";
 
 export const revalidate = 60;
 
@@ -134,18 +136,27 @@ export default async function ArticleDetailPage({
 
   if (!item) notFound();
 
-  const [siteConfig, footer] = await Promise.all([
+  const [siteConfig, footer, allArticles] = await Promise.all([
     getSiteConfig().catch(() => null),
     getFooter().catch(() => null),
+    getArticles().catch(() => []),
   ]);
 
   const imageSrc = articleImageUrl(item);
+  const currentSlug = getSlug(item);
+  const otherArticles = (allArticles.length > 0 ? allArticles : ARTICLES)
+    .filter((a: any) => getSlug(a) !== currentSlug)
+    .slice(0, 3);
+  const whatsappLink =
+    `https://wa.me/6289508495717?text=${encodeURIComponent(
+      `Halo Turia Farm, saya baru membaca artikel "${item.title}" di website dan ingin konsultasi lebih lanjut.`
+    )}`;
 
   return (
     <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
         <article className="py-20 sm:py-28 bg-[#faf9f3] relative">
-          <div className="max-w-4xl w-full px-4 sm:px-6 lg:px-8 mx-auto sm:mx-0">
+          <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-12 mx-auto sm:mx-0">
             <div className="mb-8">
               <Breadcrumb
                 items={[
@@ -189,46 +200,122 @@ export default async function ArticleDetailPage({
                 alt={item.title}
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 900px"
+                sizes="100vw"
                 className="object-cover"
               />
             </div>
 
-            {/* Body */}
-            <div className="max-w-3xl w-full mx-auto sm:mx-0">
-              <p className="font-medium text-base sm:text-lg text-[#1b1c19] leading-relaxed mb-8 border-l-4 border-[#2d6953] pl-5">
-                {item.excerpt}
-              </p>
+            {/* Two-column layout: body + sticky rail */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-14 items-start">
+              {/* Main body */}
+              <div className="min-w-0">
+                <div className="max-w-3xl">
+                  <p className="font-medium text-base sm:text-lg text-[#1b1c19] leading-relaxed mb-8 border-l-4 border-[#2d6953] pl-5">
+                    {item.excerpt}
+                  </p>
 
-              {item.content?.length > 0 ? (
-                <PortableText value={item.content} components={portableTextComponents} />
-              ) : (
-                <div className="space-y-5 text-sm sm:text-base text-[#414845] leading-relaxed">
-                  <p>
-                    Budidaya pisang intensif memerlukan pendekatan terencana mulai dari persiapan
-                    olah tanah, pembuatan bedengan dengan saluran drainase yang lancar (pisang tidak
-                    menyukai tanah tergenang air), hingga sanitasi anakan rutin (1 pohon induk cukup
-                    pelihara 1 anakan penerus).
-                  </p>
-                  <p>
-                    Pemberian nutrisi mikro dan inokulasi hayati seperti jamur Trichoderma harzianum
-                    pada awal tanam terbukti menekan insiden penyakit layu hingga di bawah 1%.
-                    Gunakan mulsa jerami atau daun pisang kering di sekitar piringan pohon untuk
-                    menjaga kelembapan mikro tanah saat kemarau.
-                  </p>
+                  {item.content?.length > 0 ? (
+                    <PortableText value={item.content} components={portableTextComponents} />
+                  ) : (
+                    <div className="space-y-5 text-sm sm:text-base text-[#414845] leading-relaxed">
+                      <p>
+                        Budidaya pisang intensif memerlukan pendekatan terencana mulai dari persiapan
+                        olah tanah, pembuatan bedengan dengan saluran drainase yang lancar (pisang tidak
+                        menyukai tanah tergenang air), hingga sanitasi anakan rutin (1 pohon induk cukup
+                        pelihara 1 anakan penerus).
+                      </p>
+                      <p>
+                        Pemberian nutrisi mikro dan inokulasi hayati seperti jamur Trichoderma harzianum
+                        pada awal tanam terbukti menekan insiden penyakit layu hingga di bawah 1%.
+                        Gunakan mulsa jerami atau daun pisang kering di sekitar piringan pohon untuk
+                        menjaga kelembapan mikro tanah saat kemarau.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Back link */}
+                  <div className="mt-14 pt-8 border-t border-[#c1c8c4]/50">
+                    <a
+                      href="/panduan-tani"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
+                    >
+                      <ArrowLeft size={14} />
+                      Kembali ke Panduan Tani
+                    </a>
+                  </div>
                 </div>
-              )}
-
-              {/* Back link */}
-              <div className="mt-14 pt-8 border-t border-[#c1c8c4]/50">
-                <a
-                  href="/panduan-tani"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
-                >
-                  <ArrowLeft size={14} />
-                  Kembali ke Panduan Tani
-                </a>
               </div>
+
+              {/* Sticky right rail */}
+              <aside className="lg:sticky lg:top-28 flex flex-col gap-6">
+                {/* Author card */}
+                <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-11 h-11 rounded-full bg-[#c4ebde] text-[#00251d] flex items-center justify-center font-serif text-lg font-bold">
+                      {(item.author || "TF").charAt(0)}
+                    </div>
+                    <div>
+                      <div className="text-xs uppercase tracking-wider text-[#717975] font-semibold">
+                        Penulis
+                      </div>
+                      <div className="text-sm font-bold text-[#00251d]">{item.author || "Tim Turia Farm"}</div>
+                    </div>
+                  </div>
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
+                  >
+                    <MessageCircle size={14} />
+                    Konsultasi via WhatsApp
+                  </a>
+                </div>
+
+                {/* Other articles */}
+                {otherArticles.length > 0 && (
+                  <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
+                    <div className="flex items-center gap-2 mb-4">
+                      <BookOpen size={14} className="text-[#2d6953]" />
+                      <h3 className="text-sm font-bold text-[#00251d]">Artikel Lainnya</h3>
+                    </div>
+                    <div className="space-y-4">
+                      {otherArticles.map((a: any) => (
+                        <Link
+                          key={getSlug(a)}
+                          href={`/panduan-tani/${getSlug(a)}`}
+                          className="group flex items-start gap-3"
+                        >
+                          <div className="relative w-16 h-12 rounded-xl overflow-hidden bg-[#efeee8] shrink-0">
+                            <Image
+                              src={articleImageUrl(a)}
+                              alt={a.title || ""}
+                              fill
+                              sizes="64px"
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-[10px] uppercase tracking-wider text-[#2d6953] font-semibold mb-0.5">
+                              {a.category}
+                            </div>
+                            <div className="text-xs font-semibold text-[#00251d] leading-snug group-hover:text-[#2d6953] transition-colors line-clamp-2">
+                              {a.title}
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <Link
+                      href="/panduan-tani"
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#2d6953] hover:text-[#00251d] transition-colors"
+                    >
+                      Lihat semua artikel
+                      <ArrowUpRight size={13} />
+                    </Link>
+                  </div>
+                )}
+              </aside>
             </div>
           </div>
         </article>
