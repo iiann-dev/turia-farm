@@ -123,27 +123,6 @@ export async function generateMetadata({
   };
 }
 
-export async function generateJsonLd({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const article = await getArticleDetail(slug).catch(() => null);
-  const fallback = ARTICLES.find((a) => getSlug(a) === slug);
-  const item = article || fallback;
-  if (!item) return [];
-
-  return [
-    breadcrumbJsonLd([
-      { name: "Beranda", url: "https://turia-farm.vercel.app/" },
-      { name: "Panduan Tani", url: "https://turia-farm.vercel.app/panduan-tani" },
-      { name: item.title, url: `https://turia-farm.vercel.app/panduan-tani/${slug}` },
-    ]),
-    articleJsonLd(item),
-  ];
-}
-
 export default async function ArticleDetailPage({
   params,
 }: {
@@ -172,6 +151,19 @@ export default async function ArticleDetailPage({
   return (
     <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              breadcrumbJsonLd([
+                { name: "Beranda", url: "https://turia-farm.vercel.app/" },
+                { name: "Panduan Tani", url: "https://turia-farm.vercel.app/panduan-tani" },
+                { name: item.title, url: `https://turia-farm.vercel.app/panduan-tani/${slug}` },
+              ]),
+              articleJsonLd(item),
+            ]).replace(/</g, "\\u003c"),
+          }}
+        />
         <article className="py-20 sm:py-28 bg-[#faf9f3] relative">
           <div className="max-w-7xl w-full px-4 sm:px-6 lg:px-12 mx-auto sm:mx-0">
             <div className="mb-8">

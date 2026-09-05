@@ -50,7 +50,7 @@ export async function generateMetadata({
   const name = seedling?.name || "Bibit";
   const image = seedlingImageUrl(seedling);
   return {
-    title: `Harga & Spesifikasi Bibit ${name} | Turia Farm`,
+    title: `Harga & Spesifikasi Bibit ${name}`,
     description:
       seedling?.desc?.slice(0, 155) ||
       `Info lengkap bibit ${name}: harga, masa panen, berat tandan, karakteristik, dan rekomendasi lahan di Turia Farm Kediri.`,
@@ -70,27 +70,6 @@ export async function generateMetadata({
       ],
     },
   };
-}
-
-export async function generateJsonLd({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const seedling = await getSeedlingDetail(slug).catch(() => null);
-  const fallback = SEEDLINGS.find((s) => getSlug(s) === slug);
-  const item = seedling || fallback;
-  if (!item) return [];
-
-  return [
-    breadcrumbJsonLd([
-      { name: "Beranda", url: "https://turia-farm.vercel.app/" },
-      { name: "Katalog Bibit", url: "https://turia-farm.vercel.app/bibit-pisang" },
-      { name: item.name, url: `https://turia-farm.vercel.app/bibit-pisang/${slug}` },
-    ]),
-    productJsonLd(item),
-  ];
 }
 
 export default async function SeedlingDetailPage({
@@ -127,6 +106,19 @@ export default async function SeedlingDetailPage({
   return (
     <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              breadcrumbJsonLd([
+                { name: "Beranda", url: "https://turia-farm.vercel.app/" },
+                { name: "Katalog Bibit", url: "https://turia-farm.vercel.app/bibit-pisang" },
+                { name: item.name, url: `https://turia-farm.vercel.app/bibit-pisang/${slug}` },
+              ]),
+              productJsonLd(item),
+            ]).replace(/</g, "\\u003c"),
+          }}
+        />
         <section className="py-20 sm:py-28 bg-[#faf9f3] relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
             <div className="mb-10">
