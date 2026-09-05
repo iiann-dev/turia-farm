@@ -95,7 +95,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
         </div>
 
         {/* Seedlings Grid */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:grid-cols-3">
           <AnimatePresence mode="wait">
             {filteredSeedlings.map((item, index) => {
               const imageSrc = (item as any).image?.asset
@@ -113,7 +113,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                   className="group rounded-3xl bg-white border border-[#c1c8c4]/40 hover:border-[#c1c8c4]/60 shadow-xs hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 flex flex-col overflow-hidden"
                 >
                   {/* Image Container */}
-                  <div className="relative aspect-square sm:aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
+                  <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full bg-[#efeee8] overflow-hidden">
                     <Image
                       src={imageSrc}
                       alt={item.name}
@@ -171,7 +171,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                     </div>
 
                     {/* Card Action */}
-                    <div className="flex items-center gap-3 pt-2">
+                    <div className="flex items-center gap-3 pt-2 mt-auto">
                       <a
                         href={getWaLinkForSeedling(item)}
                         target="_blank"
