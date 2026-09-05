@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { ArrowLeft, Calendar, Clock, User, BookOpen, ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, BookOpen, ArrowUpRight } from "lucide-react";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import {
@@ -147,10 +147,6 @@ export default async function ArticleDetailPage({
   const otherArticles = (allArticles.length > 0 ? allArticles : ARTICLES)
     .filter((a: any) => getSlug(a) !== currentSlug)
     .slice(0, 3);
-  const whatsappLink =
-    `https://wa.me/6289508495717?text=${encodeURIComponent(
-      `Halo Turia Farm, saya baru membaca artikel "${item.title}" di website dan ingin konsultasi lebih lanjut.`
-    )}`;
 
   return (
     <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
@@ -168,7 +164,7 @@ export default async function ArticleDetailPage({
             </div>
 
             {/* Header */}
-            <div className="mb-10">
+            <div className="max-w-3xl w-full mx-auto sm:mx-0 mb-10">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#c4ebde] text-xs font-semibold uppercase tracking-wider text-[#00251d] mb-5">
                 <span>{item.category}</span>
               </div>
@@ -184,25 +180,21 @@ export default async function ArticleDetailPage({
                   <Clock size={13} className="text-[#2d6953]" />
                   {item.readTime}
                 </span>
-                {item.author && (
-                  <span className="flex items-center gap-1.5">
-                    <User size={13} className="text-[#2d6953]" />
-                    {item.author}
-                  </span>
-                )}
               </div>
             </div>
 
-            {/* Featured image */}
-            <div className="relative rounded-3xl overflow-hidden bg-[#efeee8] border border-[#c1c8c4]/40 aspect-[16/9] mb-12 shadow-sm">
-              <Image
-                src={imageSrc}
-                alt={item.title}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-              />
+            {/* Featured image — smaller, constrained to reading column */}
+            <div className="max-w-3xl w-full mx-auto sm:mx-0 mb-12">
+              <div className="relative rounded-3xl overflow-hidden bg-[#efeee8] border border-[#c1c8c4]/40 aspect-[16/9] shadow-sm">
+                <Image
+                  src={imageSrc}
+                  alt={item.title}
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             {/* Article body */}
@@ -231,40 +223,15 @@ export default async function ArticleDetailPage({
               )}
             </div>
 
-            {/* Below-text: author card + related articles (2-col on sm+, stacked on phone) */}
-            <div className="max-w-3xl w-full mx-auto sm:mx-0 mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {/* Author card */}
-              <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-11 h-11 rounded-full bg-[#c4ebde] text-[#00251d] flex items-center justify-center font-serif text-lg font-bold">
-                    {(item.author || "TF").charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-wider text-[#717975] font-semibold">
-                      Penulis
-                    </div>
-                    <div className="text-sm font-bold text-[#00251d]">{item.author || "Tim Turia Farm"}</div>
-                  </div>
-                </div>
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-full bg-[#00251d] text-white text-xs font-semibold hover:bg-[#173b32] transition-colors shadow-xs"
-                >
-                  <MessageCircle size={14} />
-                  Konsultasi via WhatsApp
-                </a>
-              </div>
-
-              {/* Other articles */}
+            {/* Below-text: related articles (full width) */}
+            <div className="max-w-3xl w-full mx-auto sm:mx-0 mt-12">
               {otherArticles.length > 0 && (
                 <div className="rounded-3xl bg-white border border-[#c1c8c4]/40 p-6 shadow-sm">
                   <div className="flex items-center gap-2 mb-4">
                     <BookOpen size={14} className="text-[#2d6953]" />
                     <h3 className="text-sm font-bold text-[#00251d]">Artikel Lainnya</h3>
                   </div>
-                  <div className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {otherArticles.map((a: any) => (
                       <Link
                         key={getSlug(a)}
