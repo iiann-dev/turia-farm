@@ -145,7 +145,7 @@ export default async function ArticleDetailPage({
     <PageWrapper cmsSiteConfig={siteConfig} cmsFooter={footer}>
       <div className="pt-6">
         <article className="py-20 sm:py-28 bg-[#faf9f3] relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl w-full px-4 sm:px-6 lg:px-8 mx-auto sm:mx-0">
             <div className="mb-8">
               <Breadcrumb
                 items={[
@@ -195,7 +195,7 @@ export default async function ArticleDetailPage({
             </div>
 
             {/* Body */}
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl w-full mx-auto sm:mx-0">
               <p className="font-medium text-base sm:text-lg text-[#1b1c19] leading-relaxed mb-8 border-l-4 border-[#2d6953] pl-5">
                 {item.excerpt}
               </p>
