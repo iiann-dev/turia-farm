@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Animated } from "./Animated";
 import { SEEDLINGS } from "../data/seedlings";
 import { SeedlingItem } from "../types";
 import { ArrowUpRight, Sparkles, Scale, Clock, Ruler, Search, X } from "lucide-react";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import { urlFor, getSlug } from "@/lib/sanity";
 
 interface SeedlingsSectionProps {
   cmsSeedlings?: any[];
@@ -23,7 +24,6 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
   cmsSeedlings,
   cmsCatalogHero,
 }) => {
-  const [selectedItem, setSelectedItem] = useState<SeedlingItem | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   // Use CMS data with static fallbacks
@@ -181,12 +181,13 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
                         <span>Pesan via WA</span>
                         <ArrowUpRight size={14} />
                       </a>
-                      <button
-                        onClick={() => setSelectedItem(item)}
-                        className="py-3 px-4 rounded-full border border-[#c1c8c4] hover:border-[#00251d] text-[#00251d] text-xs font-medium transition-colors hover:bg-[#f5f4ee]"
+                      <Link
+                        href={`/bibit-pisang/${getSlug(item)}`}
+                        className="py-3 px-4 rounded-full border border-[#c1c8c4] hover:border-[#00251d] text-[#00251d] text-xs font-medium transition-colors hover:bg-[#f5f4ee] inline-flex items-center justify-center gap-1.5"
                       >
                         Info Detail
-                      </button>
+                        <ArrowUpRight size={13} />
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
@@ -200,80 +201,7 @@ export const SeedlingsSection: React.FC<SeedlingsSectionProps> = ({
           )}
         </div>
 
-        {/* Modal Detail */}
-        {selectedItem && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#faf9f3] max-w-xl w-full rounded-3xl p-6 sm:p-8 border border-[#c1c8c4] shadow-2xl relative"
-            >
-              <button
-                onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#efeee8] hover:bg-[#e3e3dd] text-[#00251d] flex items-center justify-center font-bold"
-              >
-                ✕
-              </button>
-
-              <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-1">
-                {selectedItem.tag}
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#00251d] mb-1">
-                {selectedItem.name}
-              </h3>
-              <div className="text-xs italic text-[#717975] mb-4">
-                {selectedItem.scientificName}
-              </div>
-
-              <p className="text-xs sm:text-sm text-[#414845] leading-relaxed mb-4 sm:mb-6">
-                {selectedItem.desc}
-              </p>
-
-              <div className="space-y-3 bg-white p-4 rounded-2xl border border-[#efeee8] mb-6 text-xs sm:text-sm">
-                <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">Masa Panen:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.maturity}</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">Berat Tandan:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.bunchWeight}</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">
-                    {(typeof selectedItem.id === 'object' && selectedItem.id && 'current' in selectedItem.id && (selectedItem.id as any).current?.startsWith("sengon")) || (typeof selectedItem.id === 'string' && selectedItem.id.startsWith("sengon")) ? "Karakteristik" : "Kemanisan"}:
-                  </span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.sweetness}</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">Tinggi Pohon:</span>
-                  <span className="font-semibold text-[#00251d]">{selectedItem.height}</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-[#f5f4ee]">
-                  <span className="text-[#717975]">Rekomendasi Lahan:</span>
-                  <span className="font-semibold text-[#2d6953]">{selectedItem.bestFor}</span>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span className="text-[#717975]">Harga Eceran / Partai:</span>
-                  <span className="font-bold text-[#00251d]">{selectedItem.price}</span>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <a
-                  href={getWaLinkForSeedling(selectedItem)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 py-3.5 px-6 rounded-full bg-[#00251d] text-white hover:bg-[#173b32] text-sm font-semibold text-center shadow-md flex items-center justify-center gap-2"
-                >
-                  <span>Konsultasi & Pesan Bibit Ini</span>
-                  <ArrowUpRight size={16} />
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
+        {/* Modal Detail removed — detail now opens at /bibit-pisang/[slug] */}
       </div>
     </section>
   );

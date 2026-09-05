@@ -1,5 +1,6 @@
 export interface SeedlingItem {
   id: string;
+  slug?: string;
   name: string;
   scientificName: string;
   tag: string;
@@ -12,6 +13,8 @@ export interface SeedlingItem {
   image: string;
   status: string;
   bestFor: string;
+  featured?: boolean;
+  order?: number;
 }
 
 export interface ProcessStep {
@@ -34,6 +37,7 @@ export interface ArticleItem {
   excerpt: string;
   image: string;
   author: string;
+  content?: any;
 }
 
 export interface TestimonialItem {

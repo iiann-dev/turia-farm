@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json().catch(() => ({}));
     const type = body?._type;
+    const slug = body?.id?.current || body?.slug?.current || "";
 
     // Target specific paths based on updated content type
     const pathsToRevalidate: string[] = [];
@@ -21,9 +22,11 @@ export async function POST(request: NextRequest) {
     } else if (type === "seedling") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/bibit-pisang");
+      if (slug) pathsToRevalidate.push(`/bibit-pisang/${slug}`);
     } else if (type === "article") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/panduan-tani");
+      if (slug) pathsToRevalidate.push(`/panduan-tani/${slug}`);
     } else if (type === "processStep") {
       pathsToRevalidate.push("/");
       pathsToRevalidate.push("/proses-kultur");

@@ -36,6 +36,50 @@ export async function getSeedlings() {
   return client.fetch(query);
 }
 
+// Normalize a slug/id that may be a Sanity slug object ({ current: "x" }),
+// a static string slug, or a plain string id. Never returns the CMS
+// object shape — always a string.
+export function getSlug(item: any): string {
+  if (!item) return "";
+  const id = item.id ?? item.slug;
+  if (typeof id === "string") return id;
+  if (id && typeof id === "object" && typeof id.current === "string") return id.current;
+  return "";
+}
+
+// Sanity item id may be a slug object or plain string — normalize to the
+// string used in URLs / lookups.
+export function getItemId(item: any): string {
+  return getSlug(item);
+}
+
+export async function getSeedlingDetail(id: string) {
+  const query = `*[_type == "seedling" && id.current == $id][0]{
+    _id,
+    id,
+    name,
+    scientificName,
+    tag,
+    desc,
+    maturity,
+    bunchWeight,
+    sweetness,
+    height,
+    price,
+    image,
+    status,
+    bestFor,
+    featured,
+    order
+  }`;
+  return client.fetch(query, { id });
+}
+
+export async function getAllSeedlingSlugs() {
+  const query = `*[_type == "seedling"]{"slug": id.current}`;
+  return client.fetch(query);
+}
+
 export async function getFeaturedSeedlings() {
   const query = `*[_type == "seedling" && featured == true] | order(order asc, name asc)`;
   return client.fetch(query);
@@ -43,6 +87,31 @@ export async function getFeaturedSeedlings() {
 
 export async function getArticles() {
   const query = `*[_type == "article" && published == true] | order(date desc, order asc)`;
+  return client.fetch(query);
+}
+
+export async function getArticleDetail(id: string) {
+  const query = `*[_type == "article" && id.current == $id][0]{
+    _id,
+    id,
+    title,
+    slug,
+    excerpt,
+    content,
+    image,
+    category,
+    author,
+    date,
+    publishedAt,
+    published,
+    readTime,
+    order
+  }`;
+  return client.fetch(query, { id });
+}
+
+export async function getAllArticleSlugs() {
+  const query = `*[_type == "article"]{"slug": id.current}`;
   return client.fetch(query);
 }
 

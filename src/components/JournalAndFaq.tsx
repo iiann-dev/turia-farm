@@ -6,7 +6,8 @@ import { ARTICLES, FAQS } from "../data/seedlings";
 import { ArticleItem } from "../types";
 import { BookOpen, HelpCircle, ArrowUpRight, ChevronDown, Calendar, Clock } from "lucide-react";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import Link from "next/link";
+import { urlFor, getSlug } from "@/lib/sanity";
 
 interface JournalAndFaqProps {
   cmsGuidePage?: any;
@@ -16,7 +17,6 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
   cmsGuidePage,
 }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [readingArticle, setReadingArticle] = useState<ArticleItem | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -107,63 +107,20 @@ export const JournalAndFaq: React.FC<JournalAndFaqProps> = ({
                 </div>
 
                 <div className="px-6 pb-6 pt-2">
-                  <button
-                    onClick={() => setReadingArticle(article as ArticleItem)}
+                  <Link
+                    href={`/panduan-tani/${articleId}`}
                     className="w-full flex items-center justify-between py-2.5 px-4 rounded-full bg-white border border-[#c1c8c4] text-xs font-semibold text-[#00251d] hover:bg-[#00251d] hover:text-white transition-all shadow-xs"
                   >
                     <span>Baca Selengkapnya</span>
                     <ArrowUpRight size={14} />
-                  </button>
+                  </Link>
                 </div>
               </Animated>
             );
           })}
         </div>
 
-        {/* Modal Full Article Reader */}
-        {readingArticle && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
-            <div className="bg-[#faf9f3] max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-[#c1c8c4] shadow-2xl relative">
-              <button
-                onClick={() => setReadingArticle(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#efeee8] hover:bg-[#e3e3dd] text-[#00251d] flex items-center justify-center font-bold"
-              >
-                ✕
-              </button>
-
-              <div className="text-xs font-bold uppercase tracking-wider text-[#2d6953] mb-2">
-                {readingArticle.category} • {readingArticle.readTime}
-              </div>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#00251d] mb-4">
-                {readingArticle.title}
-              </h3>
-              <div className="text-xs text-[#717975] mb-6">
-                {readingArticle.date} • Penulis: {readingArticle.author}
-              </div>
-
-              <div className="space-y-4 text-sm text-[#414845] leading-relaxed">
-                <p className="font-medium text-base text-[#1b1c19]">
-                  {readingArticle.excerpt}
-                </p>
-                <p>
-                  Budidaya pisang intensif memerlukan pendekatan terencana mulai dari persiapan olah tanah, pembuatan bedengan dengan saluran drainase yang lancar (pisang tidak menyukai tanah tergenang air), hingga sanitasi anakan rutin (1 pohon induk cukup pelihara 1 anakan penerus).
-                </p>
-                <p>
-                  Pemberian nutrisi mikro dan inokulasi hayati seperti jamur Trichoderma harzianum pada awal tanam terbukti menekan insiden penyakit layu hingga di bawah 1%. Gunakan mulsa jerami atau daun pisang kering di sekitar piringan pohon untuk menjaga kelembapan mikro tanah saat kemarau.
-                </p>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-[#c1c8c4]/50 flex justify-end">
-                <button
-                  onClick={() => setReadingArticle(null)}
-                  className="px-6 py-2.5 rounded-full bg-[#00251d] text-white text-xs font-semibold"
-                >
-                  Tutup Bacaan
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Article modal removed — full article now at /panduan-tani/[slug] */}
 
         {/* FAQ Accordion Section */}
         <div className="max-w-4xl mx-auto pt-10">
