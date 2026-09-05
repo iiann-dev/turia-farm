@@ -15,7 +15,7 @@ import {
   urlFor,
   getSlug,
 } from "@/lib/sanity";
-import { ARTICLES, SITE_CONFIG } from "@/data/seedlings";
+import { ARTICLES, SITE_CONFIG, articleJsonLd, breadcrumbJsonLd } from "@/data/seedlings";
 
 export const revalidate = 60;
 
@@ -121,6 +121,27 @@ export async function generateMetadata({
       images: [{ url: image }],
     },
   };
+}
+
+export async function generateJsonLd({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const article = await getArticleDetail(slug).catch(() => null);
+  const fallback = ARTICLES.find((a) => getSlug(a) === slug);
+  const item = article || fallback;
+  if (!item) return [];
+
+  return [
+    breadcrumbJsonLd([
+      { name: "Beranda", url: "https://turia-farm.vercel.app/" },
+      { name: "Panduan Tani", url: "https://turia-farm.vercel.app/panduan-tani" },
+      { name: item.title, url: `https://turia-farm.vercel.app/panduan-tani/${slug}` },
+    ]),
+    articleJsonLd(item),
+  ];
 }
 
 export default async function ArticleDetailPage({

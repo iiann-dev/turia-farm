@@ -19,6 +19,61 @@ export const SITE_CONFIG = {
   hours: "Senin - Sabtu: 07.30 - 16.30 WIB",
 };
 
+// SEO: JSON-LD helpers
+export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+}
+
+export function productJsonLd(item: any) {
+  const slug = typeof item?.id === "object" ? item.id.current : item?.id || item?.slug || "";
+  const image = item?.image?.asset
+    ? `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET || "production"}/${item.image.asset._ref.replace("image-", "").replace(/-(jpg|jpeg|png|webp)$/, ".$1")}`
+    : item?.image || "";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: item?.name,
+    image,
+    description: item?.desc,
+    sku: slug,
+    brand: { "@type": "Brand", name: "Turia Farm" },
+    offers: {
+      "@type": "Offer",
+      url: `https://turia-farm.vercel.app/bibit-pisang/${slug}`,
+      priceCurrency: "IDR",
+      price: item?.price ? parseFloat((item.price.match(/[\d.,]+/) || ["0"])[0].replace(/\./g, "").replace(",", ".")) : undefined,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Turia Farm" },
+    },
+  };
+}
+
+export function articleJsonLd(item: any) {
+  const slug = item?.id?.current || item?.slug || "";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: item?.title,
+    description: item?.excerpt,
+    image: item?.image?.asset
+      ? `https://cdn.sanity.io/images/${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}/${process.env.NEXT_PUBLIC_SANITY_DATASET || "production"}/${item.image.asset._ref.replace("image-", "").replace(/-(jpg|jpeg|png|webp)$/, ".$1")}`
+      : item?.image || "",
+    datePublished: item?.date || item?.publishedAt || new Date().toISOString(),
+    author: { "@type": "Person", name: item?.author || "Tim Turia Farm" },
+    publisher: { "@type": "Organization", name: "Turia Farm" },
+    mainEntityOfPage: `https://turia-farm.vercel.app/panduan-tani/${slug}`,
+  };
+}
+
 export const SEEDLINGS: SeedlingItem[] = [
   {
     id: "cavendish-grand-naine",

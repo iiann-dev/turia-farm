@@ -14,7 +14,7 @@ import {
   dataset,
   getSlug,
 } from "@/lib/sanity";
-import { SEEDLINGS } from "@/data/seedlings";
+import { SEEDLINGS, productJsonLd, breadcrumbJsonLd } from "@/data/seedlings";
 
 export const revalidate = 60;
 
@@ -70,6 +70,27 @@ export async function generateMetadata({
       ],
     },
   };
+}
+
+export async function generateJsonLd({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const seedling = await getSeedlingDetail(slug).catch(() => null);
+  const fallback = SEEDLINGS.find((s) => getSlug(s) === slug);
+  const item = seedling || fallback;
+  if (!item) return [];
+
+  return [
+    breadcrumbJsonLd([
+      { name: "Beranda", url: "https://turia-farm.vercel.app/" },
+      { name: "Katalog Bibit", url: "https://turia-farm.vercel.app/bibit-pisang" },
+      { name: item.name, url: `https://turia-farm.vercel.app/bibit-pisang/${slug}` },
+    ]),
+    productJsonLd(item),
+  ];
 }
 
 export default async function SeedlingDetailPage({
