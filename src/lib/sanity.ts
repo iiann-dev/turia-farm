@@ -194,6 +194,7 @@ export async function getGuidePage() {
       excerpt,
       content,
       coverImage,
+    image,
       category,
       author,
       publishedAt,
